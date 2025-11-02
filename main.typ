@@ -1,11 +1,13 @@
 // Template for Physics assignments
+#import "@preview/titleize:0.1.1": titlecase
+#import "@preview/dashy-todo:0.1.2": todo
 
 #set heading(numbering: "1.")
 
 #align(center)[
 
     _#text(30pt)[
-    Physics Assignment Template 
+    #titlecase("physics assignment template")
     ] \ \
     *Subtitle*
     _
