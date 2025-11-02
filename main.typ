@@ -1,18 +1,22 @@
 // Template for Physics assignments
+#import "@preview/titleize:0.1.1": titlecase
+#import "@preview/dashy-todo:0.1.2": todo
 
 #set heading(numbering: "1.")
 
 #align(center)[
 
     _#text(30pt)[
-    Physics Assignment Template 
+    #titlecase("Modeling the cooling of air in a can")
     ] \ \
-    *Subtitle*
+    *Assignment 2*
     _
 
     SCIE 001 Physics
 
-    Noah Virjee
+    Noah Virjee \
+    45515863
+    
 
     #let today = datetime.today()
 
@@ -26,6 +30,7 @@
 #pagebreak()
 
 
-= This
-== That
-= The next thing
+= Introduction 
+= Results
+= Discussion
+
