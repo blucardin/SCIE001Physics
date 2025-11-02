@@ -29,6 +29,9 @@
 
 #pagebreak()
 
+// uncomment this for infinite page height except the first page.
+// #set page(height: auto)
+
 
 = Introduction 
 = Results
