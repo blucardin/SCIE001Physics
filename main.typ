@@ -7,9 +7,8 @@
 #align(center)[
 
     _#text(30pt)[
-    #titlecase("Modeling the cooling of air in a can")
+    #titlecase("Quiz 3 Reflection")
     ] \ \
-    *Assignment 2*
     _
 
     SCIE 001 Physics
@@ -30,10 +29,22 @@
 #pagebreak()
 
 // uncomment this for infinite page height except the first page.
-// #set page(height: auto)
+#set page(height: auto)
 
 
-= Introduction 
-= Results
-= Discussion
+= Collision Ball and Box 1 
+== Specify Question
+#image("Screenshot 2025-11-03 at 12.11.27 PM.png"),
 
+
+== Diagnosis Phase
+== Correction Phase
+
+#pagebreak()
+
+= Interpreting an energy diagram 
+== Specify Question
+#image("Screenshot 2025-11-03 at 12.04.26 PM.png"),
+
+== Diagnosis Phase
+== Correction Phase
