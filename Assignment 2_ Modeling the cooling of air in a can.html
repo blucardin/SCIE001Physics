@@ -1,0 +1,2124 @@
+<div class="description user_content enhanced" data-resource-type="assignment.body" data-resource-id="2198762">
+  <h3>Assignment Description</h3>
+  <p>Similar to your first long-assignment, this long-form assignment has two main parts:</p>
+  <ol>
+    <li><strong>Collect data</strong>: Use your Arduino and the DHT11
+      temperature sensor to record the temperature of a small volume of air in
+      a beverage can as it cools down&nbsp;
+      <ul style="list-style-type: disc;">
+        <li>You may use any small aluminum cylindrical beverage can of your choosing (e.g. soda can, etc.)</li>
+        <li>Use any convenient heat source to heat the can and thus the air
+          within it. You don't need much heating; 10 C above ambient is
+          sufficient.</li>
+        <li>You should repeat your experiment <strong>three </strong>times with the same can; and thus obtain three
+          temperature vs time datasets.&nbsp;&nbsp;</li>
+        <li>Use the Jupyter notebook introduced in your pre-reading (<span
+            class="instructure_file_holder link_holder instructure_file_link_holder"><a id="42167142"
+              class="inline_disabled" title="Link" href="https://canvas.ubc.ca/courses/181842/files/42167142?wrap=1"
+              target="_blank" data-api-endpoint="https://canvas.ubc.ca/api/v1/courses/181842/files/42167142"
+              data-api-returntype="File">L17_DHT_DAQ_jma_v2.ipynb</a><a class="file_download_btn" role="button"
+              download="" style="margin-inline-start: 5px; text-decoration: none;"
+              href="https://canvas.ubc.ca/courses/181842/files/42167142/download?download_frd=1"><span
+                role="presentation"><svg viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
+                  style="width:1em; height:1em; vertical-align:middle; fill:currentColor">
+                  <path
+                    d="m1807.093 1482.477 79.736 79.963-355.313 355.312H355.346L.035 1562.44l79.85-79.963 322.22 322.334H1484.76l322.334-322.334ZM997.677-.033v1167.02l355.313-355.313 79.962 79.85-491.858 491.633L449.46 891.524l79.962-79.85 355.313 355.313V-.033h112.941Z"
+                    fill-rule="evenodd"></path>
+                </svg>
+              </span><span class="screenreader-only">Download L17_DHT_DAQ_jma_v2.ipynb</span></a></span>) to acquire and
+          save your temperature data to a <code>.csv</code>
+          file. You can also use code from Assignment 1 to pick out the data you
+          want to analyze from a larger Numpy array using indexing.&nbsp; Make
+          sure to keep some data before and after the cooling portion that you
+          will fit so that the reader can get a better idea of what you were
+          working with.<br><br></li>
+      </ul>
+    </li>
+    <li><strong>Analyze data</strong>: &nbsp;Use the Euler method to estimate the natural (unforced) convection
+      coefficient <em>k<sub>c</sub></em> and emissivity <em>ε</em> for your system by fitting a portion of your cooling
+      data.
+      <ul style="list-style-type: disc;">
+        <li>Use the file <span class="instructure_file_holder link_holder instructure_file_link_holder"><a
+              class="inline_disabled" title="can_cooling_bare_bones.ipynb"
+              href="https://canvas.ubc.ca/courses/181842/files/42453352?wrap=1"
+              target="_blank">can_cooling_bare_bones.ipynb</a><a class="file_download_btn" role="button" download=""
+              style="margin-inline-start: 5px; text-decoration: none;"
+              href="https://canvas.ubc.ca/courses/181842/files/42453352/download?download_frd=1"><span
+                role="presentation"><svg viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"
+                  style="width:1em; height:1em; vertical-align:middle; fill:currentColor">
+                  <path
+                    d="m1807.093 1482.477 79.736 79.963-355.313 355.312H355.346L.035 1562.44l79.85-79.963 322.22 322.334H1484.76l322.334-322.334ZM997.677-.033v1167.02l355.313-355.313 79.962 79.85-491.858 491.633L449.46 891.524l79.962-79.85 355.313 355.313V-.033h112.941Z"
+                    fill-rule="evenodd"></path>
+                </svg>
+              </span><span class="screenreader-only">Download can_cooling_bare_bones.ipynb</span></a></span> (in Module
+          3) as a basis for your analysis</li>
+        <li>Plot your best Euler model fit (as a solid line) along with your
+          data (as points) on the same graph. All plots should include axes labels
+          and a legend.</li>
+        <li>Find the temperature difference Δ<em>T</em> across the wall of your can</li>
+        <li>Repeat this process three times for each datasets.</li>
+        <li>Based on your three fits, report your best estimate (including uncertainties) for both the&nbsp;convection
+          coefficient <em>k<sub>c</sub></em> and the emissivity <em>ε </em>of your system with
+          uncertainties.&nbsp;&nbsp;</li>
+      </ul>
+    </li>
+  </ol>
+  <h3>Submission details</h3>
+  <p>&nbsp; Your assignment submission should be single PDF document that includes three sections:</p>
+  <ul>
+    <li><strong>Introduction </strong>(max 100 words):
+      <ul>
+        <li>Explain what you did and state key facts about your experiment (e.g. describe your can, heat source used,
+          etc.).</li>
+        <li>All reported quantities should have units and uncertainty (if measured).</li>
+        <li>Include a picture of your experimental setup.</li>
+      </ul>
+    </li>
+    <li><strong>Results </strong>(max 200 words)
+      <ul>
+        <li>A summary of how you analyzed your data (e.g. what differential
+          equation is solved with the Euler method? how did you determine what
+          portion of your data to fit? how did you determine your best fit
+          parameters? what assumptions did you make? ...)</li>
+        <li>Equations, units and variables should be properly formatted (e.g. use latex or an equation editor).
+          <ul>
+            <li>Equations and variable definitions do not count towards word count.</li>
+          </ul>
+        </li>
+        <li>Report the value of any constants used in your code in a table.</li>
+        <li>Report your fit parameters and the temperature difference Δ<em>T</em> across the wall of your can for each
+          of your three trials in a table.</li>
+        <li>Report your final best estimate (including uncertainties) for both the convection coefficient
+          <em>k<sub>c</sub></em> and the emissivity <em>ε </em>of your system with uncertainties. Explain how you
+          calculated these values.&nbsp;</li>
+        <li>You must show your three plots as described above. Make sure the
+          data in the graph as well as the labels and axes are easily readable in
+          the PDF.</li>
+      </ul>
+    </li>
+    <li><strong>Discussion </strong>(max 200 words)
+      <ul>
+        <li>Provide some insight into what your plots are showing (this is where
+          you demonstrate that you understand how the data relates to the physics
+          we've learned in class!)</li>
+        <li>Discuss how well your fitting parameters across your three trials agree with one another.</li>
+        <li>Discuss if your final best estimates for convection coefficient <em>k<sub>c</sub></em> and the emissivity
+          <em>ε </em>are reasonable given your can and experimental conditions.</li>
+        <li>Discuss the significance of the temperature difference Δ<em>T</em> across the wall of your can</li>
+      </ul>
+    </li>
+  </ul>
+  <p><em><strong>A note on captions</strong></em>: You need to label all figures and tables (e.g. "<em>Figure 1</em>" or
+    "<em>Table 1</em>") and provide a short caption:</p>
+  <ul>
+    <li>A caption should be max 2-3 complete sentences that provide enough
+      detail to understand what the figure or table is showing (e.g. for a
+      figure for PHYS 119 Lab 01, it's not sufficient to just say "<em>A picture of my experiment</em>" but "<em>A
+        spring of length 20cm (shown on the left) was compressed on a scale with 1 g precision (shown on the right)
+        using my hand</em>." would be more useful).</li>
+    <li>Titles on graphs are optional as long as your graphs are appropriately described by the figure captions.</li>
+    <li>You should always refer to the figures/tables in your text (e.g. "<em>As seen in Figure 1, the spring constant
+        was estimated by compressing a spring ...</em>").</li>
+    <li>Captions do not count towards the word limit.<br><br></li>
+  </ul>
+  <h3>Collaboration and Academic Integrity</h3>
+  <p>For all long-form assignments, you are encouraged to collaborate with
+    others while collecting and analyzing your data. Working together to
+    brainstorm ideas, troubleshoot experimental setups and debug code are
+    all expected behaviors of professional physicists. While you are free to
+    use any Python code that was provided to the class so far this term,
+    the data you collect, the data analysis you perform on these data and
+    your final written submission must be your own work. If you have more
+    questions about this, reach out to someone on the teaching team and/or
+    remind yourself of the course's <a class="inline_disabled"
+      href="https://canvas.ubc.ca/courses/181842/pages/academic-integrity?module_item_id=8207350" target="_blank"
+      data-api-endpoint="https://canvas.ubc.ca/api/v1/courses/181842/pages/academic-integrity"
+      data-api-returntype="Page">academic integrity guidelines</a>.&nbsp;<br><br></p>
+  <h3>Helpful tips</h3>
+  <ul>
+    <li>The same tips/warning from the first assignment apply here.
+      &nbsp;Make a plan and start early so that you have plenty of time to
+      troubleshoot issues and ask for help.<br><br></li>
+    <li>For this assignment especially, do not underestimate the amount of
+      time it will take to carry out a good analysis. Take some time to
+      consider the differential equation that governs the rate of change of
+      temperature for your system. You can show that all heat loss terms are
+      proportional to temperature. So what shape should the cooling curve
+      have? What does this imply for your fitting analysis?<br><br></li>
+  </ul>
+</div>
+
+
+<div style="display: none;">
+  <span class="timestamp">1763784000</span>
+  <span class="due_date_string">11/21/2025</span>
+  <span class="due_time_string">08:00pm</span>
+</div>
+</div>
+
+
+
+<div style="display: none;" id="submit_assignment" data-context_code="course_181842"
+  data-asset_string="assignment_2198762">
+  <div class="content" id="submit_assignment_tabs">
+    <ul>
+      <li><a href="#submit_online_upload_form" class="submit_online_upload_option">File Upload</a></li>
+    </ul>
+
+    <form id="submit_online_upload_form" class="submit_assignment_form" enctype="multipart/form-data"
+      action="/courses/181842/assignments/2198762/submissions" accept-charset="UTF-8" method="post"><input name="utf8"
+        type="hidden" value="✓" autocomplete="off"><input type="hidden" name="authenticity_token"
+        value="5PsijCLYDS/IXMRGj5f4S3jBDxVbTT9cdf/vrXWEBwucqHq9Gpo7WIQpqQLo3LQnHIplYz8CbjoMspn8RPVkUw=="
+        autocomplete="off">
+      <input value="online_upload" autocomplete="off" type="hidden" name="submission[submission_type]"
+        id="submission_submission_type">
+      <input value="" id="submission_attachment_ids" autocomplete="off" type="hidden" name="submission[attachment_ids]">
+      <input id="eula_agreement_timestamp" autocomplete="off" type="hidden" name="submission[eula_agreement_timestamp]">
+      <table class="formtable" style="width: 100%;">
+        <tbody>
+          <tr>
+            <td colspan="2">
+              Upload a file, or choose a file you've already uploaded.
+
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <span style="visibility: hidden"><label id="attachmentLabel"
+                  for="attachment_uploaded_data">File:</label></span>
+              <div class="submission_attachment" style="margin-bottom: 1em;">
+                <div class="attachment_wrapper" style="display: inline-block;"><span dir="ltr" direction="column"
+                    wrap="no-wrap" class="css-12bo6yl-view--flex-flex"><span dir="ltr" direction="row" wrap="no-wrap"
+                      class="css-ji8lyw-view--flex-flex"><span dir="ltr" class="css-1p61tnf-view--inlineBlock"><label
+                          for="submission_file_drop_0" class="css-1kwfrgm-fileDrop__label"><span dir="ltr"
+                            class="css-cwgj77-view--block"><span class="css-nztqg3-fileDrop__labelContent"><span
+                                class="css-or986r-fileDrop__layout"><span dir="ltr" class="css-1c40r9-view">
+                                  <div dir="ltr" class="css-1jxvdcw-view">
+                                    <div dir="ltr" class="css-z5io5u-view"><img dir="ltr"
+                                        src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/216eca4688bb838f.svg"
+                                        alt="" class="css-13n4k0v-view--inlineBlock-img"></div>
+                                    <div dir="ltr" class="css-1c40r9-view"><span wrap="normal" letter-spacing="normal"
+                                        class="css-4vgewj-text">Drag a file here, or</span></div>
+                                    <div dir="ltr" class="css-1c40r9-view"><span color="brand" wrap="normal"
+                                        letter-spacing="normal" class="css-1kdyztr-text">Choose a file to upload</span>
+                                    </div>
+                                  </div>
+                                </span></span></span></span></label><input id="submission_file_drop_0" accept=".pdf"
+                          data-testid="file-upload-0" type="file" aria-invalid="false"
+                          class="css-1bvbjwa-fileDrop__input input-file"
+                          name="attachments[0][uploaded_data]"></span></span></span>
+                  <div></div>
+                </div>
+                <a href="#" class="remove_attachment_link no-hover" style="display: none;"><i class="icon-end"
+                    aria-hidden="true"></i><span class="screenreader-only">remove empty attachment</span></a>
+                <div class="bad_ext_msg error_message" style="display: none">
+                  This file type is not allowed. Accepted file types are: pdf
+                </div>
+              </div><button class="Button Button--link add_another_file_link">
+                <i class="icon-add" aria-hidden="true"></i>
+                Add Another File
+              </button>
+              <div id="submission_attachment_blank" class="submission_attachment"
+                style="display: none; margin-bottom: 1em;">
+                <div class="attachment_wrapper" style="display: inline-block;"></div>
+                <a href="#" class="remove_attachment_link no-hover" style="display: none;"><i class="icon-end"
+                    aria-hidden="true"></i><span class="screenreader-only">remove empty attachment</span></a>
+                <div class="bad_ext_msg error_message" style="display: none">
+                  This file type is not allowed. Accepted file types are: pdf
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 0.8em;">
+              <button class="Button Button--link toggle_uploaded_files_link">Click here to find a file you've already
+                uploaded</button><br>
+              <div id="uploaded_files" style="display: none;">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div class="textarea-emoji-container">
+                <div class="textarea-container">
+                  <textarea class="submission_comment_textarea" placeholder="Comments..." title="Additional comments"
+                    name="submission[comment]" id="submission_comment"></textarea>
+                  <span class="emoji-picker-container" style="display: none;"></span>
+                </div>
+                <div class="emoji-quick-picker-container" style="display: none;"></div>
+              </div>
+            </td>
+          </tr>
+
+
+
+
+          <tr>
+            <td colspan="2" class="button-container">
+              <button type="button" class="cancel_button btn">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="submit_file_button">Submit Assignment</button>
+              <span id="progress_indicator"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+
+
+
+
+    <style>
+      #google_docs_tree li.folder {
+        cursor: pointer;
+      }
+
+      #google_docs_tree li.file {
+        cursor: pointer;
+        -moz-border-radius: 3px;
+        width: 80%;
+        padding-right: 20px;
+      }
+
+      #google_docs_tree li.file:hover {
+        background-color: #eee;
+      }
+
+      ul.instTree li span.active {
+        background: none;
+      }
+
+      #google_docs_tree li.file.leaf.active {
+        background-color: #ddd;
+      }
+
+      #google_docs_tree li.file .filename {
+        float: left;
+        max-width: 98%;
+      }
+
+      #google_docs_tree li.file .popout {
+        float: right;
+      }
+    </style>
+
+
+  </div>
+</div>
+
+
+<!--Show partial rubrics ERB if enhanced_rubrics_assignments is not enabled or in Student View-->
+
+
+
+
+<div id="rubrics" class="mathjax_ignore" style="margin-bottom: 10px;">
+
+  <div class="rubric_container rubric  " id="rubric_217638" style="">
+    <div class="screenreader-only rubric-screenreader-title">
+      <h2>
+        Rubric
+      </h2>
+    </div>
+    <div class="rubric_title">
+      <div class="editing" style="text-align: left">
+        <label class="rubric-title-label">
+          Title:
+          <input id="rubric-title" type="text" class="no-margin-bottom" name="title" value="Assignment 2"
+            style="width: 200px;" maxlength="255">
+        </label>
+        <a href="https://canvas.ubc.ca/search/rubrics?q=" style="display: none;" aria-hidden="true">
+          <img alt=""
+            src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/find-6164443e2a.png"> Find
+          Rubric
+        </a>
+        <div class="editing">
+          <i class="icon-warning icon-Solid title_error_message" aria-hidden="true" style="color: #AE1B1F; padding: 5px 0 5px 35px; vertical-align: middle; font-weight: normal;
+                    display: none; align-items: center; gap: 5px; font-size: 14px;">
+            Please include a title
+          </i>
+        </div>
+      </div>
+
+      <div class="editing">
+        <a href="https://canvas.ubc.ca/search/rubrics?q=" class="find_rubric_link icon-search" role="button"
+          style="display: none;" title="Find Existing Rubric">
+          Find a Rubric
+        </a>
+      </div>
+
+      <div class="displaying">
+        <span class="title" tabindex="-1">Assignment 2</span>
+      </div>
+      <div class="has-assessments-warning" style="display: none;">
+        You've already rated students with this rubric. Any major changes could affect their assessment results.
+      </div>
+
+      <div style="display: none;" class="links displaying pull-right">
+        <a href="https://canvas.ubc.ca/courses/181842/rubrics/217638?rubric_association_id=386021"
+          class="copy_edit edit_rubric_link no-print no-hover" style="display: none;" title="Edit Rubric"
+          aria-label="Edit Rubric" role="button"><i class="icon-edit standalone-icon"></i></a>
+        <a href="https://canvas.ubc.ca/search/rubrics?q=" class="find_rubric_link no-print no-hover"
+          style="display: none;" title="Find Another Rubric" aria-label="Find Another Rubric" role="button"><i
+            class="icon-search standalone-icon"></i></a>
+        <a href="https://canvas.ubc.ca/courses/181842/rubric_associations/386021"
+          class="delete_rubric_link no-print no-hover" style="display: none;" title="Delete Rubric"
+          aria-label="Delete Rubric" role="button"><i class="icon-trash standalone-icon"></i></a>
+        <div style="display: none;">
+          <div class="use_for_grading">&nbsp;</div>
+          <div class="free_form_criterion_comments">&nbsp;</div>
+          <div class="hide_score_total">&nbsp;</div>
+          <div class="hide_outcome_results">&nbsp;</div>
+          <div class="hide_points">&nbsp;</div>
+          <div class="rubric_association_id">386021</div>
+          <div class="user_id">&nbsp;</div>
+          <div class="assessment_type"></div>
+          <a href="https://canvas.ubc.ca/courses/181842/rubric_associations/386021/assessments/%7B%7B%20assessment_id%20%7D%7D"
+            rel="nofollow" class="edit_assessment_link">&nbsp;</a>
+          <a href="https://canvas.ubc.ca/courses/181842/rubrics/%7B%7B%20rubric_id%20%7D%7D"
+            class="edit_rubric_url">&nbsp;</a>
+          <a href="https://canvas.ubc.ca/courses/181842/rubric_associations/%7B%7B%20association_id%20%7D%7D"
+            class="delete_rubric_url">&nbsp;</a>
+        </div>
+      </div>
+      <div style="font-size: 0.8em; display: none" class="links displaying locked">
+        <span style="">Can't change a rubric once you've started using it.</span>
+        <a href="https://canvas.ubc.ca/courses/181842/rubric_associations/%7B%7B%20association_id%20%7D%7D"
+          class="delete_rubric_url" style="display: none;">&nbsp;</a>
+      </div>
+    </div>
+
+    <table class="rubric_table">
+      <caption>
+        <div class="screenreader-only">
+          <span class="title">Assignment 2</span>
+        </div>
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Criteria</th>
+          <th scope="col">Ratings</th>
+          <th scope="col" class="toggle_for_hide_points ">
+            Pts
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr id="criterion__6097" class="criterion   " style="">
+          <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+            <div class="criterion_description_container">
+              <div class="description_content">
+                <span class="outcome_sr_content" aria-hidden="true">
+                  <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                  <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+                </span>
+                <span role="text">
+                  <span class="description description_title">Introduction</span>
+                  <span class="learning_outcome_id" style="display: none;"></span>
+                  <span class="criterion_id" style="display: none;">_6097</span>
+                  <div class="long_description small_description">Clearly and
+                    concisely explains experimental procedure and includes key facts about
+                    the can and heating method. A useful picture is included to support the
+                    explanation.</div>
+                  <div role="text" class="threshold toggle_for_hide_points ">
+                    threshold:
+                    <span class="mastery_points"></span> pts
+                  </div>
+                </span>
+                <div class="hide_when_learning_outcome ">
+                  <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                    <label class="criterion_range_label" aria-label="Range">
+                      <input type="checkbox" class="criterion_use_range" checked="checked">
+                      <span aria-hidden="true">
+                        Range
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="links editing">
+                <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                    class="screenreader-only">Edit criterion description</span></a>
+              </div>
+            </div>
+          </td>
+          <td style="padding: 0;" aria-label="criterion ratings">
+            <div class="ratings" style="">
+              <div class="rating edge_rating
+                
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">3</span>
+                        <span class="range_rating" style="">to &gt;<span class="min_points">0.0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">Full Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">blank</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="editing links add_rating_link">
+                    <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                        class="icon-add icon-Solid"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="rating edge_rating
+                infinitesimal
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">0</span>
+                        <span class="range_rating" style="display: none;">to &gt;<span
+                            class="min_points">0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">No Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">blank_2</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+              This area will be used by the assessor to leave comments related to this criterion.
+            </div>
+          </td>
+          <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+            <div class="editing" style="white-space: normal">
+              <span style="white-space: nowrap; font-size: 0.8em">
+
+                <input type="text" aria-label="Points" value="3" class="criterion_points span1 no-margin-bottom">
+                pts
+              </span><br>
+            </div>
+            <div class="displaying" role="text">
+              <span style="white-space: nowrap;">
+                <span class="criterion_rating_points_holder" style="display: none;">
+                  <span class="criterion_rating_points">&nbsp;</span> /
+                </span>
+                <span class="display_criterion_points">3</span> pts<br>
+              </span>
+            </div>
+            <div class="ignoring">
+              <span> -- </span>
+            </div>
+            <div class="criterion_comments">
+              <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+                <img alt="Additional Comments"
+                  src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+              </a>
+              <div class="custom_rating" style="display: none;"></div>
+            </div>
+          </td>
+        </tr>
+
+
+        <tr id="criterion__8105" class="criterion   " style="">
+          <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+            <div class="criterion_description_container">
+              <div class="description_content">
+                <span class="outcome_sr_content" aria-hidden="true">
+                  <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                  <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+                </span>
+                <span role="text">
+                  <span class="description description_title">Results - Communication</span>
+                  <span class="learning_outcome_id" style="display: none;"></span>
+                  <span class="criterion_id" style="display: none;">_8105</span>
+                  <div class="long_description small_description">Clearly and concisely summarizes analysis and
+                    results.<br>
+                    Results are reported in a table.<br>
+                    Best estimate of the two fit parameters are stated with uncertainty.<br>
+                    A brief explanation of how the uncertainties were determined is included.<br>
+                    Each graph includes data collected and a line of best fit.<br>
+                    Graphs are clear and readable with appropriate line styles and
+                    contrasting colors. Axes are labeled and a clear legend is included.</div>
+                  <div role="text" class="threshold toggle_for_hide_points ">
+                    threshold:
+                    <span class="mastery_points"></span> pts
+                  </div>
+                </span>
+                <div class="hide_when_learning_outcome ">
+                  <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                    <label class="criterion_range_label" aria-label="Range">
+                      <input type="checkbox" class="criterion_use_range" checked="checked">
+                      <span aria-hidden="true">
+                        Range
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="links editing">
+                <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                    class="screenreader-only">Edit criterion description</span></a>
+              </div>
+            </div>
+          </td>
+          <td style="padding: 0;" aria-label="criterion ratings">
+            <div class="ratings" style="">
+              <div class="rating edge_rating
+                
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">4</span>
+                        <span class="range_rating" style="">to &gt;<span class="min_points">0.0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">Full Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_8847</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="editing links add_rating_link">
+                    <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                        class="icon-add icon-Solid"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="rating edge_rating
+                infinitesimal
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">0</span>
+                        <span class="range_rating" style="display: none;">to &gt;<span
+                            class="min_points">0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">No Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_2117</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+              This area will be used by the assessor to leave comments related to this criterion.
+            </div>
+          </td>
+          <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+            <div class="editing" style="white-space: normal">
+              <span style="white-space: nowrap; font-size: 0.8em">
+
+                <input type="text" aria-label="Points" value="4" class="criterion_points span1 no-margin-bottom">
+                pts
+              </span><br>
+            </div>
+            <div class="displaying" role="text">
+              <span style="white-space: nowrap;">
+                <span class="criterion_rating_points_holder" style="display: none;">
+                  <span class="criterion_rating_points">&nbsp;</span> /
+                </span>
+                <span class="display_criterion_points">4</span> pts<br>
+              </span>
+            </div>
+            <div class="ignoring">
+              <span> -- </span>
+            </div>
+            <div class="criterion_comments">
+              <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+                <img alt="Additional Comments"
+                  src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+              </a>
+              <div class="custom_rating" style="display: none;"></div>
+            </div>
+          </td>
+        </tr>
+
+
+        <tr id="criterion__3162" class="criterion   " style="">
+          <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+            <div class="criterion_description_container">
+              <div class="description_content">
+                <span class="outcome_sr_content" aria-hidden="true">
+                  <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                  <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+                </span>
+                <span role="text">
+                  <span class="description description_title">Results - Data quality</span>
+                  <span class="learning_outcome_id" style="display: none;"></span>
+                  <span class="criterion_id" style="display: none;">_3162</span>
+                  <div class="long_description small_description">All three
+                    datasets include reasonable data that appropriately reflects a cooling
+                    volume of air, with few artifacts and outliers. Data before and after
+                    the cooling part that was fit is included.</div>
+                  <div role="text" class="threshold toggle_for_hide_points ">
+                    threshold:
+                    <span class="mastery_points"></span> pts
+                  </div>
+                </span>
+                <div class="hide_when_learning_outcome ">
+                  <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                    <label class="criterion_range_label" aria-label="Range">
+                      <input type="checkbox" class="criterion_use_range" checked="checked">
+                      <span aria-hidden="true">
+                        Range
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="links editing">
+                <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                    class="screenreader-only">Edit criterion description</span></a>
+              </div>
+            </div>
+          </td>
+          <td style="padding: 0;" aria-label="criterion ratings">
+            <div class="ratings" style="">
+              <div class="rating edge_rating
+                
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">3</span>
+                        <span class="range_rating" style="">to &gt;<span class="min_points">0.0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">Full Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_6434</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="editing links add_rating_link">
+                    <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                        class="icon-add icon-Solid"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="rating edge_rating
+                infinitesimal
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">0</span>
+                        <span class="range_rating" style="display: none;">to &gt;<span
+                            class="min_points">0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">No Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_8449</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+              This area will be used by the assessor to leave comments related to this criterion.
+            </div>
+          </td>
+          <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+            <div class="editing" style="white-space: normal">
+              <span style="white-space: nowrap; font-size: 0.8em">
+
+                <input type="text" aria-label="Points" value="3" class="criterion_points span1 no-margin-bottom">
+                pts
+              </span><br>
+            </div>
+            <div class="displaying" role="text">
+              <span style="white-space: nowrap;">
+                <span class="criterion_rating_points_holder" style="display: none;">
+                  <span class="criterion_rating_points">&nbsp;</span> /
+                </span>
+                <span class="display_criterion_points">3</span> pts<br>
+              </span>
+            </div>
+            <div class="ignoring">
+              <span> -- </span>
+            </div>
+            <div class="criterion_comments">
+              <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+                <img alt="Additional Comments"
+                  src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+              </a>
+              <div class="custom_rating" style="display: none;"></div>
+            </div>
+          </td>
+        </tr>
+
+
+        <tr id="criterion__5823" class="criterion   " style="">
+          <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+            <div class="criterion_description_container">
+              <div class="description_content">
+                <span class="outcome_sr_content" aria-hidden="true">
+                  <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                  <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+                </span>
+                <span role="text">
+                  <span class="description description_title">Results - Fit Quality</span>
+                  <span class="learning_outcome_id" style="display: none;"></span>
+                  <span class="criterion_id" style="display: none;">_5823</span>
+                  <div class="long_description small_description">Best Euler prediction reasonably fits the data points
+                    well. Initial condition for Euler prediction is appropriately chosen.</div>
+                  <div role="text" class="threshold toggle_for_hide_points ">
+                    threshold:
+                    <span class="mastery_points"></span> pts
+                  </div>
+                </span>
+                <div class="hide_when_learning_outcome ">
+                  <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                    <label class="criterion_range_label" aria-label="Range">
+                      <input type="checkbox" class="criterion_use_range" checked="checked">
+                      <span aria-hidden="true">
+                        Range
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="links editing">
+                <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                    class="screenreader-only">Edit criterion description</span></a>
+              </div>
+            </div>
+          </td>
+          <td style="padding: 0;" aria-label="criterion ratings">
+            <div class="ratings" style="">
+              <div class="rating edge_rating
+                
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">3</span>
+                        <span class="range_rating" style="">to &gt;<span class="min_points">0.0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">Full Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_2755</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="editing links add_rating_link">
+                    <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                        class="icon-add icon-Solid"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="rating edge_rating
+                infinitesimal
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">0</span>
+                        <span class="range_rating" style="display: none;">to &gt;<span
+                            class="min_points">0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">No Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_6172</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+              This area will be used by the assessor to leave comments related to this criterion.
+            </div>
+          </td>
+          <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+            <div class="editing" style="white-space: normal">
+              <span style="white-space: nowrap; font-size: 0.8em">
+
+                <input type="text" aria-label="Points" value="3" class="criterion_points span1 no-margin-bottom">
+                pts
+              </span><br>
+            </div>
+            <div class="displaying" role="text">
+              <span style="white-space: nowrap;">
+                <span class="criterion_rating_points_holder" style="display: none;">
+                  <span class="criterion_rating_points">&nbsp;</span> /
+                </span>
+                <span class="display_criterion_points">3</span> pts<br>
+              </span>
+            </div>
+            <div class="ignoring">
+              <span> -- </span>
+            </div>
+            <div class="criterion_comments">
+              <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+                <img alt="Additional Comments"
+                  src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+              </a>
+              <div class="custom_rating" style="display: none;"></div>
+            </div>
+          </td>
+        </tr>
+
+
+        <tr id="criterion__2658" class="criterion   " style="">
+          <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+            <div class="criterion_description_container">
+              <div class="description_content">
+                <span class="outcome_sr_content" aria-hidden="true">
+                  <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                  <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+                </span>
+                <span role="text">
+                  <span class="description description_title">Discussion</span>
+                  <span class="learning_outcome_id" style="display: none;"></span>
+                  <span class="criterion_id" style="display: none;">_2658</span>
+                  <div class="long_description small_description">Discussion of graphs reflects a deep understanding of
+                    the physics governing a cooling body.<br>
+                    Agreement between the fit parameters across all trials is appropriately assessed.<br>
+                    Whether the final best fit parameters have reasonable values is discussed.<br>
+                    Significance of the temperature difference ΔT across the can wall is meaningfully discussed.</div>
+                  <div role="text" class="threshold toggle_for_hide_points ">
+                    threshold:
+                    <span class="mastery_points"></span> pts
+                  </div>
+                </span>
+                <div class="hide_when_learning_outcome ">
+                  <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                    <label class="criterion_range_label" aria-label="Range">
+                      <input type="checkbox" class="criterion_use_range" checked="checked">
+                      <span aria-hidden="true">
+                        Range
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="links editing">
+                <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                    class="screenreader-only">Edit criterion description</span></a>
+              </div>
+            </div>
+          </td>
+          <td style="padding: 0;" aria-label="criterion ratings">
+            <div class="ratings" style="">
+              <div class="rating edge_rating
+                
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">5</span>
+                        <span class="range_rating" style="">to &gt;<span class="min_points">0.0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">Full Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_3387</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="editing links add_rating_link">
+                    <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                        class="icon-add icon-Solid"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="rating edge_rating
+                infinitesimal
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">0</span>
+                        <span class="range_rating" style="display: none;">to &gt;<span
+                            class="min_points">0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">No Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_2673</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+              This area will be used by the assessor to leave comments related to this criterion.
+            </div>
+          </td>
+          <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+            <div class="editing" style="white-space: normal">
+              <span style="white-space: nowrap; font-size: 0.8em">
+
+                <input type="text" aria-label="Points" value="5" class="criterion_points span1 no-margin-bottom">
+                pts
+              </span><br>
+            </div>
+            <div class="displaying" role="text">
+              <span style="white-space: nowrap;">
+                <span class="criterion_rating_points_holder" style="display: none;">
+                  <span class="criterion_rating_points">&nbsp;</span> /
+                </span>
+                <span class="display_criterion_points">5</span> pts<br>
+              </span>
+            </div>
+            <div class="ignoring">
+              <span> -- </span>
+            </div>
+            <div class="criterion_comments">
+              <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+                <img alt="Additional Comments"
+                  src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+              </a>
+              <div class="custom_rating" style="display: none;"></div>
+            </div>
+          </td>
+        </tr>
+
+
+        <tr id="criterion__1136" class="criterion   " style="">
+          <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+            <div class="criterion_description_container">
+              <div class="description_content">
+                <span class="outcome_sr_content" aria-hidden="true">
+                  <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                  <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+                </span>
+                <span role="text">
+                  <span class="description description_title">Unit and Uncertainties</span>
+                  <span class="learning_outcome_id" style="display: none;"></span>
+                  <span class="criterion_id" style="display: none;">_1136</span>
+                  <div class="long_description small_description">All measured quantities are reported with units and
+                    uncertainty.</div>
+                  <div role="text" class="threshold toggle_for_hide_points ">
+                    threshold:
+                    <span class="mastery_points"></span> pts
+                  </div>
+                </span>
+                <div class="hide_when_learning_outcome ">
+                  <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                    <label class="criterion_range_label" aria-label="Range">
+                      <input type="checkbox" class="criterion_use_range" checked="checked">
+                      <span aria-hidden="true">
+                        Range
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="links editing">
+                <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                    class="screenreader-only">Edit criterion description</span></a>
+              </div>
+            </div>
+          </td>
+          <td style="padding: 0;" aria-label="criterion ratings">
+            <div class="ratings" style="">
+              <div class="rating edge_rating
+                
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">1</span>
+                        <span class="range_rating" style="">to &gt;<span class="min_points">0.0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">Full Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_7728</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="editing links add_rating_link">
+                    <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                        class="icon-add icon-Solid"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="rating edge_rating
+                infinitesimal
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">0</span>
+                        <span class="range_rating" style="display: none;">to &gt;<span
+                            class="min_points">0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">No Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_9456</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+              This area will be used by the assessor to leave comments related to this criterion.
+            </div>
+          </td>
+          <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+            <div class="editing" style="white-space: normal">
+              <span style="white-space: nowrap; font-size: 0.8em">
+
+                <input type="text" aria-label="Points" value="1" class="criterion_points span1 no-margin-bottom">
+                pts
+              </span><br>
+            </div>
+            <div class="displaying" role="text">
+              <span style="white-space: nowrap;">
+                <span class="criterion_rating_points_holder" style="display: none;">
+                  <span class="criterion_rating_points">&nbsp;</span> /
+                </span>
+                <span class="display_criterion_points">1</span> pts<br>
+              </span>
+            </div>
+            <div class="ignoring">
+              <span> -- </span>
+            </div>
+            <div class="criterion_comments">
+              <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+                <img alt="Additional Comments"
+                  src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+              </a>
+              <div class="custom_rating" style="display: none;"></div>
+            </div>
+          </td>
+        </tr>
+
+
+        <tr id="criterion__3916" class="criterion   " style="">
+          <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+            <div class="criterion_description_container">
+              <div class="description_content">
+                <span class="outcome_sr_content" aria-hidden="true">
+                  <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                  <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+                </span>
+                <span role="text">
+                  <span class="description description_title">Captions</span>
+                  <span class="learning_outcome_id" style="display: none;"></span>
+                  <span class="criterion_id" style="display: none;">_3916</span>
+                  <div class="long_description small_description">All figures
+                    and tables have appropriate labels and clear and concise captions.
+                    Figures and tables are referred to in the text in a logical way.</div>
+                  <div role="text" class="threshold toggle_for_hide_points ">
+                    threshold:
+                    <span class="mastery_points"></span> pts
+                  </div>
+                </span>
+                <div class="hide_when_learning_outcome ">
+                  <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                    <label class="criterion_range_label" aria-label="Range">
+                      <input type="checkbox" class="criterion_use_range" checked="checked">
+                      <span aria-hidden="true">
+                        Range
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="links editing">
+                <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                    class="screenreader-only">Edit criterion description</span></a>
+              </div>
+            </div>
+          </td>
+          <td style="padding: 0;" aria-label="criterion ratings">
+            <div class="ratings" style="">
+              <div class="rating edge_rating
+                
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">1</span>
+                        <span class="range_rating" style="">to &gt;<span class="min_points">0.0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">Full Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_714</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="editing links add_rating_link">
+                    <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                        class="icon-add icon-Solid"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="rating edge_rating
+                infinitesimal
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">0</span>
+                        <span class="range_rating" style="display: none;">to &gt;<span
+                            class="min_points">0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">No Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">_8832</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+              This area will be used by the assessor to leave comments related to this criterion.
+            </div>
+          </td>
+          <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+            <div class="editing" style="white-space: normal">
+              <span style="white-space: nowrap; font-size: 0.8em">
+
+                <input type="text" aria-label="Points" value="1" class="criterion_points span1 no-margin-bottom">
+                pts
+              </span><br>
+            </div>
+            <div class="displaying" role="text">
+              <span style="white-space: nowrap;">
+                <span class="criterion_rating_points_holder" style="display: none;">
+                  <span class="criterion_rating_points">&nbsp;</span> /
+                </span>
+                <span class="display_criterion_points">1</span> pts<br>
+              </span>
+            </div>
+            <div class="ignoring">
+              <span> -- </span>
+            </div>
+            <div class="criterion_comments">
+              <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+                <img alt="Additional Comments"
+                  src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+              </a>
+              <div class="custom_rating" style="display: none;"></div>
+            </div>
+          </td>
+        </tr>
+
+
+        <tr id="criterion_blank" class="criterion blank  " style="display: none;">
+          <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+            <div class="criterion_description_container">
+              <div class="description_content">
+                <span class="outcome_sr_content" aria-hidden="true">
+                  <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                  <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+                </span>
+                <span role="text">
+                  <span class="description description_title">Description of criterion</span>
+                  <span class="learning_outcome_id" style="display: none;"></span>
+                  <span class="criterion_id" style="display: none;"></span>
+                  <div class="long_description small_description"></div>
+                  <div role="text" class="threshold toggle_for_hide_points ">
+                    threshold:
+                    <span class="mastery_points">5</span> pts
+                  </div>
+                </span>
+                <div class="hide_when_learning_outcome ">
+                  <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                    <label class="criterion_range_label" aria-label="Range">
+                      <input type="checkbox" class="criterion_use_range">
+                      <span aria-hidden="true">
+                        Range
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="links editing">
+                <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                    class="screenreader-only">Edit criterion description</span></a>
+                <a href="#" class="delete_criterion_link" role="button"><i class="icon-trash standalone-icon"></i><span
+                    class="screenreader-only">Delete criterion row</span></a>
+              </div>
+            </div>
+          </td>
+          <td style="padding: 0;" aria-label="criterion ratings">
+            <div class="ratings" style="">
+              <div class="rating edge_rating
+                
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">5</span>
+                        <span class="range_rating" style="display: none;">to &gt;<span
+                            class="min_points">0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">Full Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">blank</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="editing links add_rating_link">
+                    <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                        class="icon-add icon-Solid"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="rating edge_rating
+                infinitesimal
+                ">
+                <div class="container">
+                  <div class="rating-main">
+                    <span role="text" class="rating-content-wrapper">
+                      <span class="nobr toggle_for_hide_points ">
+                        <span class="points">0</span>
+                        <span class="range_rating" style="display: none;">to &gt;<span
+                            class="min_points">0</span></span> pts
+                      </span>
+                      <span class="description rating_description_value">No Marks</span>
+                      <span class="rating_long_description small_description"></span>
+                    </span>
+                    <span class="rating_id" style="display: none;">blank_2</span>
+                    <div class="editing links">
+                      <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                        <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating"
+                        aria-hidden="true">
+                        <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+              This area will be used by the assessor to leave comments related to this criterion.
+            </div>
+          </td>
+          <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+            <div class="editing" style="white-space: normal">
+              <span style="white-space: nowrap; font-size: 0.8em">
+
+                <input type="text" aria-label="Points" value="5" class="criterion_points span1 no-margin-bottom">
+                pts
+              </span><br>
+            </div>
+            <div class="displaying" role="text">
+              <span style="white-space: nowrap;">
+                <span class="criterion_rating_points_holder" style="display: none;">
+                  <span class="criterion_rating_points">&nbsp;</span> /
+                </span>
+                <span class="display_criterion_points">5</span> pts<br>
+              </span>
+            </div>
+            <div class="ignoring">
+              <span> -- </span>
+            </div>
+            <div class="criterion_comments">
+              <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+                <img alt="Additional Comments"
+                  src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+              </a>
+              <div class="custom_rating" style="display: none;"></div>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="rubric-footer" aria-label="Rubric criteria configuration">
+      <div class="editing pull-left">
+        <span id="add_criterion_holder" class="criterion_link"></span>
+      </div>
+      <div class="total_points_holder toggle_for_hide_points " style="">
+        <span role="text">Total Points:
+          <span class="rubric_total">
+            20
+          </span>
+          <span class="assessing">out of 20</span> </span>
+      </div>
+    </div>
+  </div>
+  <div id="edit_rubric" style="display: none;">
+    <form id="edit_rubric_form" class="edit-rubric-form no-margin-bottom" aria-label="Rubric configuration">
+      <div class="rubric_custom_ratings" style="">
+        <label>
+          <input type="checkbox" id="rubric_custom_rating" class="rubric_custom_rating">
+          I'll write free-form comments when assessing students
+        </label>
+      </div>
+      <div class="hide_points" style="">
+        <label>
+          <input type="checkbox" id="hide_points" name="hide_points" class="hide_points_checkbox">
+          Remove points from rubric
+        </label>
+      </div>
+      <div class="hide_outcome_results" style="">
+        <label>
+          <input type="checkbox" id="hide_outcome_results" class="hide_outcome_results_checkbox">
+          Don't post Outcomes results to Learning Mastery Gradebook
+        </label>
+      </div>
+      <div class="rubric_grading" style="">
+        <label>
+          <input type="checkbox" id="grading_rubric" class="grading_rubric_checkbox">
+          Use this rubric for assignment grading
+        </label>
+      </div>
+      <div class="totalling_rubric" style="">
+        <label>
+          <input type="checkbox" id="totalling_rubric" class="totalling_rubric_checkbox">
+          Hide score total for assessment results
+        </label>
+      </div>
+      <div class="ic-Action-header ic-Action-header--half-margin">
+        <div class="ic-Action-header__Primary">
+          <button type="button" class="Button cancel_button">Cancel</button>
+          <button type="submit" class="Button Button--primary save_button">Create Rubric</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div style="display: none;" id="rubric_parameters">
+    <input type="hidden" name="rubric_association[association_type]" value="Assignment">
+    <input type="hidden" name="rubric_association[association_id]" value="2198762">
+    <input type="hidden" name="rubric_association[purpose]" value="grading">
+  </div>
+
+  <div id="rubric_long_description_dialog" style="display: none;">
+    <div class="editing">
+      <form id="edit_criterion_form" class="no-margin-bottom">
+        <div>
+          <label class="rating_form_label">Description
+            <textarea class="description" rows="1" name="description"></textarea>
+          </label>
+          <i class="icon-warning icon-Solid description_error_message" aria-hidden="true"
+            style="color: red; display: none">
+            Please include a description
+          </i>
+        </div>
+        <div>
+          <label class="rating_form_label">Long Description
+            <textarea class="long_description" rows="4" name="long_description"></textarea>
+          </label>
+        </div>
+        <div class="button-container">
+          <button type="button" class="btn btn button-secondary cancel_button">Cancel</button>
+          <button type="button" class="btn save_button btn-primary">Update Criterion</button>
+        </div>
+      </form>
+    </div>
+    <div class="displaying">
+      <div class="long_description">
+      </div>
+    </div>
+  </div>
+  <div id="rubric_criterion_comments_dialog" style="display: none;">
+    <div class="criterion_description"
+      style="border-bottom: 1px solid #ccc; padding: 5px 0; font-size: 1.2em; font-weight: bold; margin-bottom: 5px;"
+      tabindex="-1"></div>
+    <div class="editing">
+      <label for="criterion_comments_textarea">
+        Additional Comments:
+      </label>
+      <textarea id="criterion_comments_textarea" class="criterion_comments" name="criterion_comments"
+        style="width: 370px;"></textarea>
+      <div class="button-container">
+        <button type="button" class="btn btn button-secondary cancel_button">Cancel</button>
+        <button type="button" class="btn save_button">Update Comments</button>
+      </div>
+    </div>
+    <div class="displaying">
+      Additional Comments:
+      <div class="criterion_comments" style="margin-top: 10px;">
+      </div>
+    </div>
+  </div>
+  <div id="rubric_rating_dialog" style="display: none;">
+    <div class="description"
+      style="border-bottom: 1px solid #ccc; padding: 5px 0; font-size: 1.2em; font-weight: bold; margin-bottom: 5px;">
+      <span id="edit_rating_form_criterion_description"></span>
+    </div>
+    <div class="editing">
+      <form id="edit_rating_form" class="no-margin-bottom">
+        <div class="toggle_for_hide_points">
+          <div><label id="rating_form_score_label" class="rating_form_label">Rating Score</label></div>
+          <span id="rating_form_max_score_label" hidden="">Rating max score</span>
+          <input id="points" aria-labelledby="rating_form_score_label" type="text" size="2" name="points"
+            class="no-margin-bottom span1">
+          <span class="range_rating">to &gt;
+            <input aria-label="Rating min score" type="text" size="2" name="min_points"
+              class="no-margin-bottom span1 min_points" placeholder="min">
+          </span>pts
+        </div>
+        <div>
+          <label for="rating_form_title" class="rating_form_label">Rating Title</label>
+          <input id="rating_form_title" type="text" class="rating_description" style="width: 90%;" name="description">
+          <i class="icon-warning icon-Solid description_error_message" aria-hidden="true"
+            style="color: red; display: none">
+            Please include a rating title
+          </i>
+        </div>
+        <div>
+          <label for="rating_form_description" class="rating_form_label">Rating Description</label>
+          <textarea id="rating_form_description" rows="4" style="width: 90%;" class="rating_long_description"
+            name="rating_long_description" form="edit_rating_form"></textarea>
+        </div>
+        <div class="button-container">
+          <button type="button" class="btn button-secondary cancel_button">Cancel</button>
+          <button type="button" class="btn btn-primary save_button ok_button">Update Rating</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<div class="rubric_container rubric  " id="default_rubric" style="display: none;">
+  <div class="screenreader-only rubric-screenreader-title">
+    <h2>
+      Rubric
+    </h2>
+  </div>
+  <div class="rubric_title">
+    <div class="editing" style="text-align: left">
+      <label class="rubric-title-label">
+        Title:
+        <input id="rubric-title" type="text" class="no-margin-bottom" name="title" value="Some Rubric"
+          style="width: 200px;" maxlength="255">
+      </label>
+      <a href="https://canvas.ubc.ca/search/rubrics?q=" style="display: none;" aria-hidden="true">
+        <img alt=""
+          src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/find-6164443e2a.png"> Find
+        Rubric
+      </a>
+      <div class="editing">
+        <i class="icon-warning icon-Solid title_error_message" aria-hidden="true" style="color: #AE1B1F; padding: 5px 0 5px 35px; vertical-align: middle; font-weight: normal;
+                    display: none; align-items: center; gap: 5px; font-size: 14px;">
+          Please include a title
+        </i>
+      </div>
+    </div>
+
+    <div class="editing">
+      <a href="https://canvas.ubc.ca/search/rubrics?q=" class="find_rubric_link icon-search" role="button" style=""
+        title="Find Existing Rubric">
+        Find a Rubric
+      </a>
+    </div>
+
+    <div class="displaying">
+      <span class="title" tabindex="-1">Title</span>
+    </div>
+    <div class="has-assessments-warning" style="display: none;">
+      You've already rated students with this rubric. Any major changes could affect their assessment results.
+    </div>
+
+    <div style="display: none;" class="links displaying pull-right">
+      <a href="https://canvas.ubc.ca/courses/181842/rubrics/%7B%7B%20id%20%7D%7D"
+        class=" edit_rubric_link no-print no-hover" style="" title="Edit Rubric" aria-label="Edit Rubric"
+        role="button"><i class="icon-edit standalone-icon"></i></a>
+      <a href="https://canvas.ubc.ca/search/rubrics?q=" class="find_rubric_link no-print no-hover" style=""
+        title="Find Another Rubric" aria-label="Find Another Rubric" role="button"><i
+          class="icon-search standalone-icon"></i></a>
+      <a href="https://canvas.ubc.ca/courses/181842/rubric_associations/%7B%7B%20rubric_association_id%20%7D%7D"
+        class="delete_rubric_link no-print no-hover" style="" title="Delete Rubric" aria-label="Delete Rubric"
+        role="button"><i class="icon-trash standalone-icon"></i></a>
+      <div style="display: none;">
+        <div class="use_for_grading">&nbsp;</div>
+        <div class="free_form_criterion_comments">&nbsp;</div>
+        <div class="hide_score_total">&nbsp;</div>
+        <div class="hide_outcome_results">&nbsp;</div>
+        <div class="hide_points">&nbsp;</div>
+        <div class="rubric_association_id">&nbsp;</div>
+        <div class="user_id">&nbsp;</div>
+        <div class="assessment_type"></div>
+        <a href="https://canvas.ubc.ca/courses/181842/rubric_associations/%7B%7B%20rubric_association_id%20%7D%7D/assessments/%7B%7B%20assessment_id%20%7D%7D"
+          rel="nofollow" class="edit_assessment_link">&nbsp;</a>
+        <a href="https://canvas.ubc.ca/courses/181842/rubrics/%7B%7B%20rubric_id%20%7D%7D"
+          class="edit_rubric_url">&nbsp;</a>
+        <a href="https://canvas.ubc.ca/courses/181842/rubric_associations/%7B%7B%20association_id%20%7D%7D"
+          class="delete_rubric_url">&nbsp;</a>
+      </div>
+    </div>
+    <div style="font-size: 0.8em; display: none" class="links displaying locked">
+      <span style="">Can't change a rubric once you've started using it.</span>
+      <a href="https://canvas.ubc.ca/courses/181842/rubric_associations/%7B%7B%20association_id%20%7D%7D"
+        class="delete_rubric_url" style="display: none;">&nbsp;</a>
+    </div>
+  </div>
+
+  <table class="rubric_table">
+    <caption>
+      <div class="screenreader-only">
+        <span class="title">Title</span>
+      </div>
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Criteria</th>
+        <th scope="col">Ratings</th>
+        <th scope="col" class="toggle_for_hide_points ">
+          Pts
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr id="criterion_blank" class="criterion blank" style="display: none;">
+        <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+          <div class="criterion_description_container">
+            <div class="description_content">
+              <span class="outcome_sr_content" aria-hidden="true">
+                <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+              </span>
+              <span role="text">
+                <span class="description description_title">Description of criterion</span>
+                <span class="learning_outcome_id" style="display: none;"></span>
+                <span class="criterion_id" style="display: none;"></span>
+                <div class="long_description small_description"></div>
+                <div role="text" class="threshold toggle_for_hide_points ">
+                  threshold:
+                  <span class="mastery_points">5</span> pts
+                </div>
+              </span>
+              <div class="hide_when_learning_outcome ">
+                <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                  <label class="criterion_range_label" aria-label="Range">
+                    <input type="checkbox" class="criterion_use_range">
+                    <span aria-hidden="true">
+                      Range
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="links editing">
+              <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                  class="screenreader-only">Edit criterion description</span></a>
+              <a href="#" class="delete_criterion_link" role="button"><i class="icon-trash standalone-icon"></i><span
+                  class="screenreader-only">Delete criterion row</span></a>
+            </div>
+          </div>
+        </td>
+        <td style="padding: 0;" aria-label="criterion ratings">
+          <div class="ratings" style="">
+            <div class="rating edge_rating
+                
+                ">
+              <div class="container">
+                <div class="rating-main">
+                  <span role="text" class="rating-content-wrapper">
+                    <span class="nobr toggle_for_hide_points ">
+                      <span class="points">5</span>
+                      <span class="range_rating" style="display: none;">to &gt;<span class="min_points">0</span></span>
+                      pts
+                    </span>
+                    <span class="description rating_description_value">Full Marks</span>
+                    <span class="rating_long_description small_description"></span>
+                  </span>
+                  <span class="rating_id" style="display: none;">blank</span>
+                  <div class="editing links">
+                    <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                      <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating" aria-hidden="true">
+                      <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="editing links add_rating_link">
+                  <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                      class="icon-add icon-Solid"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="rating edge_rating
+                infinitesimal
+                ">
+              <div class="container">
+                <div class="rating-main">
+                  <span role="text" class="rating-content-wrapper">
+                    <span class="nobr toggle_for_hide_points ">
+                      <span class="points">0</span>
+                      <span class="range_rating" style="display: none;">to &gt;<span class="min_points">0</span></span>
+                      pts
+                    </span>
+                    <span class="description rating_description_value">No Marks</span>
+                    <span class="rating_long_description small_description"></span>
+                  </span>
+                  <span class="rating_id" style="display: none;">blank_2</span>
+                  <div class="editing links">
+                    <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                      <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating" aria-hidden="true">
+                      <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+            This area will be used by the assessor to leave comments related to this criterion.
+          </div>
+        </td>
+        <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+          <div class="editing" style="white-space: normal">
+            <span style="white-space: nowrap; font-size: 0.8em">
+
+              <input type="text" aria-label="Points" value="5" class="criterion_points span1 no-margin-bottom">
+              pts
+            </span><br>
+          </div>
+          <div class="displaying" role="text">
+            <span style="white-space: nowrap;">
+              <span class="criterion_rating_points_holder" style="display: none;">
+                <span class="criterion_rating_points">&nbsp;</span> /
+              </span>
+              <span class="display_criterion_points">5</span> pts<br>
+            </span>
+          </div>
+          <div class="ignoring">
+            <span> -- </span>
+          </div>
+          <div class="criterion_comments">
+            <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+              <img alt="Additional Comments"
+                src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+            </a>
+            <div class="custom_rating" style="display: none;"></div>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="criterion_1" class="criterion" style="">
+        <td class="criterion_description hover-container pad-box-micro" aria-label="description of criterion">
+          <div class="criterion_description_container">
+            <div class="description_content">
+              <span class="outcome_sr_content" aria-hidden="true">
+                <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+                <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+              </span>
+              <span role="text">
+                <span class="description description_title">Description of criterion</span>
+                <span class="learning_outcome_id" style="display: none;"></span>
+                <span class="criterion_id" style="display: none;"></span>
+                <div class="long_description small_description"></div>
+                <div role="text" class="threshold toggle_for_hide_points ">
+                  threshold:
+                  <span class="mastery_points">5</span> pts
+                </div>
+              </span>
+              <div class="hide_when_learning_outcome ">
+                <div class="criterion_use_range_div editing toggle_for_hide_points ">
+                  <label class="criterion_range_label" aria-label="Range">
+                    <input type="checkbox" class="criterion_use_range">
+                    <span aria-hidden="true">
+                      Range
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="links editing">
+              <a href="#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span
+                  class="screenreader-only">Edit criterion description</span></a>
+              <a href="#" class="delete_criterion_link" role="button"><i class="icon-trash standalone-icon"></i><span
+                  class="screenreader-only">Delete criterion row</span></a>
+            </div>
+          </div>
+        </td>
+        <td style="padding: 0;" aria-label="criterion ratings">
+          <div class="ratings" style="">
+            <div class="rating edge_rating
+                
+                ">
+              <div class="container">
+                <div class="rating-main">
+                  <span role="text" class="rating-content-wrapper">
+                    <span class="nobr toggle_for_hide_points ">
+                      <span class="points">5</span>
+                      <span class="range_rating" style="display: none;">to &gt;<span class="min_points">0</span></span>
+                      pts
+                    </span>
+                    <span class="description rating_description_value">Full Marks</span>
+                    <span class="rating_long_description small_description"></span>
+                  </span>
+                  <span class="rating_id" style="display: none;">blank</span>
+                  <div class="editing links">
+                    <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                      <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating" aria-hidden="true">
+                      <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="editing links add_rating_link">
+                  <a href="#" class="add_rating_link_after" aria-label="Add rating" role="button"><i
+                      class="icon-add icon-Solid"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="rating edge_rating
+                infinitesimal
+                ">
+              <div class="container">
+                <div class="rating-main">
+                  <span role="text" class="rating-content-wrapper">
+                    <span class="nobr toggle_for_hide_points ">
+                      <span class="points">0</span>
+                      <span class="range_rating" style="display: none;">to &gt;<span class="min_points">0</span></span>
+                      pts
+                    </span>
+                    <span class="description rating_description_value">No Marks</span>
+                    <span class="rating_long_description small_description"></span>
+                  </span>
+                  <span class="rating_id" style="display: none;">blank_2</span>
+                  <div class="editing links">
+                    <a href="#" class="edit_rating_link" role="button" aria-label="Edit rating">
+                      <i class="icon-edit standalone-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="delete_rating_link" role="button" aria-label="Delete rating" aria-hidden="true">
+                      <i class="icon-trash standalone-icon" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+            This area will be used by the assessor to leave comments related to this criterion.
+          </div>
+        </td>
+        <td class="nobr points_form toggle_for_hide_points " aria-label="criterion points">
+          <div class="editing" style="white-space: normal">
+            <span style="white-space: nowrap; font-size: 0.8em">
+
+              <input type="text" aria-label="Points" value="5" class="criterion_points span1 no-margin-bottom">
+              pts
+            </span><br>
+          </div>
+          <div class="displaying" role="text">
+            <span style="white-space: nowrap;">
+              <span class="criterion_rating_points_holder" style="display: none;">
+                <span class="criterion_rating_points">&nbsp;</span> /
+              </span>
+              <span class="display_criterion_points">5</span> pts<br>
+            </span>
+          </div>
+          <div class="ignoring">
+            <span> -- </span>
+          </div>
+          <div class="criterion_comments">
+            <a href="#" class="no-hover criterion_comments_link" title="Additional Comments">
+              <img alt="Additional Comments"
+                src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/rubric_comment-ddae8546ab.png">
+            </a>
+            <div class="custom_rating" style="display: none;"></div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rubric-footer" aria-label="Rubric criteria configuration">
+    <div class="editing pull-left">
+      <span id="add_criterion_holder" class="criterion_link"></span>
+    </div>
+    <div class="total_points_holder toggle_for_hide_points " style="">
+      <span role="text">Total Points:
+        <span class="rubric_total">
+          5
+        </span>
+        <span class="assessing">out of 5</span> </span>
+    </div>
+  </div>
+</div>
+<div id="edit_rubric" style="display: none;">
+  <form id="edit_rubric_form" class="edit-rubric-form no-margin-bottom" aria-label="Rubric configuration">
+    <div class="rubric_custom_ratings" style="">
+      <label>
+        <input type="checkbox" id="rubric_custom_rating" class="rubric_custom_rating">
+        I'll write free-form comments when assessing students
+      </label>
+    </div>
+    <div class="hide_points" style="">
+      <label>
+        <input type="checkbox" id="hide_points" name="hide_points" class="hide_points_checkbox">
+        Remove points from rubric
+      </label>
+    </div>
+    <div class="hide_outcome_results" style="">
+      <label>
+        <input type="checkbox" id="hide_outcome_results" class="hide_outcome_results_checkbox">
+        Don't post Outcomes results to Learning Mastery Gradebook
+      </label>
+    </div>
+    <div class="rubric_grading" style="">
+      <label>
+        <input type="checkbox" id="grading_rubric" class="grading_rubric_checkbox">
+        Use this rubric for assignment grading
+      </label>
+    </div>
+    <div class="totalling_rubric" style="">
+      <label>
+        <input type="checkbox" id="totalling_rubric" class="totalling_rubric_checkbox">
+        Hide score total for assessment results
+      </label>
+    </div>
+    <div class="ic-Action-header ic-Action-header--half-margin">
+      <div class="ic-Action-header__Primary">
+        <button type="button" class="Button cancel_button">Cancel</button>
+        <button type="submit" class="Button Button--primary save_button">Create Rubric</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div id="assignment_external_tools">
+  <div></div>
+</div>
+
+
+<div id="sequence_footer" data-course-id="181842" data-asset-id="2198762" data-asset-type="Assignment">
+  <div class="module-sequence-padding"></div>
+  <div class="module-sequence-footer" role="navigation" aria-label="Module Navigation">
+    <div class="module-sequence-footer-content">
+      <div class="module-sequence-footer-left">
+
+        <span class="module-sequence-footer-button--previous"><span data-position="Popover___0"
+            class="css-1ihz85b-position"><a dir="ltr" aria-label="Previous Module Item" aria-describedby="Tooltip___0"
+              data-popover-trigger="true" data-position-target="Popover___0" cursor="pointer"
+              href="https://canvas.ubc.ca/courses/181842/modules/items/8207379"
+              class="css-qifwp3-view--inlineBlock-baseButton"><span class="css-1ta5ds2-baseButton__content"><span
+                  class="css-11xkk0o-baseButton__children"><span dir="ltr" direction="row" wrap="no-wrap"
+                    class="css-qyy3dp-view--flex-flex"><svg name="IconMiniArrowStart" viewBox="0 0 1920 1920" rotate="0"
+                      style="width: 1em; height: 1em;" width="1em" height="1em" aria-hidden="true" role="presentation"
+                      focusable="false" class="css-1xnn9jb-inlineSVG-svgIcon">
+                      <g role="presentation">
+                        <path
+                          d="M694.018 926.244c-27.296 18.796-27.3 49.269 0 68.067l509.836 351.074c27.296 18.797 49.424 7.18 49.424-25.959V601.13c0-33.133-22.125-44.757-49.424-25.959L694.018 926.244Z"
+                          fill-rule="evenodd"></path>
+                      </g>
+                    </svg> Previous</span></span></span></a></span></span>
+
+      </div>
+      <div class="module-sequence-footer-right">
+
+        <span class="module-sequence-footer-button--next"><span data-position="Popover___1"
+            class="css-1ihz85b-position"><a dir="ltr" aria-label="Next Module Item" aria-describedby="Tooltip___1"
+              data-popover-trigger="true" data-position-target="Popover___1" cursor="pointer"
+              href="https://canvas.ubc.ca/courses/181842/modules/items/8207446"
+              class="css-qifwp3-view--inlineBlock-baseButton"><span class="css-1ta5ds2-baseButton__content"><span
+                  class="css-11xkk0o-baseButton__children"><span dir="ltr" direction="row" wrap="no-wrap"
+                    class="css-qyy3dp-view--flex-flex">Next <svg name="IconMiniArrowEnd" viewBox="0 0 1920 1920"
+                      rotate="0" style="width: 1em; height: 1em;" width="1em" height="1em" aria-hidden="true"
+                      role="presentation" focusable="false" class="css-1xnn9jb-inlineSVG-svgIcon">
+                      <g role="presentation">
+                        <path
+                          d="M1225.982 926.244c27.296 18.796 27.3 49.269 0 68.067l-509.836 351.074c-27.296 18.797-49.424 7.18-49.424-25.959V601.13c0-33.133 22.125-44.757 49.424-25.959l509.836 351.074Z"
+                          fill-rule="evenodd"></path>
+                      </g>
+                    </svg></span></span></span></a></span></span>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
+</div>
+<div id="right-side-wrapper" class="ic-app-main-content__secondary">
+  <aside id="right-side" role="complementary">
+
+    <div id="sidebar_content">
+
+
+    </div>
+
+  </aside>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div style="display:none;"><!-- Everything inside of this should always stay hidden -->
+  <div id="page_view_id">96a65de9-037b-476f-9863-ee8bdf521ec1</div>
+</div>
+<div id="aria_alerts" class="hide-text affix" role="alert" aria-live="assertive"></div>
+<div id="StudentTray__Container"></div>
+<div id="react-router-portals"></div>
+
+
+<iframe src="Assignment%202_%20Modeling%20the%20cooling%20of%20air%20in%20a%20can_files/post_message_forwarding.html"
+  name="post_message_forwarding" title="post_message_forwarding" id="post_message_forwarding"
+  sandbox="allow-scripts allow-same-origin" style="display:none;"></iframe>
+
+
+<script>
+  Object.assign(
+    ENV,
+    {}
+  )
+</script>
+
+<script>
