@@ -7,7 +7,7 @@
 #align(center)[
 
     _#text(30pt)[
-    #titlecase("Quiz 3 Reflection")
+    #title(titlecase("Quiz 3 Reflection"))
     ] \ \
     _
 
