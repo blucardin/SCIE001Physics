@@ -30,13 +30,17 @@
   Noah Virjee \
   45515863
 
-
   #let today = datetime.today()
-
   #today.display("[month repr:long]")
   #today.day(), #today.year()// or another custom format
-
 ]
+
+#figure(
+    image("figures/EulerFitAll.svg", width: 90%), 
+    caption: [
+        Graph of the internal temperature over time for Trial 4. 
+    ]
+) <All>
 
 #outline(target: heading.where(supplement: [Regular]))
 
@@ -45,7 +49,7 @@
 #pagebreak()
 
 // uncomment this for infinite page height except the first page.
-// #set page(height: auto)
+#set page(height: auto)
 #show: regular
 
 = Introduction
@@ -81,6 +85,7 @@ The can weighed $ (0.01246 plus.minus 2.887 times 10^(-6)) "kg"$, with a radius 
   ) <ExperimentalSetup>]
 )
 
+#pagebreak()
 = Results
 
 Data was fit to a computational model. Parameters $k_c$ and $epsilon$ were manually adjusted using an interactive fitter (see #ref(<interactiveFitter>)) to reduce $chi^2$ score (see #ref(<chi2>)) between experimental data and model while keeping a good fit.
@@ -130,7 +135,7 @@ Tn = Tn - (dHc + dHr)/heatcap
 
 This model assumes that there was no conductive heat loss, heat capacity of the system stays constant, no hot air left the container, and ambient temperature is static.
 
-
+#pagebreak()
 == Parameters and Fit Data
 #figure(
     table(
@@ -166,7 +171,32 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
     ],
 ) <constants>
 
+#pagebreak()
 
+== Graphs
+#figure(
+    image("figures/EulerFit3.svg"), 
+    caption: [
+        Graph of the internal temperature over time for Trial 3. 
+    ]
+) <trial3>
+
+#figure(
+    image("figures/EulerFit4.svg"), 
+    caption: [
+        Graph of the internal temperature over time for Trial 4. 
+    ]
+) <trial3>
+
+#figure(
+    image("figures/EulerFit1.svg"), 
+    caption: [
+        Graph of the internal temperature over time for Trial 1. 
+    ]
+) <trial3>
+
+
+#pagebreak()
 
 = Discussion
 
