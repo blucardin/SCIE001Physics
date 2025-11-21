@@ -36,10 +36,10 @@
 ]
 
 #figure(
-    image("figures/EulerFitAll.svg", width: 90%), 
-    caption: [
-        Graph of the internal temperature over time for Trial 4. 
-    ]
+  image("figures/EulerFitAll.svg", width: 90%),
+  caption: [
+    Graph of the internal temperature over time for Trial 4.
+  ],
 ) <All>
 
 #outline(target: heading.where(supplement: [Regular]))
@@ -54,11 +54,11 @@
 
 = Introduction
 
-I used a space heater to heat  a standard $355 "ml"$ aluminum soda can, then let it cool down while monitoring internal temperature with an arduino and DHT11 temperature sensor. 
+I used a space heater to heat  a standard $355 "ml"$ aluminum soda can, then let it cool down while monitoring internal temperature with an arduino and DHT11 temperature sensor.
 
-I then fit a Euler method-based model to this data to determine the emissivity constant and convention coefficient of the can. 
+I then fit a Euler method-based model to this data to determine the emissivity constant and convention coefficient of the can.
 
-The can weighed $ (0.01246 plus.minus 2.887 times 10^(-6)) "kg"$, with a radius of $(0.0331 plus.minus 1.00 times 10^(-3) )"m"$ , and an effective height of $(0.112 plus.minus 3.25 times 10^(-3) ) "m"$.
+The can weighed $(0.01246 plus.minus 2.887 times 10^(-6)) "kg"$, with a radius of $(0.0331 plus.minus 1.00 times 10^(-3) )"m"$ , and an effective height of $(0.112 plus.minus 3.25 times 10^(-3) ) "m"$.
 
 
 #grid(
@@ -67,22 +67,26 @@ The can weighed $ (0.01246 plus.minus 2.887 times 10^(-6)) "kg"$, with a radius 
 
   [#figure(
     box(
-    image("images/IMG_3952.jpeg", width: 100%),
-    clip: true, inset: (bottom: -0.85in, right: -0.0in, top: -0.0in, left: -0.8in)),
+      image("images/IMG_3952.jpeg", width: 100%),
+      clip: true,
+      inset: (bottom: -0.85in, right: -0.0in, top: -0.0in, left: -0.8in),
+    ),
     caption: [
-      Image of the experimental setup. 
+      Image of the experimental setup.
       The can was hung from a string to limit heat flow to mostly radiative and convective and not conductive. Tape was used as a cover to limit air movement outside the can.
     ],
   ) <ExperimentalSetup>],
 
   [#figure(
     box(
-    image("images/IMG_3997.jpeg", width: 100%),
-     clip: true, inset: (bottom: -0.15in, right: -0.4in, top: -0.5in, left: -0.25in)),
+      image("images/IMG_3997.jpeg", width: 100%),
+      clip: true,
+      inset: (bottom: -0.15in, right: -0.4in, top: -0.5in, left: -0.25in),
+    ),
     caption: [
-      An image of the tissue box that was dropped onto the sensor on a scale with 0.01g precision. 
+      An image of the tissue box that was dropped onto the sensor on a scale with 0.01g precision.
     ],
-  ) <ExperimentalSetup>]
+  ) <ExperimentalSetup>],
 )
 
 #pagebreak()
@@ -105,7 +109,7 @@ $
   (d Q_r) / (d t) = -A epsilon sigma (T^4 - T_("amb")^4) wide "for radiative heat flow" \
 $
 Where:
-- $A$, $T$, and $T_"amb"$, are the same as before. 
+- $A$, $T$, and $T_"amb"$, are the same as before.
 - $epsilon$ is the emissivity of the surface of the object:
 
 The equation for the change in total heat was:
@@ -119,11 +123,11 @@ $
   Delta T = (Delta Q) / C_p \
 $
 Where $C_p$ is the heat capacity of our system at constant pressure in $J K^(-1)$ (instead of the usual $J "mol"^(-1) K^(-1)$).
-  
-Rewriting with differentials:  
+
+Rewriting with differentials:
 $
-    (d T)/(d t) &= ( 1 / C_p) (d Q_"total") /(d t) \
-    therefore (d T)/(d t) &= ( 1 / C_p) ((d Q_c) / (d t) + (d Q_r) / (d t) ) \
+            (d T)/(d t) & = ( 1 / C_p) (d Q_"total") /(d t) \
+  therefore (d T)/(d t) & = ( 1 / C_p) ((d Q_c) / (d t) + (d Q_r) / (d t) ) \
 $
 
 For Euler-based modeling in python, this looks like:
@@ -138,61 +142,72 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
 #pagebreak()
 == Parameters and Fit Data
 #figure(
-    table(
+  table(
     columns: 7,
-    [*Trial Number*], [*Estimated $k_c$*], [*Relative Uncertainty in $k_c$*], [*Estimated $epsilon$*], [*Relative Uncertainty in $epsilon$*], [*$chi^2$*], [*$Delta T$ across wall of can*],
-    [1], [3.142], [], [], [], [], [],
-    [2], [33.125 m], [], [], [], [], [],
-    [3], [122.25 m ], [], [], [],[], [],
-    ),
-    caption: [
-      The trial number, estimated $k_c$ and $epsilon$ and their relative uncertainties, $chi^2$ of fit, and temperature difference across wall of can. 
-    ],
+    [*Trial Number*],
+    [*Estimated $k_c$*],
+    [*Relative Uncertainty in $k_c$*],
+    [*Estimated $epsilon$*],
+    [*Relative Uncertainty in $epsilon$*],
+    [*$chi^2$*],
+    [*$Delta T$ across wall of can*],
+
+    [3], [$0.413004 plus.minus 0.036859$], [], [], [], [0.729672], [],
+    [4], [$0.301282 plus.minus 0.073260$], [], [], [], [1.661023], [],
+    [1], [$0.393773 plus.minus 0.016026$], [], [], [], [0.562013], [],
+  ),
+  caption: [
+    The trial number, estimated $k_c$ and $epsilon$ and their relative uncertainties, $chi^2$ of fit, and temperature difference across wall of can.
+  ],
 ) <parameterData>
 
 
 == Constants used in code:
 #figure(
-    table(
+  table(
     columns: 4,
-    [*Name*], [*Value*], [*Uncertainty*], [*Citation*],
-    [$pi$], [3.142], [], [],
-    [Radius of Can], [33.125 m], [], [],
-    [Height of Can], [122.25 m ], [], [],
-    [100g], [Cane sugar], [], [],
-    [100g], [70% cocoa chocolate], [], [],
-    [100g], [35-40% cocoa chocolate], [], [],
-    [2], [Eggs], [], [],
-    [Pinch], [Salt], [], [],
-    [Drizzle], [Vanilla extract], [], [],
-    ),
-    caption: [
-      The constants used in the code. 
-    ],
+    [*Name*], [*Value*], [*Uncertainty*], [*Link*],
+    [$pi$], [3.141592653589793], [], [],
+    [Radius of Can], [0.0331 m], [$plus.minus 1.00 times 10^(-3)$], [],
+    [Height of Can], [0.112 m], [$plus.minus 3.25 times 10^(-3)$], [],
+    [Volume of Can], [$0.000355 "m"^(-3)$], [], [],
+    [rhoair], [1.225 $"kg"  "m"^(-3)$ ], [], [#link("https://www.engineeringtoolbox.com/standard-atmosphere-d_604.html")[link]],
+    [rhoAl], [2712 $"kg" "m"^3$], [], [#link("https://kg-m3.com/material/aluminum")[link]],
+    [mAl], [0.01246 kg], [$plus.minus 2.887 times 10^(-6) "kg"$], [],
+    [thickness of Al], [0.095 m], [], [],
+    [conductivity of Al], [237 W/m K], [], [#link("https://www.engineeringtoolbox.com/thermal-conductivity-metals-d_858.html")[link]],
+    [cair], [1005 J/kg/K], [], [#link("https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html")[link]],
+    [cAl], [897 J/kg/K], [], [#link("https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html")[link]],
+    [Tcel], [273.15 K], [], [],
+    [ Stefan-Boltzmann Constant], [ 5.67e-8 W/m^2/K^4], [], [],
+  ),
+  caption: [
+    The constants used in the code.
+  ],
 ) <constants>
 
 #pagebreak()
 
 == Graphs
 #figure(
-    image("figures/EulerFit3.svg"), 
-    caption: [
-        Graph of the internal temperature over time for Trial 3. 
-    ]
+  image("figures/EulerFit3.svg"),
+  caption: [
+    Graph of the internal temperature over time for Trial 3.
+  ],
 ) <trial3>
 
 #figure(
-    image("figures/EulerFit4.svg"), 
-    caption: [
-        Graph of the internal temperature over time for Trial 4. 
-    ]
+  image("figures/EulerFit4.svg"),
+  caption: [
+    Graph of the internal temperature over time for Trial 4.
+  ],
 ) <trial3>
 
 #figure(
-    image("figures/EulerFit1.svg"), 
-    caption: [
-        Graph of the internal temperature over time for Trial 1. 
-    ]
+  image("figures/EulerFit1.svg"),
+  caption: [
+    Graph of the internal temperature over time for Trial 1.
+  ],
 ) <trial3>
 
 
@@ -211,35 +226,35 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
 Note: I included this appendix just for fun because I found it interesting. You do not have to read it for marking purposes.
 
 I wrote some custom code to do interactive fitting, you can find it here: \
-#link("https://github.com/blucardin/SCIE001Physics/blob/assignment_2/interactive_fitter.ipynb") 
+#link("https://github.com/blucardin/SCIE001Physics/blob/assignment_2/interactive_fitter.ipynb")
 
 #figure(
-    image("images/Screenshot 2025-11-21 at 3.20.40 AM.png"), 
-    caption: [
-        An image of the interactive fitting application. 
-    ]
+  image("images/Screenshot 2025-11-21 at 3.20.40 AM.png"),
+  caption: [
+    An image of the interactive fitting application.
+  ],
 )
 
 = Calculating $chi^2$ <chi2>
-For the fitter to work, I needed to calculate $chi^2$, but since the datapoints were not aligned in time I couldn't compute the metric normally. 
+For the fitter to work, I needed to calculate $chi^2$, but since the datapoints were not aligned in time I couldn't compute the metric normally.
 
 So I wrote some code that did some interpolation between the points, you can find it below.
 
 ```python
-def chiSquared(x1s, y1s, x2s, y2s): 
-    # since they are not aligned on the time axis, we have to do some interpolation. 
+def chiSquared(x1s, y1s, x2s, y2s):
+    # since they are not aligned on the time axis, we have to do some interpolation.
     # (the time axis for the experimental temperatures varies, so even if we matched them, they wouldn't fit)
 
     sum = 0
-    for x1, y1 in zip(x1s, y1s): 
-        observed_value = y1 
+    for x1, y1 in zip(x1s, y1s):
+        observed_value = y1
 
         point_after_index = np.searchsorted(x2s, x1)
         point_before_index = point_after_index - 1
 
 
         if point_after_index >= len(y2s):
-            # we are at the end of the list, so just use the last interpolation  
+            # we are at the end of the list, so just use the last interpolation
             point_after_index -= 1
             point_before_index -= 1
 
