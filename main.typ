@@ -50,12 +50,12 @@
 
 = Introduction
 
-Introduction (max 100 words):
-Explain what you did and state key facts about your experiment (e.g. describe your can, heat source used, etc.).
-All reported quantities should have units and uncertainty (if measured).
-Include a picture of your experimental setup.
+I used a space heater to heat  a standard $355 "ml"$ aluminum soda can, then let it cool down while monitoring internal temperature with an arduino and DHT11 temperature sensor. 
 
-To measure the emissivity and convention coefficient of an aluminum can, I used a space heater to heat the can, then let the can cool back to ambient temperature, while monitoring internal temperature with an arduino and DHT11 temperature sensor. I then fit the data with a model, and adjusted the
+I then fit a Euler method-based model to this data to determine the emissivity constant and convention coefficient of the can. 
+
+The can weighed $ 0.01246 plus.minus 2.887 times 10^(-6) "kg"$, with a radius of , and a height of .
+
 
 #grid(
   columns: 2,
@@ -67,7 +67,7 @@ To measure the emissivity and convention coefficient of an aluminum can, I used 
     clip: true, inset: (bottom: -0.85in, right: -0.0in, top: -0.0in, left: -0.8in)),
     caption: [
       Image of the experimental setup. 
-      The can was hung from a string to limit heat flow to mostly radiative and convective and not conductive. Tape was used to limit air movement outside the can.
+      The can was hung from a string to limit heat flow to mostly radiative and convective and not conductive. Tape was used as a cover to limit air movement outside the can.
     ],
   ) <ExperimentalSetup>],
 
@@ -82,6 +82,69 @@ To measure the emissivity and convention coefficient of an aluminum can, I used 
 )
 
 = Results
+
+Data was fit to a computational model. Parameters $k_c$ and $epsilon$ were manually adjusted using an interactive fitter (see #ref(<interactiveFitter>)) to reduce $chi^2$ score (see #ref(<chi2>)) between experimental data and model while keeping a good fit.
+
+Constants used are shown in 
+
+There are two differential equations we used to model heat flow.
+$
+  (d Q_c) / (d t) = -k_c A (T - T_("amb")) wide "for convective heat flow" \
+$
+Where:
+- $A$ is area in $m^3$
+- $k_c$ is the convection coefficient in $W m^(-2) K^(-1)$
+- $T$ is the current temperature of the system in $K$
+- $T_"amb"$ is the ambient temperature of the environment in $K$
+$
+  (d Q_r) / (d t) = -A epsilon sigma (T^4 - T_("amb")^4) wide "for radiative heat flow" \
+$
+Where:
+- $A$, $T$, and $T_"amb"$, are the same as before. 
+- $epsilon$ is the emissivity of the surface of the object:
+
+The equation for the change in total heat was:
+$
+  therefore (d Q_"total") / (d t) = (d Q_c) / (d t) + (d Q_r) / (d t) \
+$
+
+To determine the change in temperature, we rearrange the formula for heat capacity.
+$
+  C_p = (Delta Q) / (Delta T)\
+  Delta T = (Delta Q) / C_p \
+$
+Where $C_p$ is the heat capacity of our system at constant pressure in $J K^(-1)$ (instead of the usual $J "mol"^(-1) K^(-1)$).
+  
+Rewriting with differentials:  
+$
+    (d T)/(d t) &= ( 1 / C_p) (d Q_"total") /(d t) \
+    therefore (d T)/(d t) &= ( 1 / C_p) ((d Q_c) / (d t) + (d Q_r) / (d t) ) \
+$
+
+For Euler-based modeling in python, this looks like:
+```python
+dHc = kc * A * (Tn-Tamb) * dt
+dHr = eps * sig * A * (Tn**4 - Tamb**4) * dt
+Tn = Tn - (dHc + dHr)/heatcap
+```
+
+This model assumes that there was no conductive heat loss, heat capacity of the system stays constant, no hot air left the container, and ambient temperature is static.
+
+
+== Parameters and Fit Data
+#figure(
+    table(
+    columns: 7,
+    [*Trial Number*], [*Estimated $k_c$*], [*Relative Uncertainty in $k_c$*], [*Estimated $epsilon$*], [*Relative Uncertainty in $epsilon$*], [*$chi^2$*], [*$Delta T$ across wall of can*],
+    [1], [3.142], [], [], [], [], [],
+    [2], [33.125 m], [], [], [], [], [],
+    [3], [122.25 m ], [], [], [],[], [],
+    ),
+    caption: [
+      The trial number, estimated $k_c$ and $epsilon$ and their relative uncertainties, $chi^2$ of fit, and temperature difference across wall of can. 
+    ],
+)
+
 
 == Constants used in code:
 #figure(
@@ -106,58 +169,7 @@ To measure the emissivity and convention coefficient of an aluminum can, I used 
 
 
 = Discussion
-There are two differential equations we considered to model both radiative and convective heat flow.
-$
-  (d Q_c) / (d t) = -k_c A (T - T_("amb")) wide "for convective heat flow" \
-$
-Where:
-- $A$ is area in $m^3$
-- $k_c$ is the convection coefficient in $W m^(-2) K^(-1)$
-- $T$ is the current temperature of the system in $K$
-- $T_"amb"$ is the ambient temperature of the environment in $K$
-$
-  (d Q_r) / (d t) = -A epsilon sigma (T^4 - T_("amb")^4) wide "for radiative heat flow" \
-$
-Where:
-- $A$, $T$, and $T_"amb"$, are the same as before. 
-- $epsilon$ is the emissivity of the surface of the object:
 
-Without accounting for conductive heat loss, our equation for the change in total heat becomes. 
-$
-  therefore (d Q_"total") / (d t) = (d Q_c) / (d t) + (d Q_r) / (d t) \
-$
-
-
-To determine the change in temperature, we rearrange the formula for heat capacity.
-$
-  C_p = (Delta Q) / (Delta T)\
-  Delta T = (Delta Q) / C_p \
-$
-Where we define $C_p$ as the heat capacity of our system at constant pressure in $J K^(-1)$ (instead of the usual $J "mol"^(-1) K^(-1)$). This assumes the heat capacity stays constant. 
-  
-We then divide both sides by the change in time. 
-$
-    (Delta T) / (Delta t)  &= (Delta Q) /(Delta t) (1 / C_p) \
-$
-Taking the limit of both sides as $Delta T$ approaches $0$ and rewriting with Leibniz notation: 
-$
-    (d T)/(d t) &= ( 1 / C_p) (d Q_"total") /(d t) \
-    therefore (d T)/(d t) &= ( 1 / C_p) ((d Q_c) / (d t) + (d Q_r) / (d t) ) \
-$
-
-For Euler-based modeling in python, this looks like:
-
-```python
-dHc = kc * A * (Tn-Tamb) * dt
-dHr = eps * sig * A * (Tn**4 - Tamb**4) * dt
-Tn = Tn - (dHc + dHr)/heatcap
-```
-
-This model also assumes that no hot air left the container and ambient temperature does not increase after heating (the room got hotter). 
-
-Parameters $k_c$ and $epsilon$ were manually adjusted to reduce $chi^2$ metric between observed and
-
-while keeping good fit.
 
 
 
@@ -165,6 +177,7 @@ while keeping good fit.
 
 #show: appendix
 
-= Ultrasonic Measurement and Code Snippets<app1>
+= Interactive Fitter <interactiveFitter>
 
+= Calculating $chi^2$ <chi2>
 
