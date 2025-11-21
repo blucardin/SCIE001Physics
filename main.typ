@@ -1,7 +1,7 @@
 // Template for Physics assignments
 #import "@preview/titleize:0.1.1": titlecase
 #import "@preview/dashy-todo:0.1.2": todo
-
+#show link: underline
 
 #let appendix(body) = {
   set heading(numbering: "A", supplement: [Appendix])
@@ -208,6 +208,47 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
 #show: appendix
 
 = Interactive Fitter <interactiveFitter>
+Note: I included this appendix just for fun because I found it interesting. You do not have to read it for marking purposes.
+
+I wrote some custom code to do interactive fitting, you can find it here: \
+#link("https://github.com/blucardin/SCIE001Physics/blob/assignment_2/interactive_fitter.ipynb") 
+
+#figure(
+    image("images/Screenshot 2025-11-21 at 3.20.40 AM.png"), 
+    caption: [
+        An image of the interactive fitting application. 
+    ]
+)
 
 = Calculating $chi^2$ <chi2>
+For the fitter to work, I needed to calculate $chi^2$, but since the datapoints were not aligned in time I couldn't compute the metric normally. 
+
+So I wrote some code that did some interpolation between the points, you can find it below.
+
+```python
+def chiSquared(x1s, y1s, x2s, y2s): 
+    # since they are not aligned on the time axis, we have to do some interpolation. 
+    # (the time axis for the experimental temperatures varies, so even if we matched them, they wouldn't fit)
+
+    sum = 0
+    for x1, y1 in zip(x1s, y1s): 
+        observed_value = y1 
+
+        point_after_index = np.searchsorted(x2s, x1)
+        point_before_index = point_after_index - 1
+
+
+        if point_after_index >= len(y2s):
+            # we are at the end of the list, so just use the last interpolation  
+            point_after_index -= 1
+            point_before_index -= 1
+
+        m = (y2s[point_after_index] - y2s[point_before_index])/ (x2s[point_after_index] - x2s[point_before_index])
+
+        interpolated_value = (m * (x1 - x2s[point_before_index])) + y2s[point_before_index]
+
+        sum += ((observed_value - interpolated_value)**2)/ (interpolated_value)
+
+    return sum
+```
 
