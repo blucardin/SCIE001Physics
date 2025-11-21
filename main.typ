@@ -54,7 +54,7 @@ I used a space heater to heat  a standard $355 "ml"$ aluminum soda can, then let
 
 I then fit a Euler method-based model to this data to determine the emissivity constant and convention coefficient of the can. 
 
-The can weighed $ 0.01246 plus.minus 2.887 times 10^(-6) "kg"$, with a radius of , and a height of .
+The can weighed $ (0.01246 plus.minus 2.887 times 10^(-6)) "kg"$, with a radius of $(0.0331 plus.minus 1.00 times 10^(-3) )"m"$ , and an effective height of $(0.112 plus.minus 3.25 times 10^(-3) ) "m"$.
 
 
 #grid(
@@ -85,7 +85,7 @@ The can weighed $ 0.01246 plus.minus 2.887 times 10^(-6) "kg"$, with a radius of
 
 Data was fit to a computational model. Parameters $k_c$ and $epsilon$ were manually adjusted using an interactive fitter (see #ref(<interactiveFitter>)) to reduce $chi^2$ score (see #ref(<chi2>)) between experimental data and model while keeping a good fit.
 
-Constants used are shown in 
+The constants used are shown in #ref(<constants>), and the final parameters and fit data is shown in #ref(<parameterData>).
 
 There are two differential equations we used to model heat flow.
 $
@@ -143,7 +143,7 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
     caption: [
       The trial number, estimated $k_c$ and $epsilon$ and their relative uncertainties, $chi^2$ of fit, and temperature difference across wall of can. 
     ],
-)
+) <parameterData>
 
 
 == Constants used in code:
@@ -164,7 +164,7 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
     caption: [
       The constants used in the code. 
     ],
-)
+) <constants>
 
 
 
