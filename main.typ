@@ -163,7 +163,7 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
 #let sig_figs = 3;
 
 #let s(x) = {
-  round(x, 3)
+  round(x, 2)
 }
 
 #figure(
@@ -178,25 +178,25 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
     [*$Delta T$ across wall of can K*],
 
     [1],
-    [$#s(data.at("1k_c")) plus.minus #s(data.at("1del_k_c"))$],
+    [$#round(data.at("1k_c"), 3) plus.minus #s(data.at("1del_k_c"))$],
     [#s(data.at("1k_c_ru"))],
-    [$#s(data.at("1eps")) plus.minus #s(data.at("1del_eps"))$],
+    [$#round(data.at("1eps"), 4) plus.minus #s(data.at("1del_eps"))$],
     [#s(data.at("1eps_ru"))],
     [#s(data.at("1chi2"))],
     [#s(0.01070273861760804)],
 
     [3],
-    [$#s(data.at("3k_c")) plus.minus #s(data.at("3del_k_c"))$],
+    [$#round(data.at("3k_c"), 4) plus.minus #s(data.at("3del_k_c"))$],
     [#s(data.at("3k_c_ru"))],
-    [$#s(data.at("3eps")) plus.minus #s(data.at("3del_eps"))$],
+    [$#round(data.at("3eps"), 4) plus.minus #s(data.at("3del_eps"))$],
     [#s(data.at("3eps_ru"))],
     [#s(data.at("3chi2"))],
     [#s(0.006306556209366091)],
 
     [4],
-    [$#s(data.at("4k_c")) plus.minus #s(data.at("4del_k_c"))$],
+    [$#round(data.at("4k_c"), 3) plus.minus #s(data.at("4del_k_c"))$],
     [#s(data.at("4k_c_ru"))],
-    [$#s(data.at("4eps")) plus.minus #s(data.at("4del_eps"))$],
+    [$#round(data.at("4eps"), 4) plus.minus #s(data.at("4del_eps"))$],
     [#s(data.at("4eps_ru"))],
     [#s(data.at("4chi2"))],
     [#s(0.012812335379065525)],
@@ -229,9 +229,9 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
     [],
     [#link("https://www.engineeringtoolbox.com/thermal-conductivity-metals-d_858.html")[link]],
 
-    [cair], [1005 J/kg/K], [], [#link("https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html")[link]],
-    [cAl], [897 J/kg/K], [], [#link("https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html")[link]],
-    [Tcel], [273.15 K], [], [],
+    [Heat capacity of air], [1005 J/kg/K], [], [#link("https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html")[link]],
+    [Heat capacity of aluminum], [897 J/kg/K], [], [#link("https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html")[link]],
+    [0 degrees Celsius in Kelvin], [273.15 K], [], [],
     [ Stefan-Boltzmann Constant], [ 5.67e-8 W/m^2/K^4], [], [],
   ),
   caption: [
@@ -270,11 +270,7 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
 
 = Discussion
 
-
-*Discuss if your final best estimates for convection coefficient kc and the emissivity ε are reasonable given your can and experimental conditions.
-*
-
-These graphs are showing the internal temperature of the can as it evolves with time plotted against a model of the can using an estimated $epsilon$ and $k_c$ value to predict the temperature of the can given its temperature at one point.
+Our graphs show the internal temperature of the can over time plotted against an Euler model to predict the temperature of the can given its temperature at one point.
 
 Our expanded differential equation is:
 $
@@ -305,21 +301,21 @@ The $epsilon$ does not agree well across the trials, but the $k_c$ agrees well, 
 ) <tprimes>
 
 
-Based on the emissivities listed #link("https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html", [here]), and the fact that my can was painted, my emissivity is reasonable. Aluminum Heavily Oxidized was listed with $epsilon = 0.2 - 0.31$ and mine was $epsilon = #round(0.22536737248466868, 4) plus.minus #round(0.002473898371967511, 4)$. 
+Based on the #link("https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html", [here]), and that my can was painted, my emissivity is reasonable. Aluminum Heavily Oxidized was listed with $epsilon = 0.2 - 0.31$ and mine was $epsilon = #round(0.22536737248466868, 4) plus.minus #round(0.002473898371967511, 2)$. 
 
-Relative to #link("https://www.researchgate.net/publication/232877343_Experimental_Investigation_on_Pressure_Drop_and_Heat_Transfer_Characteristics_of_Copper_Metal_Foam_Heat_Sink", [here]) showing $k_c$ of aluminum $ = 6.87$ W/$m^2$/K, my convection coefficient of $k_c = #round(0.3693528693528694, 3) plus.minus #round(0.011191181424687495, 2) $W/$m^2$/K is off by a factor of 614. My $k_c$ is unreasonable. 
+Relative to #link("https://www.researchgate.net/publication/232877343_Experimental_Investigation_on_Pressure_Drop_and_Heat_Transfer_Characteristics_of_Copper_Metal_Foam_Heat_Sink", [here]) showing $k_c$ of aluminum $ = 6.87$ W/$m^2$/K, my convection coefficient of $k_c = #round(0.3693528693528694, 3) plus.minus #round(0.011191181424687495, 2) $W/$m^2$/K is is unreasonable (off by a factor of 614).
 
 
-If we graph the change temperature across the wall of our can over time we get:
+We graph the change temperature across the wall of our can over time:
 
 #figure(
   image("figures/EulerFitDelts.svg"),
   caption: [
-    A graph of the simulated change in temperature across the wall.
+    A graph of the simulated change in temperature across the wall over time.
   ],
-)
+) <delt>
 
-Therefore, the aluminum can is a good conductor, as heat flows out of the can readily until it equalizes with ambient temperature, then heat stops flowing.
+#ref(<delt>) shows aluminum is a good conductor, as heat flows out of the can readily until it equalizes with ambient temperature, then heat stops flowing.
 
 This is also a result of the second law of thermodynamics, more specifically that if no work is done heat flows across a temperature gradient.
 
