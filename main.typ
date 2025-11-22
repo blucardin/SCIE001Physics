@@ -2,6 +2,8 @@
 #import "@preview/titleize:0.1.1": titlecase
 #import "@preview/dashy-todo:0.1.2": todo
 #show link: underline
+#import "@preview/sigfig:0.1.0": round, urounds
+#import "@preview/unify:0.5.0": num
 
 #let appendix(body) = {
   set heading(numbering: "A", supplement: [Appendix])
@@ -49,7 +51,8 @@
 #pagebreak()
 
 // uncomment this for infinite page height except the first page.
-#set page(height: auto)
+// #set page(height: auto)
+#todo("Turn infinite pages on after all other todos")
 #show: regular
 
 = Introduction
@@ -92,9 +95,28 @@ The can weighed $(0.01246 plus.minus 2.887 times 10^(-6)) "kg"$, with a radius o
 #pagebreak()
 = Results
 
-Data was fit to a computational model. Parameters $k_c$ and $epsilon$ were manually adjusted using an interactive fitter (see #ref(<interactiveFitter>)) to reduce $chi^2$ score (see #ref(<chi2>)) between experimental data and model while keeping a good fit.
+Data was fit to a computational model starting at the inflection point where the slope of the cooling graph began to decline. Parameters $k_c$ and $epsilon$ were manually adjusted using an interactive fitter (see #ref(<interactiveFitter>)) to reduce $chi^2$ score (see #ref(<chi2>)) between experimental data and model while keeping a good fit.
 
 The constants used are shown in #ref(<constants>), and the final parameters and fit data is shown in #ref(<parameterData>).
+
+Uncertainties in $k_c$ and $epsilon$ were calculated using gaussian error:
+$
+  delta k_c = (k_(c)"max" - k_(c)"min")/ 4 \
+  delta epsilon = (epsilon"max" - epsilon"min")/ 4
+$
+
+Final convection coefficient and emissivity came out to
+
+
+
+by averaging the best $k_c$'s and propagating the uncertainties.
+
+$
+  k_c = (k_(c 1) + k_(c 2) + k_(c 3))/3 wide epsilon = (epsilon_1 + epsilon_2 + epsilon_3)/3 \
+  delta(k_c) = ( 1 / 3 ) sqrt((delta k_(c 1))^2 + (delta k_(c 2))^2 + (delta k_(c 3))^2) wide
+  delta(epsilon) = ( 1 / 3 ) sqrt((delta epsilon_1)^2 + (delta epsilon_2)^2 + (delta epsilon_3)^2) \
+$
+
 
 There are two differential equations we used to model heat flow.
 $
@@ -141,25 +163,55 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
 
 #pagebreak()
 == Parameters and Fit Data
+
+#let data = json("fitParameters.json");
+#let sig_figs = 3;
+
+#let s(x) = {
+  round(x, 3)
+}
+
 #figure(
   table(
     columns: 7,
     [*Trial Number*],
-    [*Estimated $k_c$*],
-    [*Relative Uncertainty in $k_c$*],
+    [*Estimated $k_c$ \ W/$m^2$/K*],
+    [*Relative Uncertainty in $k_c$ \ W/$m^2$/K*],
     [*Estimated $epsilon$*],
     [*Relative Uncertainty in $epsilon$*],
     [*$chi^2$*],
-    [*$Delta T$ across wall of can*],
+    [*$Delta T$ across wall of can K*],
 
-    [3], [$0.413004 plus.minus 0.036859$], [], [], [], [0.729672], [],
-    [4], [$0.301282 plus.minus 0.073260$], [], [], [], [1.661023], [],
-    [1], [$0.393773 plus.minus 0.016026$], [], [], [], [0.562013], [],
+    [1],
+    [$#s(data.at("1k_c")) plus.minus #s(data.at("1del_k_c"))$],
+    [#s(data.at("1k_c_ru"))],
+    [$#s(data.at("1eps")) plus.minus #s(data.at("1del_eps"))$],
+    [#s(data.at("1eps_ru"))],
+    [#s(data.at("1chi2"))],
+    [#s(0.01070273861760804)],
+
+    [3],
+    [$#s(data.at("3k_c")) plus.minus #s(data.at("3del_k_c"))$],
+    [#s(data.at("3k_c_ru"))],
+    [$#s(data.at("3eps")) plus.minus #s(data.at("3del_eps"))$],
+    [#s(data.at("3eps_ru"))],
+    [#s(data.at("3chi2"))],
+    [#s(0.006306556209366091)],
+
+    [4],
+    [$#s(data.at("4k_c")) plus.minus #s(data.at("4del_k_c"))$],
+    [#s(data.at("4k_c_ru"))],
+    [$#s(data.at("4eps")) plus.minus #s(data.at("4del_eps"))$],
+    [#s(data.at("4eps_ru"))],
+    [#s(data.at("4chi2"))],
+    [#s(0.012812335379065525)],
   ),
   caption: [
     The trial number, estimated $k_c$ and $epsilon$ and their relative uncertainties, $chi^2$ of fit, and temperature difference across wall of can.
   ],
 ) <parameterData>
+
+#todo("Units on the data")
 
 
 == Constants used in code:
@@ -170,12 +222,20 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
     [$pi$], [3.141592653589793], [], [],
     [Radius of Can], [0.0331 m], [$plus.minus 1.00 times 10^(-3)$], [],
     [Height of Can], [0.112 m], [$plus.minus 3.25 times 10^(-3)$], [],
-    [Volume of Can], [$0.000355 "m"^(-3)$], [], [],
-    [rhoair], [1.225 $"kg"  "m"^(-3)$ ], [], [#link("https://www.engineeringtoolbox.com/standard-atmosphere-d_604.html")[link]],
+    [Volume of Can], [$0.000355 "m"^(-3)$], [], [Determined from the ml rating on the can.],
+    [rhoair],
+    [1.225 $"kg" "m"^(-3)$ ],
+    [],
+    [#link("https://www.engineeringtoolbox.com/standard-atmosphere-d_604.html")[link]],
+
     [rhoAl], [2712 $"kg" "m"^3$], [], [#link("https://kg-m3.com/material/aluminum")[link]],
     [mAl], [0.01246 kg], [$plus.minus 2.887 times 10^(-6) "kg"$], [],
     [thickness of Al], [0.095 m], [], [],
-    [conductivity of Al], [237 W/m K], [], [#link("https://www.engineeringtoolbox.com/thermal-conductivity-metals-d_858.html")[link]],
+    [conductivity of Al],
+    [237 W/m K],
+    [],
+    [#link("https://www.engineeringtoolbox.com/thermal-conductivity-metals-d_858.html")[link]],
+
     [cair], [1005 J/kg/K], [], [#link("https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html")[link]],
     [cAl], [897 J/kg/K], [], [#link("https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html")[link]],
     [Tcel], [273.15 K], [], [],
@@ -185,6 +245,8 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
     The constants used in the code.
   ],
 ) <constants>
+
+#todo("Expand the names of the constants")
 
 #pagebreak()
 
@@ -216,8 +278,57 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
 = Discussion
 
 
+*Discuss if your final best estimates for convection coefficient kc and the emissivity ε are reasonable given your can and experimental conditions.
+*
+
+These graphs are showing the internal temperature of the can as it evolves with time plotted against a model of the can using an estimated $epsilon$ and $k_c$ value to predict the temperature of the can given its temperature at one point.
+
+Our expanded differential equation is:
+$
+  (d T)/(d t) & = ( 1 / C_p) ( -k_c A (T - T_("amb"))
+                  + (-A epsilon sigma (T^4 - T_("amb")^4) )) \
+  (d T)/(d t) & = ( 1 / C_p) ( -k_c A T + k_c A T_("amb") - A epsilon sigma T^4 + A epsilon sigma T_("amb")^4 ) \
+$
+
+Therefore if $T > T_"amb"$, $(d T)/(d t) < 0$ and so the temperature decays over time till $T = T_"amb"$, $(d T)/(d t) = 0$ and temperature has equalized. This is exactly what we see in our numerical approximation.
+
+The $epsilon$ does not agree well across the trials, but the $k_c$ agrees well, this is evident by their t-prime scores being greater than $1$ about $1$ respectively in #ref(<tprimes>).
+
+#let sig(x) = {
+  round(x, 4)
+}
+
+#figure(
+  table(
+    columns: 3,
+    [*Trial Pair*], [*t-prime Score of their $k_c$*], [*t-prime Score of their $epsilon$*],
+    [3 and 1], [#sig(json("t_primes.json").k_c_3_1)], [#sig(json("t_primes.json").eps_3_1)],
+    [3 and 4], [#sig(json("t_primes.json").k_c_3_4)], [#sig(json("t_primes.json").eps_3_4)],
+    [1 and 4], [#sig(json("t_primes.json").k_c_4_1)], [#sig(json("t_primes.json").eps_4_1)],
+  ),
+  caption: [
+    The calculated t-prime scores for the best estimated $k_c$ and $epsilon$ of each pair of trials.
+  ],
+) <tprimes>
 
 
+If we graph the change temperature across the wall of our can over time we get:
+
+#figure(
+  image("figures/EulerFitDelts.svg"),
+  caption: [
+    A graph of the simulated change in temperature across the wall.
+  ],
+)
+
+Therefore, the aluminum can is a good conductor, as heat flows out of the can readily until it equalizes with ambient temperature, then heat stops flowing.
+
+This is also a result of the second law of thermodynamics, more specifically that if no work is done heat flows across a temperature gradient.
+
+#todo("WRITE THE DISCUSSION ")
+
+
+#pagebreak()
 
 
 #show: appendix
