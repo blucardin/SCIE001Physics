@@ -51,8 +51,7 @@
 #pagebreak()
 
 // uncomment this for infinite page height except the first page.
-// #set page(height: auto)
-#todo("Turn infinite pages on after all other todos")
+#set page(height: auto)
 #show: regular
 
 = Introduction
@@ -105,7 +104,7 @@ $
   delta epsilon = (epsilon"max" - epsilon"min")/ 4
 $
 
-Final convection coefficient and emissivity came out to $k_c = #round(0.3693528693528694, 4) plus.minus #round(0.011191181424687495, 4) $W/$m^2$/K and $epsilon = #round(0.22536737248466868, 4) plus.minus #round(0.002473898371967511, 4)$ by averaging the best $k_c$'s and propagating the uncertainties.
+Final convection coefficient and emissivity came out to $k_c = #round(0.3693528693528694, 3) plus.minus #round(0.011191181424687495, 2) $W/$m^2$/K and $epsilon = #round(0.22536737248466868, 5) plus.minus #round(0.002473898371967511, 2)$ by averaging the best $k_c$'s and propagating the uncertainties.
 
 $
   k_c = (k_(c 1) + k_(c 2) + k_(c 3))/3 wide epsilon = (epsilon_1 + epsilon_2 + epsilon_3)/3 \
@@ -207,8 +206,6 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
   ],
 ) <parameterData>
 
-#todo("Units on the data")
-
 
 == Constants used in code:
 #figure(
@@ -242,7 +239,7 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
   ],
 ) <constants>
 
-#todo("Expand the names of the constants")
+// #todo("Expand the names of the constants")
 
 #pagebreak()
 
@@ -308,6 +305,11 @@ The $epsilon$ does not agree well across the trials, but the $k_c$ agrees well, 
 ) <tprimes>
 
 
+Based on the emissivities listed #link("https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html", [here]), and the fact that my can was painted, my emissivity is reasonable. Aluminum Heavily Oxidized was listed with $epsilon = 0.2 - 0.31$ and mine was $epsilon = #round(0.22536737248466868, 4) plus.minus #round(0.002473898371967511, 4)$. 
+
+Relative to #link("https://www.researchgate.net/publication/232877343_Experimental_Investigation_on_Pressure_Drop_and_Heat_Transfer_Characteristics_of_Copper_Metal_Foam_Heat_Sink", [here]) showing $k_c$ of aluminum $ = 6.87$ W/$m^2$/K, my convection coefficient of $k_c = #round(0.3693528693528694, 3) plus.minus #round(0.011191181424687495, 2) $W/$m^2$/K is off by a factor of 614. My $k_c$ is unreasonable. 
+
+
 If we graph the change temperature across the wall of our can over time we get:
 
 #figure(
@@ -320,8 +322,6 @@ If we graph the change temperature across the wall of our can over time we get:
 Therefore, the aluminum can is a good conductor, as heat flows out of the can readily until it equalizes with ambient temperature, then heat stops flowing.
 
 This is also a result of the second law of thermodynamics, more specifically that if no work is done heat flows across a temperature gradient.
-
-#todo("WRITE THE DISCUSSION ")
 
 
 #pagebreak()
