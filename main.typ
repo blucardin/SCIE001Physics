@@ -105,11 +105,7 @@ $
   delta epsilon = (epsilon"max" - epsilon"min")/ 4
 $
 
-Final convection coefficient and emissivity came out to
-
-
-
-by averaging the best $k_c$'s and propagating the uncertainties.
+Final convection coefficient and emissivity came out to $k_c = #round(0.3693528693528694, 4) plus.minus #round(0.011191181424687495, 4) $W/$m^2$/K and $epsilon = #round(0.22536737248466868, 4) plus.minus #round(0.002473898371967511, 4)$ by averaging the best $k_c$'s and propagating the uncertainties.
 
 $
   k_c = (k_(c 1) + k_(c 2) + k_(c 3))/3 wide epsilon = (epsilon_1 + epsilon_2 + epsilon_3)/3 \
@@ -254,21 +250,21 @@ This model assumes that there was no conductive heat loss, heat capacity of the 
 #figure(
   image("figures/EulerFit3.svg"),
   caption: [
-    Graph of the internal temperature over time for Trial 3.
+    Graph of the internal temperature of the can over time for Trial 3.
   ],
 ) <trial3>
 
 #figure(
   image("figures/EulerFit4.svg"),
   caption: [
-    Graph of the internal temperature over time for Trial 4.
+    Graph of the internal temperature of the can over time for Trial 4.
   ],
 ) <trial3>
 
 #figure(
   image("figures/EulerFit1.svg"),
   caption: [
-    Graph of the internal temperature over time for Trial 1.
+    Graph of the internal temperature of the can over time for Trial 1.
   ],
 ) <trial3>
 
