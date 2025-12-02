@@ -7,7 +7,7 @@
 #align(center)[
 
     _#text(30pt)[
-    #titlecase("physics assignment template")
+    #titlecase("physics equation sheet")
     ] \ \
     *Subtitle*
     _
@@ -27,7 +27,9 @@
 
 #pagebreak()
 
+= Rotational Motion
 
-= This
-== That
-= The next thing
+$
+  theta = s/r
+$
+
