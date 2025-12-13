@@ -223,8 +223,13 @@
     alpha &= tau / I = (2 tau) /( m  r ^ 2) \
     alpha &= (dif omega) / (dif t) \ 
     omega &= integral alpha dif t = integral (2 tau) /( m  r ^ 2) dif t = (2 tau t) /( m  r ^ 2) \
-    omega(2) &= (2 (tauc) (2)) /(  (#m) (#R) ^ 2) = #r((2 * tauc * 2) /(  m * R * R))
+    omega(2) &= (2 (tauc) (2)) /(  (#m) (#R) ^ 2) = #r((2 * tauc * 2) /(  m * R * R)) "rad / s"
   $
+  I got: 
+  $
+    omega(2) = #r((2 * tauc * 2) /(  m * R * R))
+  $
+
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -235,29 +240,48 @@
 
 == Correction Phase
 #word-count(total => [
-  Interpreting the direction of $arr(F_3)$ correctly.
-
+  Reading the graph correctly: 
 
   #let F_1 = 16
   #let F_2 = 20
   #let F_3 = 32
-  #let R = 32
-
+  #let R = 0.30
+  #let m = 10
 
   $
-      tau & = arr(F) times R \
+      arr(tau) & = arr(F) times arr(R) \
           \
-    tau_1 & = arr(F_1) R sin(90 degree) = (#F_1 "N") (#R "cm") (1) = 0 \
+    tau_1 & = F_1 R sin(90 degree) = (#F_1 "N") (#R "m")(#(r(calc.sin(90deg))))= #(F_1 * R * r(calc.sin(90deg))) N \
+
+    tau_2 &= F_2 R sin(180 degree) = (#F_2 "N") (#R "m")(#(r(calc.sin(180deg)))) = #r(F_3 * R * calc.sin(180deg)) "N/m"\
+
   $
-  $90 degree + theta = 120$& " is the angle between radius and force
+  Interpreting the direction of $arr(F_3)$ correctly, it should be $sin(180 degree + 30 degree)$
   $
-          tau_2 & = arr(F_2) R sin(120 degree) = (#F_2 "N") (#R "cm") \
-          tau_3 & = arr(F_1) R sin(90 degree) \
-                \
-    tau_"total" & = tau_1 + tau_2 + tau_3 = #()
+    tau_3 &= F_3 R sin(180-30 degree) = (#F_3 "N") (#R "m")(#(r(calc.sin(30deg))))= #(F_3 * R * r(calc.sin(180deg + 30deg))) "N/m"\
+    \
+    tau_"total" &= tau_1 + tau_2 + tau_3 = #r(R * (F_3 * calc.sin(180deg) + F_1 * calc.sin(90deg) + F_3 * calc.sin(180deg + 30deg))) "Nm" 
+  $
+
+  #let tauc = r(R * (F_3 * calc.sin(180deg) + F_1 * calc.sin(90deg) + F_3 * calc.sin(180deg + 30deg)))
+  
+  $
+    tau = I alpha \ 
+  $
+  As a disk: 
+  $
+    I &= 1/2m r^2 \ 
+    \
+    alpha &= tau / I = (2 tau) /( m  r ^ 2) \
+    alpha &= (dif omega) / (dif t) \ 
+    omega &= integral alpha dif t = integral (2 tau) /( m  r ^ 2) dif t = (2 tau t) /( m  r ^ 2) \
+    omega(2) &= (2 (tauc) (2)) /(  (#m) (#R) ^ 2) = #r((2 * tauc * 2) /(  m * R * R)) "rad / s"
   $
   // In this document, there are  words all up.
   // this
+  
+  Therefore at 2 seconds the angular velocity is zero. 
+
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
