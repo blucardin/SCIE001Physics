@@ -46,7 +46,7 @@
 #set page(height: auto)
 
 
-= Collision Ball and Box 1
+= Hockey Physicist 
 
 == Specify Question
 #image("images/question4.png")
@@ -54,13 +54,11 @@
 
 == Diagnosis Phase
 #word-count(total => [
-  I treated speed as the linear speed of the puck (not the angular speed), and I incorrectly thought the energy imparted by the player would be the same in both cases. 
+  I incorrectly thought the energy imparted by the player would be the same in both cases. 
 
-  After the pull, the first puck has rotational and linear kinetic energy, while the second puck only has linear energy. 
- 
-  If the energy was the same, puck 2 would move faster linearly, while puck one would be spinning while moving slower.
+  After the pull, the first puck has rotational and linear kinetic energy, while the second puck only has linear kinetic energy. If the energy was the same, puck 2 would move faster linearly, while puck one would be spinning while moving slower.
 
-  If work is force $times$ distance, and force is constant, puck two would travel farther since it was moving faster, and therefore had more work done on it. 
+  I then mistakenly assumed that since work is force $times$ distance, and force is constant, puck two would travel farther since it was moving faster, and therefore would have had more work done on it. 
   
   // I thought that after the hockey player pulls on the first puck, its total energy would be equal to both the energy in moving it towards the string, and the energy stored in spinning it. 
   
@@ -74,18 +72,20 @@
 == Correction Phase
 #word-count(total => [
 
-  Energy is not the same among cases, but the force, mass, and radius is, so we can start to represent the systems.
+  Energy is not the same, but force, mass, and radius are, so we can represent the systems.
 
-  Considering from a momentum perspective: 
+  Considering it from a momentum perspective: 
   $
     F = (dif p) / (dif t) \ 
     p = integral F dif t = F t
   $
   Force is the same, so momentum is the same. 
   $
+    F_1 &= F_2 \
+    F_1t &= F_2t\ 
     p_1 &= p_2 \ 
     p_(1x) &= p_(2x)\
-    p &= m v_x \
+    p_x &= m v_x \
     m v_(1x) &= m v_(2x)\
     v_(1x) &= v_(2x) \ 
   $
@@ -107,7 +107,7 @@
     // x = integral v dif t = integral (F / m)t dif t = (F / (2m))t^2
   $
 
-  Work is equal to force times distance, so after 2 seconds: 
+  Work is equal to force times distance: 
   $
     v = (dif x) /(dif t) \
     x_2 = integral v_2 dif t = integral (F t)/ m dif t = (F t^2)/ (2 m) \ 
@@ -168,6 +168,8 @@
     
   $
 
+  Therefore, scenario \#1 has more work done. 
+
 
 
   Words: #(total.words - 2)
@@ -199,14 +201,14 @@
   $
       arr(tau) & = arr(F) times arr(R) \
           \
-    tau_1 & = F_1 R sin(90 degree) = (#F_1 "N") (#R "m")(#(r(calc.sin(90deg))))= #(F_1 * R * r(calc.sin(90deg))) N \
+    tau_1 & = F_1 R sin(90 degree) = (#F_1 "N") (#R "m")(#(r(calc.sin(90deg))))= #(F_1 * R * r(calc.sin(90deg))) "Nm"  \
 
-    tau_2 &= F_2 R sin(180 degree) = (#F_2 "N") (#R "m")(#(r(calc.sin(180deg)))) = #r(F_3 * R * calc.sin(180deg)) "N/m"\
+    tau_2 &= F_2 R sin(180 degree) = (#F_2 "N") (#R "m")(#(r(calc.sin(180deg)))) = #r(F_3 * R * calc.sin(180deg)) "Nm" \
 
   $
-  I incorrectly thought the $arr(F_3)$ was pointing up, so I calculated its torque using $sin(180 degree -30 degree)$
+  I incorrectly thought that $arr(F_3)$ was pointing up, so I calculated its torque using $sin(180 degree -30 degree):$
   $
-    tau_3 &= F_3 R sin(180-30 degree) = (#F_3 "N") (#R "m")(#(r(calc.sin(30deg))))= #(F_3 * R * r(calc.sin(180deg - 30deg))) "N/m"\
+    tau_3 &= F_3 R sin(180-30 degree) = (#F_3 "N") (#R "m")(#(r(calc.sin(30deg))))= #(F_3 * R * r(calc.sin(180deg - 30deg))) "Nm" \
     \
     tau_"total" &= tau_1 + tau_2 + tau_3 = #r(R * (F_3 * calc.sin(180deg) + F_1 * calc.sin(90deg) + F_3 * calc.sin(180deg - 30deg))) "Nm" 
   $
@@ -225,9 +227,9 @@
     omega &= integral alpha dif t = integral (2 tau) /( m  r ^ 2) dif t = (2 tau t) /( m  r ^ 2) \
     omega(2) &= (2 (tauc) (2)) /(  (#m) (#R) ^ 2) = #r((2 * tauc * 2) /(  m * R * R)) "rad / s"
   $
-  I got: 
+  I incorrectly got: 
   $
-    omega(2) = #r((2 * tauc * 2) /(  m * R * R))
+    omega(2) = #r((2 * tauc * 2) /(  m * R * R)) "rad/s"
   $
 
 
@@ -251,14 +253,14 @@
   $
       arr(tau) & = arr(F) times arr(R) \
           \
-    tau_1 & = F_1 R sin(90 degree) = (#F_1 "N") (#R "m")(#(r(calc.sin(90deg))))= #(F_1 * R * r(calc.sin(90deg))) N \
+    tau_1 & = F_1 R sin(90 degree) = (#F_1 "N") (#R "m")(#(r(calc.sin(90deg))))= #(F_1 * R * r(calc.sin(90deg))) "Nm"  \
 
-    tau_2 &= F_2 R sin(180 degree) = (#F_2 "N") (#R "m")(#(r(calc.sin(180deg)))) = #r(F_3 * R * calc.sin(180deg)) "N/m"\
+    tau_2 &= F_2 R sin(180 degree) = (#F_2 "N") (#R "m")(#(r(calc.sin(180deg)))) = #r(F_3 * R * calc.sin(180deg)) "Nm" \
 
   $
-  Interpreting the direction of $arr(F_3)$ correctly, it should be $sin(180 degree + 30 degree)$
+  Interpreting the direction of $arr(F_3)$ properly, its torque must be calculated with $sin(180 degree + 30 degree)$
   $
-    tau_3 &= F_3 R sin(180-30 degree) = (#F_3 "N") (#R "m")(#(r(calc.sin(30deg))))= #(F_3 * R * r(calc.sin(180deg + 30deg))) "N/m"\
+    tau_3 &= F_3 R sin(180 + 30 degree) = (#F_3 "N") (#R "m")(#(r(calc.sin(30deg))))= #(F_3 * R * r(calc.sin(180deg + 30deg))) "Nm" \
     \
     tau_"total" &= tau_1 + tau_2 + tau_3 = #r(R * (F_3 * calc.sin(180deg) + F_1 * calc.sin(90deg) + F_3 * calc.sin(180deg + 30deg))) "Nm" 
   $
@@ -275,12 +277,12 @@
     alpha &= tau / I = (2 tau) /( m  r ^ 2) \
     alpha &= (dif omega) / (dif t) \ 
     omega &= integral alpha dif t = integral (2 tau) /( m  r ^ 2) dif t = (2 tau t) /( m  r ^ 2) \
-    omega(2) &= (2 (tauc) (2)) /(  (#m) (#R) ^ 2) = #r((2 * tauc * 2) /(  m * R * R)) "rad / s"
+    omega(2) &= (2 (tauc) (2)) /(  (#m) (#R) ^ 2) = #r((2 * tauc * 2) /(  m * R * R)) "rad/s"
   $
   // In this document, there are  words all up.
   // this
   
-  Therefore at 2 seconds the angular velocity is zero. 
+  Therefore at 2 seconds the angular velocity is zero radians per second. 
 
 
   Words: #(total.words - 2)
