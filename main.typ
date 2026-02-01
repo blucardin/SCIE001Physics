@@ -5,13 +5,12 @@
 
 #show: word-count
 
-
 #set heading(numbering: "1.")
 
 #align(center + horizon)[
 
   _#text(30pt)[
-    #title(titlecase("Quiz 5 Reflection"))
+    #title(titlecase("Quiz 6 Reflection"))
   ] \ \
   _
 
@@ -46,23 +45,22 @@
 #set page(height: auto)
 
 
-= Hockey Physicist 
+= Three Oscillators
 
 == Specify Question
-#image("images/question4.png")
+#image("images/Question 1: Three Oscillators.png")
 
 
 == Diagnosis Phase
 #word-count(total => [
-  I incorrectly thought the energy imparted by the player would be the same in both cases. 
+  I misread the diagram and incorrectly thought that the 3rd mass-spring system was stretched further than the second spring at the time of the snapshot. 
 
-  After the pull, the first puck has rotational and linear kinetic energy, while the second puck only has linear kinetic energy. If the energy was the same, puck 2 would move faster linearly, while puck one would be spinning while moving slower.
-
-  I then mistakenly assumed that since work is force $times$ distance, and force is constant, puck two would travel farther since it was moving faster, and therefore would have had more work done on it. 
+  Maximum velocity is directly proportional to maximum amplitude. 
+  $
+    v_"max" = A omega
+  $
   
-  // I thought that after the hockey player pulls on the first puck, its total energy would be equal to both the energy in moving it towards the string, and the energy stored in spinning it. 
-  
-  // some of the energy would go into the puck, and some of it would 
+  In such a scenario, the third spring would reach a greater amplitude than the first spring as, since the velocity 
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -72,220 +70,11 @@
 == Correction Phase
 #word-count(total => [
 
-  Energy is not the same, but force, mass, and radius are, so we can represent the systems.
+  I was incorrect in reading that the 
 
-  Considering it from a momentum perspective: 
-  $
-    F = (dif p) / (dif t) \ 
-    p = integral F dif t = F t
-  $
-  Force is the same, so momentum is the same. 
-  $
-    F_1 &= F_2 \
-    F_1t &= F_2t\ 
-    p_1 &= p_2 \ 
-    p_(1x) &= p_(2x)\
-    p_x &= m v_x \
-    m v_(1x) &= m v_(2x)\
-    v_(1x) &= v_(2x) \ 
-  $
-  So speed is the same. 
-
-  For the work, we must consider the amount of rope pulled: 
-
-  For the second puck: 
-  $
-    F = m a \
-    a = F / m \ 
-
-    a = (d v) / (d t) \
-
-    v_2 = integral a dif t = integral F / m dif t = (F t) / m \
-
-    // v = (d x) / (d t) \
-
-    // x = integral v dif t = integral (F / m)t dif t = (F / (2m))t^2
-  $
-
-  Work is equal to force times distance: 
-  $
-    v = (dif x) /(dif t) \
-    x_2 = integral v_2 dif t = integral (F t)/ m dif t = (F t^2)/ (2 m) \ 
-    x_2(2) = (F 2^2)/ (2 m) = (2F)/(m) = x_"pulled"\
-    \
-    W_2 = abs(arr(F) times arr(x)) = F(x_"pulled") = (2F^2)/(m)
-
-  $
-
-    For the first puck, it is the same as the second, but we must account for the puck un-spooling. 
   
-  Considering torque:
-  $
-    tau &= abs( arr(r) times arr(F) ) = r F\ 
-
-    tau  &= I alpha  \
-    alpha &= tau / I = (r F) / I \ 
-  $
-
-  Treating the puck as a disk: 
-  $
-    I &= 1/2 m r^2 \
-    \
-    alpha &= (r F) / (1/2 m r^2) = 2 F m^(-1) r^(-1) \
-    alpha &= (dif omega) / (dif t) \ 
-    omega &= integral alpha dif t = integral 2 F m^(-1) r^(-1) dif t = 2 F m^(-1) r^(-1) t \
-
-    v_"un-spooling" &= omega r = 2 F m^(-1) r^(-1) t r = 2 F m^(-1) t
-
-    // theta &= (dif omega) / (dif t) \ 
-
-    // theta &= integral omega dif t = integral 2 tau m^(-1) r^(-2) t dif t = tau m^(-1) r^(-2) t^2 \ 
-
-    // arr(s) &= theta times arr(r) \
-    // s &= tau m^(-1) r^(-2) t^2 r
-  $
-  So the rope velocity is: 
-  $
-    v_"un-spooling" &= 2 ((F t)/ m)  \ 
-
-    v_"pulling" &= v_"linear" + v_"un-spooling" \
-    v_"pulling" &= (F t)/ m + 2 ((F t)/ m) = (3 F t)/ m wide "with " v_"linear" = (F t)/ m "from 2" \
-
-    \
-  // $
-
-  // $
-    // x_"un-spooling" &= integral v_("un-spooling") dif t = integral (2 F t) /  m dif t = ( F t^2) /  m  \ 
-    // x_"un-spooling" (2) &= ( F 2^2) /  m  = ( 4F ) /  m \
-    // \
-    x_"pulled" &= integral v_"pulling" dif t = integral (3 F t)/ m dif t = (3 F t^2)/ (2m)\
-    x_"pulled" (2) &=  (3 F 2^2)/ (2m) = (6 F)/ (m)\
-    W_1 &= abs(arr(F) times arr(x)) = F(x_"pulled") = (6F^2)/(m)
-  $
-  $
-    (6F^2)/(m) &> (2F^2)/(m) \
-    therefore W_1 &> W_2
-    
-  $
-
-  Therefore, scenario \#1 has more work done. 
-
-
-
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
   // does not account for equations by default!
 ])
 
-
-#pagebreak()
-
-= Angular Velocity of Disk
-
-== Specify Question
-#image("images/question5.png")
-
-== Diagnosis Phase
-
-#word-count(total => [
-  I misread the diagram and mistakenly thought that the $arr(F_3)$ was pointing up instead of down so when I went to calculate velocity I got:
-
-
-  #let F_1 = 16
-  #let F_2 = 20
-  #let F_3 = 32
-  #let R = 0.30
-  #let m = 10
-
-
-  $
-      arr(tau) & = arr(F) times arr(R) \
-          \
-    tau_1 & = F_1 R sin(90 degree) = (#F_1 "N") (#R "m")(#(r(calc.sin(90deg))))= #(F_1 * R * r(calc.sin(90deg))) "Nm"  \
-
-    tau_2 &= F_2 R sin(180 degree) = (#F_2 "N") (#R "m")(#(r(calc.sin(180deg)))) = #r(F_3 * R * calc.sin(180deg)) "Nm" \
-
-  $
-  I incorrectly thought that $arr(F_3)$ was pointing up, so I calculated its torque using $sin(180 degree -30 degree):$
-  $
-    tau_3 &= F_3 R sin(180-30 degree) = (#F_3 "N") (#R "m")(#(r(calc.sin(30deg))))= #(F_3 * R * r(calc.sin(180deg - 30deg))) "Nm" \
-    \
-    tau_"total" &= tau_1 + tau_2 + tau_3 = #r(R * (F_3 * calc.sin(180deg) + F_1 * calc.sin(90deg) + F_3 * calc.sin(180deg - 30deg))) "Nm" 
-  $
-
-  #let tauc = r(R * (F_3 * calc.sin(180deg) + F_1 * calc.sin(90deg) + F_3 * calc.sin(180deg - 30deg)))
-  
-  $
-    tau = I alpha \ 
-  $
-  As a disk: 
-  $
-    I &= 1/2m r^2 \ 
-    \
-    alpha &= tau / I = (2 tau) /( m  r ^ 2) \
-    alpha &= (dif omega) / (dif t) \ 
-    omega &= integral alpha dif t = integral (2 tau) /( m  r ^ 2) dif t = (2 tau t) /( m  r ^ 2) \
-    omega(2) &= (2 (tauc) (2)) /(  (#m) (#R) ^ 2) = #r((2 * tauc * 2) /(  m * R * R)) "rad / s"
-  $
-  I incorrectly got: 
-  $
-    omega(2) = #r((2 * tauc * 2) /(  m * R * R)) "rad/s"
-  $
-
-
-  Words: #(total.words - 2)
-  // subtract 2 to account for the word counter itself
-  // does not account for equations by default!
-])
-
-
-
-== Correction Phase
-#word-count(total => [
-  Reading the graph correctly: 
-
-  #let F_1 = 16
-  #let F_2 = 20
-  #let F_3 = 32
-  #let R = 0.30
-  #let m = 10
-
-  $
-      arr(tau) & = arr(F) times arr(R) \
-          \
-    tau_1 & = F_1 R sin(90 degree) = (#F_1 "N") (#R "m")(#(r(calc.sin(90deg))))= #(F_1 * R * r(calc.sin(90deg))) "Nm"  \
-
-    tau_2 &= F_2 R sin(180 degree) = (#F_2 "N") (#R "m")(#(r(calc.sin(180deg)))) = #r(F_3 * R * calc.sin(180deg)) "Nm" \
-
-  $
-  Interpreting the direction of $arr(F_3)$ properly, its torque must be calculated with $sin(180 degree + 30 degree)$
-  $
-    tau_3 &= F_3 R sin(180 + 30 degree) = (#F_3 "N") (#R "m")(#(r(calc.sin(30deg))))= #(F_3 * R * r(calc.sin(180deg + 30deg))) "Nm" \
-    \
-    tau_"total" &= tau_1 + tau_2 + tau_3 = #r(R * (F_3 * calc.sin(180deg) + F_1 * calc.sin(90deg) + F_3 * calc.sin(180deg + 30deg))) "Nm" 
-  $
-
-  #let tauc = r(R * (F_3 * calc.sin(180deg) + F_1 * calc.sin(90deg) + F_3 * calc.sin(180deg + 30deg)))
-  
-  $
-    tau = I alpha \ 
-  $
-  As a disk: 
-  $
-    I &= 1/2m r^2 \ 
-    \
-    alpha &= tau / I = (2 tau) /( m  r ^ 2) \
-    alpha &= (dif omega) / (dif t) \ 
-    omega &= integral alpha dif t = integral (2 tau) /( m  r ^ 2) dif t = (2 tau t) /( m  r ^ 2) \
-    omega(2) &= (2 (tauc) (2)) /(  (#m) (#R) ^ 2) = #r((2 * tauc * 2) /(  m * R * R)) "rad/s"
-  $
-  // In this document, there are  words all up.
-  // this
-  
-  Therefore at 2 seconds the angular velocity is zero radians per second. 
-
-
-  Words: #(total.words - 2)
-  // subtract 2 to account for the word counter itself
-  // does not account for equations by default!
-])
