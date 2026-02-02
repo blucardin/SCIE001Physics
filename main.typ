@@ -53,14 +53,14 @@
 
 == Diagnosis Phase
 #word-count(total => [
-  I misread the diagram and incorrectly thought that the 3rd mass-spring system was stretched further than the second spring at the time of the snapshot. 
-
-  Maximum velocity is directly proportional to maximum amplitude. 
+  Maximum velocity is directly proportional to maximum amplitude.
   $
     v_"max" = A omega
   $
-  
-  In such a scenario, the third spring would reach a greater amplitude than the first spring as, since the velocity 
+
+  I misread the diagram and incorrectly thought that the 3rd mass-spring system was stretched further than the second spring in the snapshot.
+
+  If correct, the third mass would reach a greater amplitude than the second mass. I thought this because, when the second mass was traveling back outwards, it would be at the same position with opposite velocity, and since I mistook that the third was further outstretched with same velocity, the third would go farther - therefore, having a greater amplitude and greater maximum velocity.  
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -70,9 +70,36 @@
 == Correction Phase
 #word-count(total => [
 
-  I was incorrect in reading that the 
+  I was incorrect in reading that the blocks were at different distances when the snapshot was taken. 
 
+  Reading the graph properly, there are two ways of thinking about this problem. First with energy, at some stretch $x$ and some velocity $v$: 
+  $
+   
+    E_"max amplitude" & = E_"total" \
+    E_"spring max amplitude" + E_"kinetic max amplitude" & = E_"kinetic" + E_"spring" \
   
+    1/2 k A^2 + 1/2 m (0)^2  & = 1/2 m v^2 + 1/2 k x^2 \
+            A & = sqrt((m v^2)/k + x^2) \
+      v_"max" & = omega sqrt((m v^2)/k + x^2) wide v_"max" = omega A \
+      v_"max" & = sqrt(k/m) sqrt((m v^2)/k + x^2) wide omega = sqrt(k/m) \
+      v_"max" & = sqrt(v^2 + (k x^2)/m)
+  $
+
+  $
+    v_"max 1" & = sqrt(v^2 + (k (0)^2)/m) = abs(v) \
+    v_"max 2" & = sqrt((-v)^2 + (k (x)^2)/m) = sqrt(v^2 + (k (x)^2)/m) wide "where" x "is the distance stretched" \
+    v_"max 3" & = sqrt(v^2 + (k (x)^2)/m)
+  $
+
+  $
+    abs(v) < sqrt(v^2 + (k (x)^2)/m) = sqrt(v^2 + (k (x)^2)/m) \
+    therefore v_"max 1" < v_"max 2" = v_"max 3"
+  $
+
+
+  The second way is via the velocity function. The velocity over time of all the blocks is periodic and is $90 degree$ offset from the position over time. Therefore it is possible to have two masses oscillating with the same amplitude but offset in phase at the same position in time, but one with positive velocity and the other negative.
+
+
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
   // does not account for equations by default!
