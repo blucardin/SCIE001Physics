@@ -415,7 +415,7 @@
 
   Volume was calculated using water-weight. First, the bottle was weighted empty, then weighed with water filled to the base of the neck. Subtracting these values and dividing by the density of water yielded the volume of the body of the bottle.
 
-  Then for each trial, water was added to the bottle and the apparatus was weighed. Subtracting the weight of the empty bottle and dividing by the density of water, then subtracting that from the volume of the body of the bottle yielded the volume of air under the neck.
+  Then for each trial, water was added to the bottle and the apparatus was weighed. Subtracting the weight of the empty bottle and dividing by the density of water, then subtracting that from the volume of the body yielded the volume of air under the neck.
 
   #figure(
     image("figures/data_only.svg", width: 90%),
@@ -449,7 +449,7 @@
 
       // This is further confirmed by chi-squared analysis showing that for the region under the neck
 
-      I believe this is due to underestimating of the volume of air acting as a spring, as offsetting the volume results in a near-perfect fit.
+      I believe this is due to underestimating of the volume of air acting as a spring, as reducing the volume results in a near-perfect fit.
 
       #figure(
         image("figures/data_and_model_with_line_offset.svg", width: 70%),
