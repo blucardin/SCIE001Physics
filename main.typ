@@ -187,8 +187,8 @@
 
     Taking the limit of our expression for $k$ as $Delta V$ approaches $0$:
     $
-      lim_(Delta V -> 0) k & = lim_(Delta V-> 0) abs((A^2 ( P(V) + P(V + Delta V)) ) / (Delta V)) \
-                         k & = A^2 abs(lim_(Delta V-> 0) ( ( P(V) + P(V + Delta V)) ) / (Delta V)) wide A^2 >= 0
+      lim_(Delta V -> 0) k & = lim_(Delta V-> 0) abs((A^2 ( P(V) - P(V + Delta V)) ) / (Delta V)) \
+                         k & = A^2 abs(lim_(Delta V-> 0) ( ( P(V) - P(V + Delta V)) ) / (Delta V)) wide A^2 >= 0
     $
 
     Rewriting in derivative notation:
@@ -269,9 +269,13 @@
 
   #word-count(total => [
 
-    We assume
+    We assume that air acting as a fixed mass fills the entire neck cavity, and that the air acting as a spring fills the entire body cavity. It may be that the division between oscillating and springing lies somewhere other than the neckline, or is less well defined altogether. 
 
-    #todo("Finish this question")
+    We also assume that this division does not change with the resonance frequency or the volume remaining - once the air in the bottle reaches the neck, our model breaks down.
+
+    Finally, we assume that temperature and pressure is static, while blowing hot air into the bottle could easily change these parameters. 
+
+    // #todo("Finish this question")
 
     Words: #(total.words - 2)
     // subtract 2 to account for the word counter itself
