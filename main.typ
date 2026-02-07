@@ -307,7 +307,7 @@
   ][
     #figure(
       image(
-        "images/image_of_bottle.jpeg"
+        "images/image_of_bottle.png"
       ), 
       caption : [
         An image of the bottle.
