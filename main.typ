@@ -125,7 +125,7 @@
   $
 
   $
-    #rect($f = sqrt(k / ( L A rho_"air")) / (2 pi )$)
+    #rect($ f = sqrt(k / ( L A rho_"air")) / (2 pi ) $)
   $
 
 
@@ -181,14 +181,14 @@
     $
     Noting:
     $
-      Delta P = P(V) + P(V + Delta V)
+      Delta P = P(V + Delta V) - P(V)
     $
-    Where $P(V)$ is the pressure of the air bottle at volume $V$.
+    Where $P(V)$ is the pressure of the air in the bottle at volume $V$.
 
     Taking the limit of our expression for $k$ as $Delta V$ approaches $0$:
     $
-      lim_(Delta V -> 0) k & = lim_(Delta V-> 0) abs((A^2 ( P(V) - P(V + Delta V)) ) / (Delta V)) \
-                         k & = A^2 abs(lim_(Delta V-> 0) ( ( P(V) - P(V + Delta V)) ) / (Delta V)) wide A^2 >= 0
+      lim_(Delta V -> 0) k & = lim_(Delta V-> 0) abs((A^2 ( P(V + Delta V) - P(V) ) ) / (Delta V)) \
+                         k & = A^2 abs(lim_(Delta V-> 0) ( ( P(V + Delta V) - P(V) ) ) / (Delta V)) wide A^2 >= 0
     $
 
     Rewriting in derivative notation:
@@ -196,6 +196,21 @@
     $
       #rect($ therefore k = A^2 abs((dif P) /(dif V)) $)
     $
+
+    Showing that the units make sense:
+
+    Left hand:
+    $
+      k = [N]/[m] // = ([k g][m]/[s]^2) / [m] = [k g] /[s]^2
+    $
+
+    Right hand:
+    $
+      A^2 abs((dif P) /(dif V)) = [m^2]^2 ([N] /[m]^2) /[ m^3] = ([N] [m]^4) /[m]^5 = [N] / [m]
+    $
+
+    Left hand equals right hand, therefore the units make sense.
+
 
 
 
@@ -230,7 +245,7 @@
   $
 
   $
-    f = sqrt(k / ( L A rho_"air")) / (2 pi ) \
+    f = sqrt(k / ( L A rho_"air")) / (2 pi ) wide "from question 1" \
     f = sqrt((((A^2 P gamma) / V )) / ( L A rho_"air")) / (2 pi ) \
     #rect($ f = sqrt((A P gamma) / (V L rho_"air")) / (2 pi ) $)
   $
@@ -251,15 +266,17 @@
 
   Showing that the units make sense:
 
+  Left hand:
   $
     f = ["Hz"] = ["s"^(-1)]
   $
 
+  Right hand:
   $
     sqrt((A v^2) / (V L)) / (2 pi ) = sqrt((["m"^2] ["m/s"]^2) / (["m"^3] ["m"])) = sqrt((["m"^4/"s"^2]) / ([m^4])) = sqrt(1/["s"^2]) = 1/ ["s"] = ["s"^(-1)]
   $
 
-  The units of both sides are the same.
+  The units of both sides are the same, therefore the units make sense.
 
 
 
@@ -269,11 +286,14 @@
 
   #word-count(total => [
 
-    We assume that air acting as a fixed mass fills the entire neck cavity, and that the air acting as a spring fills the entire body cavity. It may be that the division between oscillating and springing lies somewhere other than the neckline, or is less well defined altogether.
+    We assume that the air acting as the mass fills the entire neck cavity, and that the air acting as a spring fills the entire body. It may be that the division between oscillating and springing lies somewhere other than the neckline, or is less well defined altogether (air being both pushed down, and resisting compression simultaneously).
 
-    We also assume that this division does not change with the resonance frequency or the volume remaining - once the air in the bottle reaches the neck, our model breaks down.
+    We also assume that this division does not change with the resonance frequency or the volume remaining. This is not reasonable, as once the water in the bottle reaches the neck, our model breaks down, but we can still hear sound.
 
-    Finally, we assume that temperature and pressure is static, while blowing hot air into the bottle could easily change these parameters.
+    // Finally, we
+    // as our bottle can clearly produce sound when water is past the neckline.
+
+    // Finally, we assume that temperature and pressure is static, while blowing hot air into the bottle could easily change these parameters.
 
     // #todo("Finish this question")
 
@@ -296,14 +316,14 @@
         columns: 2,
         align: left,
         stroke: black,
-        [Nominal volume of bottle ], [$ 0.773100 plus.minus 0.000041$ L],
-        [Estimated volume of air below the neck of bottle (when empty)], [$ 0.741699 plus.minus 0.000041$ L],
+        [Nominal volume of bottle ], [$0.773100 plus.minus 0.000041$ L],
+        [Estimated volume of air below the neck of bottle (when empty)], [$0.741699 plus.minus 0.000041$ L],
         [Length of neck~], [$8.520 plus.minus 0.11$ cm ],
         [Diameter of neck~], [$1.85 plus.minus 0.050$ cm],
         [Local speed of sound used in model], [343.21 m/s @EngineersEdge_speed_of_sound_2025],
         [Density of water used], [1.00 kg / L @EngineersEdge_density_of_water_2025],
       ),
-      caption: [Bottle measurements and parameters],
+      caption: [Bottle measurements and model parameters.],
     )
   ][
     #figure(
@@ -311,41 +331,43 @@
         "images/image_of_bottle.png",
       ),
       caption: [
-        An image of the bottle.
+        An image of the bottle annotated with relevant dimensions.
       ],
     )
   ]
 
-  For uncertainty in the length and diameter, gaussian uncertainty was used. For gaussian uncertainty we use $95%$ confidence interval over 4. 
+  For uncertainty in the length and diameter, gaussian uncertainty was used. For gaussian uncertainty we use a $95%$ confidence interval divided by 4.
   $
     u[x] = (x_"max" - x_"min") / 4
   $
 
-  Since the bottle's volume was determined by water weight (as described in 3a). The uncertainties needed to be propagated. The scale used rounded to the nearest $0.1$ g, so we can use rectangular uncertainty. 
+  Since the bottle's volume was determined by water weight (as described in 3a), the uncertainties needed to be propagated:
+
+  The scale used rounded to the nearest $0.1$ g, so we can use rectangular uncertainty.
 
   $
     u[m] = ("\"width\" of rounding")/(2sqrt(3)) = (0.1 "g")/(2sqrt(3)) = 0.029 "g"
   $
 
-  Now we subtract the empty bottle weight, from the full bottle weight, so: 
+  Now we subtract the empty bottle weight, from the full bottle weight, so:
   $
     m_"water" &= m_"empty" - m_"full" \
-    u[m_"water"] &= sqrt((u[m_"empty"] (partial)/(partial m_"empty")(m_"empty" - m_"full")) ^ 2 +  (u[m_"full"] (partial)/(partial m_"full")(m_"empty" - m_"full")) ^ 2) \ 
+    u[m_"water"] &= sqrt((u[m_"empty"] (partial)/(partial m_"empty")(m_"empty" - m_"full"))^2 + (u[m_"full"] (partial)/(partial m_"full")(m_"empty" - m_"full"))^2) \
     u[m_"water"] &= sqrt(u[m_"empty"]^2 + u[m_"full"]^2) \
     &= sqrt((0.029 "g")^2 + (0.029 "g")^2) \
     u[m_"water"] &= 0.041 g
   $
   Now to turn it into volume, we divide by the density of water $rho_"water"$.
   $
-    V &= m/rho_"water" \ 
-    u[V] &= u[m] / rho_"water" \
-    u[V] &= (0.041 "g") / (((1000 "g") / (1 "L"))) =  0.000041 L
+       V & = m/rho_"water" \
+    u[V] & = u[m] / rho_"water" \
+    u[V] & = (0.041 "g") / (((1000 "g") / (1 "L"))) = 0.000041 L
   $
 
   This is the same uncertainty for estimating the volume of air below the neck of the bottle.
- 
 
-  // #todo("Annotate the bottle with relevant dimensions")
+
+// #todo("Annotate the bottle with relevant dimensions")
 
 // https://www.engineersedge.com/physics/speed_of_sound_13241.htm
 // https://www.engineersedge.com/fluid_flow/properties_of_water_at_atmospheric_pressure_15859.htm
@@ -354,35 +376,38 @@
 
   + #p[Include a screenshot of your measurement in the “Spectrum” tab below. At what frequency $f$ is the Helmholtz resonance for your empty bottle? Explain in 2-3 sentences how you can tell.]
 
-  #grid(columns: 2, column-gutter: 1em)[
-    #figure(
-      image(
-        "images/phyphox_image_empty_bottle.PNG",
-        width: 50%,
-      ),
-    )
-  ][
-    The Helmholtz resonance frequency for my empty bottle is $109.89 plus.minus 0.42$ Hz.
+    #grid(columns: 2, column-gutter: 1em)[
+      #figure(
+        image(
+          "images/phyphox_image_empty_bottle.PNG",
+          width: 50%,
+        ),
+        caption: [
+          Screenshot of PhyPhox while blowing into the empty bottle.
+        ]
+      )
+    ][
+      The Helmholtz resonance frequency for my empty bottle is $109.89 plus.minus 0.42$ Hz.
 
-    You can tell that it is $109.89$ Hz because the fourier transform of that sound for my bottle shows a distinct peak at that frequency.
+      You can tell that it is $109.89$ Hz because the fourier transform of the sound from my bottle shows a distinct peak at that frequency (also noted in the Peak-Frequency number above the graph).
 
-    // When you blow over the top of the bottle it emits sound waves at its Helmholtz resonance frequency.
+      // When you blow over the top of the bottle it emits sound waves at its Helmholtz resonance frequency.
 
-    The uncertainty comes from the resolution of $1.46$ Hz shown on PhyPhox. Since this is a discrete digital measurement we can use rectangular uncertainty:
-    $
-      u[f] = ("\"width\" of rounding")/(2sqrt(3)) = (1.46 "Hz")/(2sqrt(3)) = 0.42 "Hz"
-    $
+      The uncertainty comes from the resolution of $1.46$ Hz shown below the graph. Since this is a discrete digital measurement we can use rectangular uncertainty:
+      $
+        u[f] = ("\"width\" of rounding")/(2sqrt(3)) = (1.46 "Hz")/(2sqrt(3)) = 0.42 "Hz"
+      $
 
-    // Therefore $109.89$ Hz must be its Helmholtz resonance frequency.
+      // Therefore $109.89$ Hz must be its Helmholtz resonance frequency.
 
-  ]
+    ]
 
 
   + #p[In 2-3 sentences, explain the trade-off between the frequency resolution of the obtained spectrum and the number of samples taken. Hint: you can change the number of samples in the “Settings” tab.  What settings did you use for your experiment?]
 
   The more samples that you take for each fourier transform, the more frequency resolution you have. This makes intuitive sense, as with more samples you give more information to the fourier transform, allowing it to distinguish better between similar frequencies.
 
-  A lower sampling rate provides less frequency resolution than a higher sampling rate.
+  A lower sampling rate would provide less frequency resolution than a higher sampling rate, so I used the highest possible sampling rate of 32768 samples over a period of 682.67 ms for this experiment.
 
 + #p[[4 pts] Now add some water to your bottle and measure the frequency again for various amounts of water in the bottle. ]
 
@@ -396,7 +421,7 @@
     image("figures/data_only.svg", width: 90%),
     caption: [
       Plot of frequency produced by the bottle when blowing over the neck vs. the volume in the bottle under the neck (in the body).
-      Note that error bars are included (as shown by the bars on the legend), however the error is too small to be shown outside the size of the dots. This is true for all of the following graphs. 
+      Note that error bars are included (as shown by the bars on the legend), however the error is too small to be shown outside the size of the dots. This is true for all of the following graphs.
     ],
   )
 
@@ -407,39 +432,42 @@
     caption: [
       Plot of frequency produced by the bottle when blowing over the neck vs. the volume in the bottle under the neck (in the body) with a line representing the model.
     ],
-  ) 
+  )
 
 + #p[[3 pts] Discuss the agreement between your data and model. Pay particular attention to anywhere the model starts to deviate from the data. Take up to 100 words max to explain why. Be concise and precise in your choice of words.]
 
-  #word-count(total => [
-    The model agrees well with the data up until the the slopped tapper of the bottle towards the neck.
+  #word-count(
+    total => [
+      The model agrees with the data until the the slopped tapper of the bottle towards the neck.
 
-    #figure(
-      image("figures/data_and_model_with_line.svg"),
-      caption: [
-        Plot of frequency produced vs. the volume in the bottle under the neck. The volume where the water reaches the slopped tapper is highlighted.
-      ],
-    ) <no-wc>
+      #figure(
+        image("figures/data_and_model_with_line.svg"),
+        caption: [
+          Plot of frequency produced vs. the volume in the bottle under the neck. The volume where the water reaches the slopped tapper is highlighted.
+        ],
+      ) <no-wc>
 
-    // This is further confirmed by chi-squared analysis showing that for the region under the neck
+      // This is further confirmed by chi-squared analysis showing that for the region under the neck
 
-    I believe this is due to underestimating of the volume of air acting as a spring, as offsetting the volume results in a near-perfect fit. 
+      I believe this is due to underestimating of the volume of air acting as a spring, as offsetting the volume results in a near-perfect fit.
 
-    #figure(
-      image("figures/data_and_model_with_line_offset.svg"), 
-      caption: [
-        Plot of frequency produced vs. the volume in the bottle under the neck. The volume of air under the neck is reduced by $15$ ml before the model is applied.  
-      ]
-    ) <no-wc>
+      #figure(
+        image("figures/data_and_model_with_line_offset.svg", width: 70%),
+        caption: [
+          Plot of frequency produced vs. the volume in the bottle under the neck. The volume of air under the neck is reduced by $15$ ml before the model is applied.
+        ],
+      ) <no-wc>
 
-    However, changing the length of the neck to account for the offset results in a lower chi-squared, implying that some of the air is acting both as a mass and a spring. 
+      However, reducing the length of the neck to account for the offset results in a lower chi-squared, implying that some of the air is acting both as a mass and a spring.
 
-    This makes sense, as there is no hard boundary, and at 0 body volume, air in the neck must be acting in both ways. 
+      This makes sense, as there is no hard boundary, and at 0 body volume, air must be acting in both ways for sound to be produced.
 
-    Words: #(total.words - 2)
-    // subtract 2 to account for the word counter itself
-    // does not account for equations by default!
-  ], exclude: <no-wc>)
+      Words: #(total.words - 2)
+      // subtract 2 to account for the word counter itself
+      // does not account for equations by default!
+    ],
+    exclude: <no-wc>,
+  )
 
 #pagebreak()
 #bibliography("works.bib")
