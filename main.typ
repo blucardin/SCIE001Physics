@@ -269,11 +269,11 @@
 
   #word-count(total => [
 
-    We assume that air acting as a fixed mass fills the entire neck cavity, and that the air acting as a spring fills the entire body cavity. It may be that the division between oscillating and springing lies somewhere other than the neckline, or is less well defined altogether. 
+    We assume that air acting as a fixed mass fills the entire neck cavity, and that the air acting as a spring fills the entire body cavity. It may be that the division between oscillating and springing lies somewhere other than the neckline, or is less well defined altogether.
 
     We also assume that this division does not change with the resonance frequency or the volume remaining - once the air in the bottle reaches the neck, our model breaks down.
 
-    Finally, we assume that temperature and pressure is static, while blowing hot air into the bottle could easily change these parameters. 
+    Finally, we assume that temperature and pressure is static, while blowing hot air into the bottle could easily change these parameters.
 
     // #todo("Finish this question")
 
@@ -287,8 +287,8 @@
 
 + #p[[2 pt] Find a glass bottle with a well-defined neck such as the wine or ginger beer bottles, illustrated in the image below. You need to measure the volume below the neck, the cross-sectional area $A$ of the neck and its length $L$.
 
-  Fill out this table of important parameters for your bottle and include a picture of your bottle below with clear annotations of relevant dimensions.
-]
+    Fill out this table of important parameters for your bottle and include a picture of your bottle below with clear annotations of relevant dimensions.
+  ]
 
   #grid(columns: 2, column-gutter: 1em)[
     #figure(
@@ -307,11 +307,11 @@
   ][
     #figure(
       image(
-        "images/image_of_bottle.png"
-      ), 
-      caption : [
+        "images/image_of_bottle.png",
+      ),
+      caption: [
         An image of the bottle.
-      ]
+      ],
     )
   ]
 
@@ -326,35 +326,86 @@
   #grid(columns: 2, column-gutter: 1em)[
     #figure(
       image(
-        "images/phyphox_image_empty_bottle.PNG", width: 50%
-      )
+        "images/phyphox_image_empty_bottle.PNG",
+        width: 50%,
+      ),
     )
   ][
-    The Helmholtz resonance frequency for my empty bottle is $109.89$ Hz. When you blow over the top of the bottle it emits sound waves at its Helmholtz resonance frequency. You can tell that it is $109.89$ Hz because the fourier transform of that sound for my bottle shows a distinct peak at that frequency. 
-    
+    The Helmholtz resonance frequency for my empty bottle is $109.89 plus.minus 0.42$ Hz.
+
+    You can tell that it is $109.89$ Hz because the fourier transform of that sound for my bottle shows a distinct peak at that frequency.
+
+    // When you blow over the top of the bottle it emits sound waves at its Helmholtz resonance frequency.
+
+    The uncertainty comes from the resolution of $1.46$ Hz shown on PhyPhox. Since this is a discrete digital measurement we can use rectangular uncertainty:
+    $
+      u[f] = ("\"width\" of rounding")/(2sqrt(3)) = (1.46 "Hz")/(2sqrt(3)) = 0.42 "Hz"
+    $
+
     // Therefore $109.89$ Hz must be its Helmholtz resonance frequency.
-    
+
   ]
 
 
   + #p[In 2-3 sentences, explain the trade-off between the frequency resolution of the obtained spectrum and the number of samples taken. Hint: you can change the number of samples in the “Settings” tab.  What settings did you use for your experiment?]
 
-  The more samples that you take for each fourier transform, the more frequency resolution you have. This makes intuitive sense, as with more samples you give more information to the fourier transform, allowing it to distinguish better between similar frequencies. 
+  The more samples that you take for each fourier transform, the more frequency resolution you have. This makes intuitive sense, as with more samples you give more information to the fourier transform, allowing it to distinguish better between similar frequencies.
 
-  A lower sampling rate provides less frequency resolution than a higher sampling rate. 
+  A lower sampling rate provides less frequency resolution than a higher sampling rate.
 
 + #p[[4 pts] Now add some water to your bottle and measure the frequency again for various amounts of water in the bottle. ]
 
   + #p[Make a plot of the resonant frequency $f$ against the remaining volume of air $f$ in the bottle.  Briefly explain how you measured and calculated $V$ below.]
 
+  Volume was calculated using water-weight. First, the bottle was weighted empty, then weighed with water filled to the base of the neck. Subtracting these values and dividing by the density of water yielded the volume of the body of the bottle.
+
+  Then for each trial, water was added to the bottle and the apparatus was weighed. Subtracting the weight of the empty bottle and dividing by the density of water, then subtracting that from the volume of the body of the bottle yielded the volume of air under the neck.
+
+  #figure(
+    image("figures/data_only.svg", width: 90%),
+    caption: [
+      Plot of frequency produced by the bottle when blowing over the neck vs. the volume in the bottle under the neck (in the body).
+      Note that error bars are included, however the error is too small to be shown outside the size of the dots. This is true for all of the following graphs. 
+    ],
+  )
+
   + #p[Add a model curve to your plot based on the equation you found in Q5 of Part I and the parameters for your bottle stated in Q1 of Part II. #underline[Note: this is *not* a fit, if the model does not line up perfectly with the data - that's ok; move to Q4.] Include your plot in the space below. ]
+
+  #figure(
+    image("figures/data_and_model.svg"),
+    caption: [
+      Plot of frequency produced by the bottle when blowing over the neck vs. the volume in the bottle under the neck (in the body) with a line representing the model.
+    ],
+  ) 
 
 + #p[[3 pts] Discuss the agreement between your data and model. Pay particular attention to anywhere the model starts to deviate from the data. Take up to 100 words max to explain why. Be concise and precise in your choice of words.]
 
   #word-count(total => [
+    The model agrees well with the data up until the the slopped tapper of the bottle towards the neck.
 
+    #figure(
+      image("figures/data_and_model_with_line.svg"),
+      caption: [
+        Plot of frequency produced vs. the volume in the bottle under the neck. The volume where the water reaches the slopped tapper is highlighted.
+      ],
+    ) <no-wc>
+
+    // This is further confirmed by chi-squared analysis showing that for the region under the neck
+
+    I believe this is due to underestimating of the volume of air acting as a spring, as offsetting the volume results in a near-perfect fit. 
+
+    #figure(
+      image("figures/data_and_model_with_line_offset.svg"), 
+      caption: [
+        Plot of frequency produced vs. the volume in the bottle under the neck. The volume of air under the neck is reduced by $15$ ml before the model is applied.  
+      ]
+    ) <no-wc>
+
+    However, changing the length of the neck to account for the offset results in a lower chi-squared, implying that some of the air is acting both as a mass and a spring. 
+
+    This makes sense, as there is no hard boundary, and at 0 body volume, air in the neck must be acting in both ways. 
 
     Words: #(total.words - 2)
     // subtract 2 to account for the word counter itself
     // does not account for equations by default!
-  ])
+  ], exclude: <no-wc>)
