@@ -125,7 +125,7 @@
   $
 
   $
-    f = sqrt(k / ( L A rho_"air")) / (2 pi )
+    #rect($f = sqrt(k / ( L A rho_"air")) / (2 pi )$)
   $
 
 
@@ -296,11 +296,12 @@
         columns: 2,
         align: left,
         stroke: black,
-        [Nominal volume of bottle ], [],
-        [Estimated volume of air below the neck of bottle (when empty)], [],
-        [Length of neck~], [8.52 cm],
-        [Diameter of neck~], [1.85 cm],
-        [Local speed of sound used in model], [343.21 m/s],
+        [Nominal volume of bottle ], [$ 0.773100 plus.minus 0.000041$ L],
+        [Estimated volume of air below the neck of bottle (when empty)], [$ 0.741699 plus.minus 0.000041$ L],
+        [Length of neck~], [$8.520 plus.minus 0.11$ cm ],
+        [Diameter of neck~], [$1.85 plus.minus 0.050$ cm],
+        [Local speed of sound used in model], [343.21 m/s @EngineersEdge_speed_of_sound_2025],
+        [Density of water used], [1.00 kg / L @EngineersEdge_density_of_water_2025],
       ),
       caption: [Bottle measurements and parameters],
     )
@@ -315,9 +316,39 @@
     )
   ]
 
-  #todo("Annotate the bottle with relevant dimensions")
+  For uncertainty in the length and diameter, gaussian uncertainty was used. For gaussian uncertainty we use $95%$ confidence interval over 4. 
+  $
+    u[x] = (x_"max" - x_"min") / 4
+  $
+
+  Since the bottle's volume was determined by water weight (as described in 3a). The uncertainties needed to be propagated. The scale used rounded to the nearest $0.1$ g, so we can use rectangular uncertainty. 
+
+  $
+    u[m] = ("\"width\" of rounding")/(2sqrt(3)) = (0.1 "g")/(2sqrt(3)) = 0.029 "g"
+  $
+
+  Now we subtract the empty bottle weight, from the full bottle weight, so: 
+  $
+    m_"water" &= m_"empty" - m_"full" \
+    u[m_"water"] &= sqrt((u[m_"empty"] (partial)/(partial m_"empty")(m_"empty" - m_"full")) ^ 2 +  (u[m_"full"] (partial)/(partial m_"full")(m_"empty" - m_"full")) ^ 2) \ 
+    u[m_"water"] &= sqrt(u[m_"empty"]^2 + u[m_"full"]^2) \
+    &= sqrt((0.029 "g")^2 + (0.029 "g")^2) \
+    u[m_"water"] &= 0.041 g
+  $
+  Now to turn it into volume, we divide by the density of water $rho_"water"$.
+  $
+    V &= m/rho_"water" \ 
+    u[V] &= u[m] / rho_"water" \
+    u[V] &= (0.041 "g") / (((1000 "g") / (1 "L"))) =  0.000041 L
+  $
+
+  This is the same uncertainty for estimating the volume of air below the neck of the bottle.
+ 
+
+  // #todo("Annotate the bottle with relevant dimensions")
 
 // https://www.engineersedge.com/physics/speed_of_sound_13241.htm
+// https://www.engineersedge.com/fluid_flow/properties_of_water_at_atmospheric_pressure_15859.htm
 
 + #p[[2 pts] Blow over the top of your bottle and obtain the frequency spectrum of the sound emitted using the Audio Spectrum function of the PhyPhox app.]
 
@@ -365,7 +396,7 @@
     image("figures/data_only.svg", width: 90%),
     caption: [
       Plot of frequency produced by the bottle when blowing over the neck vs. the volume in the bottle under the neck (in the body).
-      Note that error bars are included, however the error is too small to be shown outside the size of the dots. This is true for all of the following graphs. 
+      Note that error bars are included (as shown by the bars on the legend), however the error is too small to be shown outside the size of the dots. This is true for all of the following graphs. 
     ],
   )
 
@@ -409,3 +440,6 @@
     // subtract 2 to account for the word counter itself
     // does not account for equations by default!
   ], exclude: <no-wc>)
+
+#pagebreak()
+#bibliography("works.bib")
