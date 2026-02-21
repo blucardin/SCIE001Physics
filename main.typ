@@ -10,7 +10,7 @@
 #align(center + horizon)[
 
   _#text(30pt)[
-    #title(titlecase("Quiz 6 Reflection"))
+    #title(titlecase("Quiz 7 Reflection"))
   ] \ \
   _
 
@@ -45,22 +45,19 @@
 #set page(height: auto)
 
 
-= Three Oscillators
+= Neutron Beam Double-Slit
 
 == Specify Question
-#image("images/Question 1: Three Oscillators.png")
+#image("images/Question 8: Neutron Beam Double-Slit.png")
 
 
 == Diagnosis Phase
 #word-count(total => [
-  Maximum velocity is directly proportional to maximum amplitude.
-  $
-    v_"max" = A omega
-  $
+  During the test I forgot the conversion factor from $mu m$ to $m$ and didn't realize that the result was in micro-electron volts, allowing you to cancel the meters and carry the micrometers through.
 
-  I misread the diagram and incorrectly thought that the 3rd mass-spring system was stretched further than the second spring in the snapshot.
+  This caused me to panic, as with both ways of analyzing the question, you had to deal with micrometers. 
 
-  If correct, the third mass would reach a greater amplitude than the second mass. I thought this because, when the second mass was traveling back outwards, it would be at the same position with opposite velocity, and since I mistook that the third was further outstretched with same velocity, the third would go farther - therefore, having a greater amplitude and greater maximum velocity.  
+  Initially, I guessed $340 e V$ as was the result of the initial calculation of the wavelength of the particle, but I changed that to $40 e V$, as $340$ looked like too much energy.
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -70,43 +67,57 @@
 == Correction Phase
 #word-count(total => [
 
-  I was incorrect in reading that the blocks were at different distances when the snapshot was taken. 
+  I was incorrect in the units, carrying all the units forward and using momentum-energy equivalence we get:  
 
-  Reading the diagram properly, at some stretch $x$ and some velocity $v$: 
   $
-    E_"total" &= E_"kinetic" + E_"spring"  \
-    E_"max amplitude" &= E_"spring max amplitude" + E_"kinetic max amplitude" 
+   E = p^2 / (2 m)
+  $
+
+  So we just need the momentum. 
+
+  Using our small-angle approximation, we can reach an expression for fringe spacing in the double slit experiment (given to us on the slides): 
+  $
+    Delta y = y_(n+1) - y_n = (lambda L)/ d
+  $
+  Where $d$ is the distance between the slits, and $L$ is the length from the slits to the screen. 
+
+  Solving for $lambda$: 
+  $
+    (d Delta y) / L = lambda
+  $
+
+  Using our equation for momentum, we can combine: 
+  $
+    p = h / lambda
+  $
+  \
+  $
+    p = h / ((d Delta y) / L) \
+    p = (h L) / (d Delta y) \
+    // 
+    // f = E / h \
+    // E = h f \
+    // E = h/ lambda\
+    // E = h/ ((d Delta y) / L)\
+    // E = (h L)/ (d Delta y)\
+
+
+
+    E = ( (h L) / (d Delta y))^2 / (2 m) \
+    E = h^2 / (2 m d^2 Delta y^2)
+  $
+
+  To make the math easier, we can multiply both sides of the fraction by $c^2$. 
+  $
+    E = (h^2 c^2) / (2 m d^2 Delta y^2 c^2)
   $
   $
-    E_"max amplitude" & = E_"total" wide "energy is conserved"\
-    E_"spring max amplitude" + E_"kinetic max amplitude" & = E_"kinetic" + E_"spring" \
+    E = ((h c)^2) / (2 m (c^2) d^2 Delta y^2 )
+  $
+
+
+
   
-    1/2 k A^2 + 1/2 m (0)^2  & = 1/2 m v^2 + 1/2 k x^2 \
-    k A^2 & = m v^2 +  k x^2 \
-            A & = sqrt((m v^2)/k + x^2) \
-      v_"max" & = omega sqrt((m v^2)/k + x^2) wide "since " v_"max" = omega A \
-      v_"max" & = sqrt(k/m) sqrt((m v^2)/k + x^2) wide "since " omega = sqrt(k/m) \
-      v_"max" & = sqrt(v^2 + (k x^2)/m)
-  $
-
-  Now we can plug in what we know about the blocks to get expressions for their maximum velocities. Defining right as positive:
-  $
-    v_"max 1" & = sqrt(v^2 + (k (0)^2)/m) = abs(v) wide "since the first spring is at the equilibrium" \
-    v_"max 2" & = sqrt((-v)^2 + (k (x)^2)/m) = sqrt(v^2 + (k (x)^2)/m) wide "where" x "is the distance stretched" \
-    v_"max 3" & = sqrt(v^2 + (k (x)^2)/m)
-  $
-
-  $
-    abs(v) < sqrt(v^2 + (k (x)^2)/m) = sqrt(v^2 + (k (x)^2)/m) \
-    therefore v_"max 1" < v_"max 2" = v_"max 3" \
-    therefore v_"2" = v_"3" > v_"1"
-  $
-
-
-  // The second way is via the velocity function. The velocity over time periodic and is $90 degree$ offset from the position over time. $omega$ is the same. Therefore, if two masses share position, but one with positive velocity and the other negative, they can have the same velocity curves but with different
-
-
-  // Therefore it is possible to have two masses oscillating with the same amplitude but offset in phase at the 
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
