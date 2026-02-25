@@ -53,7 +53,9 @@
 
 == Diagnosis Phase
 #word-count(total => [
-  During the test I forgot the conversion factor from $mu m$ to $m$ and didn't realize that the result was in micro-electron volts, allowing you to cancel the meters and carry the micrometers through.
+  During the test I forgot the conversion factor from $mu m$ to $m$ and I didn't have enough time to find them in the textbook. 
+
+  I also got confused about the unit manipulation with $c^2$, as you have to treat mass as dependant on the speed of light and cancel. 
 
   This caused me to panic, as with both ways of analyzing the question, you had to deal with micrometers. 
 
