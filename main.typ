@@ -10,7 +10,7 @@
 #align(center + horizon)[
 
   _#text(30pt)[
-    #title(titlecase("Quiz 7 Reflection"))
+    #title(titlecase("Quiz 9 Reflection"))
   ] \ \
   _
 
@@ -109,7 +109,7 @@
 == Correction Phase
 #word-count(total => [
 
-  To solve this, we can be smarter about the properties of conductors. Since we know they are free charge carriers, in an electric filed, their charges must rearrange, generating an equal and opposite opposing field. 
+  To solve this, we can be smarter about the properties of conductors. Since we know they are free charge carriers, in an electric field, their charges must rearrange, generating an equal and opposite opposing field. 
 
   Therefore conductors (at equilibrium) must have no internal electric field, and hence constant electric potential.  
 
