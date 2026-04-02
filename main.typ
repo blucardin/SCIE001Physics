@@ -57,9 +57,9 @@
   
   However, I incorrectly thought that this results in the greatest magnitude of electric field being where the equipotential lines were closest, and the least magnitude of electric field being where they were furthest apart. 
 
-  This logic fails for saddle points, where the gradient is 0, but the equipotential lines are close.
+  I forgot to consider the change in potential of the equipotential lines, causing me to overlook the saddle point when reading the graph (seeing the equipotential lines so close together), and instead chose the next best option with far equipotential lines (B). 
 
-  When reading the graph, I forgot to consider the saddle point between two charges (seeing the equipotential lines so close together), and instead chose the next best option with far equipotential lines (B).
+  // This logic fails for saddle points, where the gradient is 0, but the equipotential lines are close.
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -97,9 +97,9 @@
 
   I knew that because the object was a conductor, the charge it held was free to redistribute itself within the object. However I did not make the connection between this property and gauss's law, causing me to become confused when the object was charged. 
  
-  I knew that if q1 was 10 nC and the object was neutral, the inner surface would have -10nC of charge, and the outer surface would carry 10 nC of charge. $-10 "nC" + 10 "nC" = 0 "nC"$
+  I knew that if $q_1$ was 10 nC and the object was neutral, the inner surface would have -10nC of charge, and the outer surface would carry 10 nC of charge. $-10 "nC" + 10 "nC" = 0 "nC"$
 
-  I guessed 0 nC because I pictured all the -20 nC of electrons rushing towards the positive q1, leaving no charge on the outside. 
+  I guessed 0 nC because I similarly pictured all the -20 nC of charge rushing towards the positive $q_1$, leaving no charge on the outer surface. $-20 "nC" + 0 "nC" = -20 "nC"$
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -109,11 +109,11 @@
 == Correction Phase
 #word-count(total => [
 
-  To solve this, we can be more smart about the properties of conductors. Since we know they are free charge carriers, in an electric filed, their charges must rearrange, generating an equal and opposite opposing field. 
+  To solve this, we can be smarter about the properties of conductors. Since we know they are free charge carriers, in an electric filed, their charges must rearrange, generating an equal and opposite opposing field. 
 
   Therefore conductors (at equilibrium) must have no internal electric field, and hence constant electric potential.  
 
-  Imagine a gaussian surface within the object around its centre, since $E = 0$ in a conductor, all charge enclosed must add to 0. Therefore its inner surface must have: 
+  Imagine a gaussian surface within the object around its centre, since $E = 0$, flux is zero, therefore all charge enclosed must add to 0. Therefore its inner surface must have: 
 
   $
     q_"Particle" + q_"Inner Surface" = 0 \ 
@@ -151,15 +151,18 @@
 
   I also forgot to account for the electric field dissipating over distance. 
 
-  These mistakes caused me to see the line of positive charge causing the charges within the conducting plate to rearrange, creating an equal and opposite field. 
+  These mistakes caused me to see the line of positive charge causing the charges within the conducting plate to rearrange, where the charge density $sigma_B$ is equal to $sigma$ but negative, and $sigma_A$ equal but positive. 
 
   If the plates were up against each other (no dissipation of electric field) and using signs: 
 
   $
-    sigma_B = - sigma \ 
-    sigma_A = sigma \ 
+    sigma_B = - sigma wide sigma_A = sigma\ 
+    \
+    "So " sigma_B < sigma = sigma_A \ 
 
-    therefore sigma = sigma_A . sigma_B
+     \ 
+
+    therefore sigma = sigma_A > sigma_B
   $
 
   Words: #(total.words - 2)
@@ -170,11 +173,11 @@
 == Correction Phase
 #word-count(total => [
 
-  In fact the question was asking for the "magnitude" of surface charge density. And the electric field for an infinite line of charge is related to $1 / r$ where $r$ is the distance to the line. 
+  The question was asking for the "magnitude" of surface charge density. And the electric field for an infinite line of charge is related to $~ 1 / r$ where $r$ is the distance to the line. 
 
-  When exposed to an electric field, the charges of a conductor move to the perpendicular surfaces, generating an opposing induced field that perfectly cancels it out, causing no electric field in the conductor. 
+  When exposed to an electric field, the charges in a conductor move to the surfaces, generating an opposing field that perfectly cancels it out. 
 
-  The line of charges generate an electric field, causing charges to redistribute in the conductor. 
+  The line of charges generate an electric field, causing charges to redistribute in the conducting plate. 
 
   Since the conductor is neutral: 
   $
