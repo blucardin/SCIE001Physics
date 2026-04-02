@@ -45,19 +45,21 @@
 #set page(height: auto)
 
 
-= Neutron Beam Double-Slit
+= A Potential Landscape
 
 == Specify Question
-#image("images/Question 8: Neutron Beam Double-Slit.png")
-
+#image("images/question 6.png")
 
 == Diagnosis Phase
 #word-count(total => [
-  During the test I forgot the conversion factor from $mu$m to m and I didn't have enough time to find it in the textbook.
 
-  This caused me to panic, as, with both ways of analyzing the question, you had to convert to, or from, micrometers.
+  I knew that electric field is equal to the gradient of the electric potential. 
+  
+  However, I incorrectly thought that this results in the greatest magnitude of electric field being where the equipotential lines were closest, and the least magnitude of electric field being where they were furthest apart. 
 
-  Initially, I guessed $340 "eV"$, as was the result of the calculation of the wavelength of the particle if you replaced micrometers with electron volts. However, I changed my answer to $40 "eV"$, as $340 "eV"$ looked like too much energy.
+  This logic fails for saddle points, where the gradient is 0, but the equipotential lines are close.
+
+  When reading the graph, I forgot to consider the saddle point between two charges (seeing the equipotential lines so close together), and instead chose the next best option with far equipotential lines (B).
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -67,96 +69,129 @@
 == Correction Phase
 #word-count(total => [
 
-  Using our small-angle approximation, we can reach an expression for fringe spacing in the double slit experiment (given to us on the slides):
-  $
-    Delta y = y_(n+1) - y_n = (lambda L)/ d
-  $
-  Where $d$ is the distance between the slits, $L$ is the length from the slits to the screen, and $Delta y$ is the distance between the fringes.
+  Looking at the graph correctly we see: 
+  
+  Point D has the greatest slope, and therefore the greatest electric field. 
 
-  Solving for $lambda$:
-  $
-    (d Delta y) / L = lambda
-  $
+  Point C is not a saddle point, because it is between two charges of opposite signs (one positive, one negative), and therefore has some electric field. 
 
-  We can combine this with our equation for momentum:
-  $
-    p = h / lambda
-  $
-  \
-  $
-    p = h / ((d Delta y) / L) \
-    p = (h L) / (d Delta y) \
-    //
-    // f = E / h \
-    // E = h f \
-    // E = h/ lambda\
-    // E = h/ ((d Delta y) / L)\
-    // E = (h L)/ (d Delta y)\
-    
-  $
-  Using momentum-energy equivalence we get:
+  Point B, while having a small magnitude, has some electric field. 
 
-  $
-    E = p^2 / (2 m)
-  $
-  Where $E$ is kinetic energy, $p$ is momentum, and $m$ is mass.
+  And finally point A is a saddle point between two charges, having 0 electric field. 
 
-  Combining: 
-  $
-    E = ( (h L) / (d Delta y))^2 / (2 m) \
-    E = (h^2 L^2) / (2 m d^2 Delta y^2)
-  $
-
-  To make the math easier, we can multiply both sides of the fraction by $c^2$.
-  $
-    E = (h^2 c^2) / (2 m d^2 Delta y^2 c^2)
-  $
-  $
-    E = ((h c)^2 L^2 ) / (2 m (c^2) d^2 Delta y^2 )
-  $
-
-  Now we can substitute, being careful about our units:
-
-  // As given in the question:
-  $
-        h c & = 1240 "eV" dot "nm" \
-    1 "MeV" & = 1 times 10^6 "eV" \
-          m & = 939.6 "MeV" / "c"^2 = 939.6 times 10^6 "eV" / "c"^2 \
-          L & = 5 "m" \
-    Delta y & = 70 mu"m" \
-          d & = 112 mu"m"
-  $
-  Therefore:
-  $
-    E = ((1240 "eV" dot "nm" )^2 ( 5 "m")^2 ) / (2 (( 939.6 times 10^6 "eV") / cancel("c"^2)) cancel(c^2) (112 mu"m")^2 (70 mu"m")^2 ) \
-    E = ((1,537,600 " eV"^2 dot "nm"^2 ) ( 25 " m"^2) ) / (2 (939.6 times 10^6 "eV") (61,465,600 mu"m"^4))
-  $
-
-  With conversions:
-  $
-    1 "nm" = 1 times 10^(-9) "m"\
-    1 "nm"^2 = 1 times 10^(-18) " m"^2\
-    \
-    1 mu"m" = 1 times 10^(-6) "m" \
-    1 mu"m"^4 = 1 times 10^(-24) " m"^4 \
-    \
-  $
-
-  $
-    E = ((1,537,600 " eV"^2) (1 times 10^(-18) "m"^2) ( 25 " m"^2) ) / (2 (939.6 times 10^6 "eV") (61,465,600 times 10^(-24) " m"^4 )) \
-    E = 0.0003327961166 "eV" \
-    1 "eV" = 1 times 10^6 mu"eV" \
-    E = 332.7961166 mu"eV" \
-    therefore E = 333 mu"eV"
-  $
-
-
-
-
-
+  Therefore Point A has zero electric field, and point D has the largest magnitude of electric field.   
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
   // does not account for equations by default!
 ])
+
+
+= A Conductor with a Cavity
+
+== Specify Question
+#image("images/question 9.png")
+
+== Diagnosis Phase
+#word-count(total => [
+
+  I knew that because the object was a conductor, the charge it held was free to redistribute itself within the object. However I did not make the connection between this property and gauss's law, causing me to become confused when the object was charged. 
+ 
+  I knew that if q1 was 10 nC and the object was neutral, the inner surface would have -10nC of charge, and the outer surface would carry 10 nC of charge. $-10 "nC" + 10 "nC" = 0 "nC"$
+
+  I guessed 0 nC because I pictured all the -20 nC of electrons rushing towards the positive q1, leaving no charge on the outside. 
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
+== Correction Phase
+#word-count(total => [
+
+  To solve this, we can be more smart about the properties of conductors. Since we know they are free charge carriers, in an electric filed, their charges must rearrange, generating an equal and opposite opposing field. 
+
+  Therefore conductors (at equilibrium) must have no internal electric field, and hence constant electric potential.  
+
+  Imagine a gaussian surface within the object around its centre, since $E = 0$ in a conductor, all charge enclosed must add to 0. Therefore its inner surface must have: 
+
+  $
+    q_"Particle" + q_"Inner Surface" = 0 \ 
+    q_"Inner Surface" = - q_"Particle" \ 
+    q_"Inner Surface" = - 10 "nC"
+  $
+
+  But, the charge of the object must be -20 nC, therefore its inner and out surface must sum to this value. 
+
+   $
+     q_"Inner Surface" + q_"Outer Surface" = - 20 "nC" \ 
+    q_"Outer Surface" = - 20 "nC" - q_"Inner Surface" \ 
+    q_"Outer Surface" = - 20 "nC" - (- 10 "nC") \ 
+   $
+   $
+      \ 
+    therefore q_"Outer Surface" = -10 "nC"
+   $
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
+
+= Comparing Surface Charges
+
+== Specify Question
+#image("images/question 10.png")
+
+== Diagnosis Phase
+#word-count(total => [
+
+  For this question I made a mistake in reading the question. I thought that it was asking me to rank the surface charge densities, not the magnitude of the surface charge densities. 
+
+  I also forgot to account for the electric field dissipating over distance. 
+
+  These mistakes caused me to see the line of positive charge causing the charges within the conducting plate to rearrange, creating an equal and opposite field. 
+
+  If the plates were up against each other (no dissipation of electric field) and using signs: 
+
+  $
+    sigma_B = - sigma \ 
+    sigma_A = sigma \ 
+
+    therefore sigma = sigma_A . sigma_B
+  $
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
+== Correction Phase
+#word-count(total => [
+
+  In fact the question was asking for the "magnitude" of surface charge density. And the electric field for an infinite line of charge is related to $1 / r$ where $r$ is the distance to the line. 
+
+  When exposed to an electric field, the charges of a conductor move to the perpendicular surfaces, generating an opposing induced field that perfectly cancels it out, causing no electric field in the conductor. 
+
+  The line of charges generate an electric field, causing charges to redistribute in the conductor. 
+
+  Since the conductor is neutral: 
+  $
+    abs(sigma_A) = abs(sigma_B) \ 
+  $
+  And since the electric field reduces with distance from the line of charge: 
+  $
+    abs(sigma) > abs(sigma_A) \ 
+  $
+
+  $
+    therefore abs(sigma) > abs(sigma_A) = abs(sigma_B)  \ 
+  $
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
 
