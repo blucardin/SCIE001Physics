@@ -3,8 +3,12 @@
 #import "@preview/dashy-todo:0.1.2": todo
 #import "@preview/sigfig:0.1.0": round, urounds
 #import "@preview/unify:0.5.0": num
-
 #import "@preview/frame-it:1.2.0": *
+
+#import "@preview/wordometer:0.1.5": total-words, word-count
+
+#show: word-count
+
 
 #let (p, feature, variant, syntax) = frames(
   feature: ("Feature",),
@@ -79,8 +83,6 @@
 #p[For this assignment, you essentially only need to finish what you started in tutorial, where you investigated the internal resistance of a battery and of your voltmeter. Your submission should include two figures along with a brief description of your method and discussion of your results.]
 
 
-I used a
-
 #grid(
   columns: 2,
   gutter: 20pt,
@@ -115,11 +117,28 @@ I used a
 == Methodology
 #p[[100 words max] Briefly explain your methodology (e.g. how you chose to vary the resistance: potentiometer? resistors?, over what resistance range? how did you measure the resistance value?, how did you determine your uncertainties?)]
 
+#word-count(total => [
+
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
+
 == I-V Curve
 #p[Include a figure that shows the I-V curve for a resistance of varying value connected to a 9V battery. Fit the curve and give the internal resistance of the battery in the caption. You can include fit parameters in the plot or in the caption.]
 
 == Internal Resistance of Voltmeter
 #p[[100 words max] Briefly comment on any marked deviation from the expected linear fit and if the obtained value of the internal resistance is reasonable.]
+
+#word-count(total => [
+
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
 
 = Voltmeter internal resistance
 == Methodology
@@ -130,6 +149,14 @@ I used a
 
 == Voltmeter Internal Resistance
 #p[[100 words max] Briefly comment on if the obtained value of the internal resistance is reasonable and on the implication of your results when making measurements with your voltmeter.]
+
+#word-count(total => [
+
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
 
 // #pagebreak()
 // == Parameters and Fit Data
