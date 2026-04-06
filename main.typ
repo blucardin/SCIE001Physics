@@ -238,7 +238,7 @@
   image("figures/current_to_voltage.svg"),
   caption: [Current to voltage detected by DMM with varying $R_r$. 
 
-    From this data, Battery Internal Resistance = 8.6773 ± 0.1686 Ohms. 
+    From this data, Battery Internal Resistance $R_b = -1/m = 8.6773 ± 0.1686$ Ohms. 
   ],
 )
 
@@ -246,7 +246,8 @@
   image("figures/current_to_voltage_cut.svg"),
   caption: [Current to voltage detected by DMM with varying $R_r$ with data cut before the 150.8 Ohm (8.78 V) datapoint to demonstrate decline in Chi-squared. 
 
-    From this data, Battery Internal Resistance = 8.0690 ± 0.1369 Ohms
+  From this data, Battery Internal Resistance $R_b = -1/m = 8.0690 ± 0.1369$ Ohms
+
   ],
 )
 
@@ -261,6 +262,8 @@
   This is demonstrated by cutting the data before this point, reducing the chi-squared from 3170457191.1117 to 1.2024. Our model does not fit the data over 150.8 Ohms. 
 
   The obtained value of internal resistance is reasonable, as is in the range of reported values (0.006 - 35 Ohms)#footnote[https://www.learningaboutelectronics.com/Articles/Battery-internal-resistance#google_vignette]. However, compared to the value for its type (zinc carbon) (35 Ohms), it is out of range.
+
+  #todo[this could be because]
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -391,21 +394,28 @@ This ratio is implicitly present in the 3.3V calibration.
 == Discharge Voltage vs Time Curve
 #p[Include a figure that shows the discharge voltage vs time of a capacitor connected to your voltmeter. Fit the curve and give the time constant and value of the internal resistance of your voltmeter in the caption. You can include fit parameters in the plot or in the caption.]
 
+#let pm = $plus.minus$;
+
 #figure(
   image("/figures/voltage_decay.svg"),
   caption: [
+  Scaled voltage decay trace obtained from the arduino. Uncertainties are shown as ribbons, however they are too small to be seen in this plot. See @log-voltage-decay. 
   ],
 )
 
 #figure(
   image("/figures/log_voltage_decay.svg"),
   caption: [
+  Logarithm of scaled voltage decay trace obtained from the arduino. Uncertainties were calculated using $u[ln(V(t))] = u[V(t)]/V(t)$ and are shown as ribbons. 
   ],
-)
+) <log-voltage-decay>
 
 #figure(
   image("/figures/RC_to_R.svg"),
   caption: [
+  A plot of the obtained RC value to the actual resistance over the capacitor $R_T$. Uncertainties are shown as error bars however they are too small to be seen in this plot.
+
+  $m = (Delta R_T C) / (Delta R_T)$ since $C$ is constant, $m = C = 0.8784 pm 0.0020 mu"f"$
   ],
 ) <RC-to-C>
 
