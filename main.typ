@@ -79,6 +79,8 @@
 
 #let eps = $epsilon$;
 
+// #set math.equation(numbering: "1.")
+
 #pagebreak()
 
 // // uncomment this for infinite page height except the first page.
@@ -248,10 +250,10 @@
 
 #word-count(total => [
 
-  As shown in @circuit-diagram-capacitor, an arduino was used with a voltage divider to sample the voltage roughly every 10 milliseconds. $1 "uF"$ was chosen as it provided a long enough decay when measuring the DMM to gather enough data, while ensuring runs did not produce too much data.
+  As shown in @circuit-diagram-capacitor, an arduino was used to sample the voltage roughly every 10 milliseconds. $1 "uF"$ was chosen as it provided a long enough decay when measuring the DMM to gather enough data, while ensuring runs did not produce too much data. A voltage divider was used to step down the voltage from 0-9.48V to 4.74V.
 
 
-  Uncertainty was propagated from the listed values for the Analogue to Digital Converter of the Arduino's ATmega328P (±2 LSB absolute accuracy) #footnote[https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf]. Voltage measurements were calibrated from 3.3V board reference.
+  Uncertainty was propagated from the listed values for the Analogue to Digital Converter of the Arduino's ATmega328P (±2 LSB absolute accuracy) #footnote[https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf]. Voltage measurements were calibrated from the arduino's 3.3V reference pin.
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -267,7 +269,7 @@
     let width = 6
     let height = 2.1
 
-    rheostat("r2", (0, height * 2), (width, height * 2), label: $R_r$)
+    rheostat("r2", (0, height * 2), (width, height * 2), label: $R_m$)
 
     vsource("b1", (0, height * 4), (width, height * 4), label: $eps$)
 
@@ -298,7 +300,7 @@
 
     draw.content("rect.north", text(fill: blue)[Voltage Divider], anchor: "south", padding: 0.2)
 
-    capacitor("i1", (0, height * 3), (width, height * 3), label: (content: $C$, anchor: "south", distance: 4pt))
+    capacitor("i1", (0, height * 3), (width, height * 3), label: (content: $C$, anchor: "south", distance: 4pt), u: $V(t)$)
 
     earth("s5", (0, 0), variant: "ieee")
   }),
@@ -306,18 +308,90 @@
     A circuit diagram of the setup. \ The resistance $R_r$ was varied during calibration to obtain a more precise value for the capacitance $C$, then swapped with the DMM to determine its internal resistance.
 
     #todo["Define the variables here"]
-    #todo[subtract these words from the count]
   ],
 ) <circuit-diagram-capacitor>
 
+We need to take care to also account for the resistance caused by the votlage divider. 
+
+Let $R_T$ represent the total resistance over the capacitor. 
+From the circuit diagram, we can see: 
+#let mo = $"M"Omega$;
+
+$
+  R_T = 1 / ((1/R_r) + (1/ (1 mo + 1 mo)))\ 
+
+  R_r = 1 / ((1/R_T) - (1/ (1 mo + 1 mo)))\ 
+$ <Rr-from-RT>
+
+The time decay of voltage in an RC circuit is: 
+
+$
+  V(t) = V_0 e^(-t/(R C)) \ 
+  log(V(t)) = log(V_0) + (-1/(R C)) t
+$
+
+Where $V(T)$ is the voltage at time $t$
+
+Let $V_"ard"$ equal the voltage detected by the arduino. 
+
+For the voltage divider circuit: 
+$
+  V = I R \
+  V(t) = I(1mo + 1mo) \ 
+  V_"ard" = I(1mo)\ 
+
+  V_"ard" = V(t) / (1mo + 1mo) (1mo) = (1/2) V(t)
+$
+
+
+
+#figure(
+  box(
+      image("images/arduino_capacitance.jpeg", width: 100%),
+      clip: true,
+      inset: (bottom: -0.3in, right: -0.0in, top: -0.7in, left: -0.2in),
+    ),
+  caption: [
+  The experimental setup. 
+  ]
+)
+
 == Discharge Voltage vs Time Curve
 #p[Include a figure that shows the discharge voltage vs time of a capacitor connected to your voltmeter. Fit the curve and give the time constant and value of the internal resistance of your voltmeter in the caption. You can include fit parameters in the plot or in the caption.]
+
+#figure(
+  image("/figures/voltage_decay.svg"), 
+  caption:[
+  ]
+)
+
+#figure(
+  image("/figures/log_voltage_decay.svg"), 
+  caption:[
+  ]
+)
+
+#figure(
+  image("/figures/RC_to_R.svg"), 
+  caption:[
+  ]
+) <RC-to-C>
 
 == Voltmeter Internal Resistance
 #p[[100 words max] Briefly comment on if the obtained value of the internal resistance is reasonable and on the implication of your results when making measurements with your voltmeter.]
 
 #word-count(total => [
-  The obtained value of the internal resistance of the voltmeter is resonable
+
+  As shown in @RC-to-C, by plotting the measured RC value to the expected resistance of the circuit and fitting a linear curve, $C$ can be determined with greater precision. I found $C = 0.8784 "uf" plus.minus 0.0020 "uf"$ a difference of $0.1216 "uf"$ from the marked value. 
+
+  We can divide the voltmeter's $R C$ with $C$ to determine $R_T$, then use the parallel resistance equation with uncertainty propagation, to get a voltmeter resistance of $ 11.264160 mo plus.minus 0.001996 mo$
+
+
+  The obtained value of the internal resistance of the voltmeter is reasonable, as it matches the measurement made by another multimeter $11.10 mo plus.minus #(11.10 * 0.01 + 0.02) mo$.
+
+
+  This implies that whenever you make a measurement with the voltmeter, you are really measuring a system in parallel with an $11 mo$ resistor. 
+
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -364,8 +438,15 @@
 
 #show: appendix
 
-= Interactive Fitter <interactiveFitter>
-Note: I included this app
-#todo[Remove this]
+= Fit Parameters <interactiveFitter>
+I found that all the fit parameters really cluttered up the graphs, so I have included them in a table here.
+
+Chi-squared were quite bad across the board. This implies that either the uncertainties were underestimated, or that the model did not reflect the actual discharge characteristics. I believe it is the ladder case, as by looking at the residuals, they are clearly patterned. 
+
+This could also be due to the integral non-linearly of the arduino's Analogue to Digital Converter which is not taken into account in the uncertainties.  
+
+Nevertheless, fit uncertainties were quite low. 
+
+
 
 
