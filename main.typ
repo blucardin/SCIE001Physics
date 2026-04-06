@@ -78,6 +78,7 @@
 }
 
 #let eps = $epsilon$;
+#let mo = $"M"Omega$;
 
 // #set math.equation(numbering: "1.")
 
@@ -96,11 +97,34 @@
 
 #word-count(total => [
 
-  Resistance over a 9 volt battery was varied from 1 Ohm to 2 M Ohms by combining various small resistors on a breadboard. Voltage across the resistance was then measured with a digital multimeter (DMM). To gain further accuracy and account for the resistance of the breadboard, resistances were also measured with a DMM.
+  Resistance over a 9 volt battery was varied from 1 Ohm to 2 M Ohms by combining various small resistors on a breadboard. Voltage across the resistance was then measured with a digital multimeter (DMM). To gain further accuracy and account for the resistance of the breadboard, resistances were also measured with the DMM.
 
-  Uncertainties were propagated from the uncertainty reported in the DMM's manual.
+  Uncertainties were propagated from the voltage and resistance uncertainties reported in the DMM's manual @voltage-resistance-unceranties.
 
-  #todo[Include a reference from the manual]
+
+
+  #figure(
+    grid(
+      columns: 2,
+      gutter: 20pt,
+
+      box(
+        image("images/DMM uncertanties.jpeg", width: 100%),
+        clip: true,
+        inset: (bottom: -2.75in, right: -0.2in, top: -0.3in, left: -0.1in),
+      ),
+
+      box(
+        image("images/DMM uncertanties.jpeg", width: 100%),
+        clip: true,
+        inset: (bottom: -0.15in, right: -0.0in, top: -2.5in, left: -0.0in),
+      ),
+    ),
+    caption: [
+      Voltage and Resistance uncertainties used.
+    ],
+  ) <voltage-resistance-unceranties>
+
 
   #figure(
     zap.circuit({
@@ -133,11 +157,12 @@
 
       draw.content("rect.north", text(fill: blue)[9V battery], anchor: "south")
 
-      voltmeter("i1", (0, height * 2), (width, height * 2), label: (content: $V_"obs"$, anchor: "south", distance: 4pt))
+      voltmeter("i1", (0, height * 2), (width, height * 2), u : (content: $V_"obs"$, anchor: "south-west", label-distance: -10pt, distance: 0pt)) // label: (content: $V_"obs"$, anchor: "south", distance: 4pt))
     }),
     caption: [
-      A circuit diagram of the setup. #todo["Define the variables here"]
-
+      A circuit diagram of the setup. $eps$ and $R_b$ is the battery voltage and internal resistance. $R_r$ is the varying resistance. And $V_"obs"$ is the voltage observed by the meter. 
+      
+      #todo["Define the variables here"]
       #todo[subtract these words from the count]
     ],
   )
@@ -199,11 +224,11 @@
       inset: (bottom: -0.15in, right: -0.4in, top: -0.5in, left: -0.25in),
     ),
     caption: [
-      An image of the tissue box that was dropped onto the sensor
+      Image of the breadboard with 4, 10 Ohm resistors connected in series. White and black are power and ground. Blue and yellow are the DMM connections. A button was used to toggle power to the circuit. 
     ],
   ) <ExperimentalSetup>],
 )
-#todo[Fix captions]
+// #todo[Fix captions]
 
 
 == I-V Curve
@@ -211,17 +236,17 @@
 
 #figure(
   image("figures/current_to_voltage.svg"),
-  caption: [Current to voltage of #todo[Finish this]
+  caption: [Current to voltage detected by DMM with varying $R_r$. 
 
-    Internal Resistance = 8.6773 ± 0.1686
+    From this data, Battery Internal Resistance = 8.6773 ± 0.1686 Ohms. 
   ],
 )
 
 #figure(
   image("figures/current_to_voltage_cut.svg"),
-  caption: [Current to voltage of #todo[Finish this]
-    Internal Resistance = 8.0690 ± 0.1369
+  caption: [Current to voltage detected by DMM with varying $R_r$ with data cut before the 150.8 Ohm (8.78 V) datapoint to demonstrate decline in Chi-squared. 
 
+    From this data, Battery Internal Resistance = 8.0690 ± 0.1369 Ohms
   ],
 )
 
@@ -229,20 +254,20 @@
 #p[[100 words max] Briefly comment on any marked deviation from the expected linear fit and if the obtained value of the internal resistance is reasonable.]
 #word-count(total => [
 
-  The data was fit using Orthogonal distance regression using the scipy.odr library as it accounted for errors in both the dependant in independent variable.
+  The data was fit using Orthogonal distance regression using the scipy.odr library as it accounted for errors in both the dependant and independent variable.
 
   There was a marked deviation when using a resistance over the battery was greater than 150.8 Ohms. At this point, current seemed to level out instead of following the linear trend.
 
-  This is demonstrated by cutting the data before this point, reducing the chi-squared from 3170457191.1117 to 1.2024.
+  This is demonstrated by cutting the data before this point, reducing the chi-squared from 3170457191.1117 to 1.2024. Our model does not fit the data over 150.8 Ohms. 
 
-  The obtained value of internal resistance is reasonable, as is in the range of other batteries (0.006 - 35 Ohms). However, compared to the listed value for zinc carbon (which the battery is), it is out of range.
-
-  https://www.learningaboutelectronics.com/Articles/Battery-internal-resistance#google_vignette
+  The obtained value of internal resistance is reasonable, as is in the range of reported values (0.006 - 35 Ohms)#footnote[https://www.learningaboutelectronics.com/Articles/Battery-internal-resistance#google_vignette]. However, compared to the value for its type (zinc carbon) (35 Ohms), it is out of range.
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
   // does not account for equations by default!
 ])
+
+#pagebreak()
 
 = Voltmeter internal resistance
 == Methodology
@@ -250,10 +275,10 @@
 
 #word-count(total => [
 
-  As shown in @circuit-diagram-capacitor, an arduino was used to sample the voltage roughly every 10 milliseconds. $1 "uF"$ was chosen as it provided a long enough decay when measuring the DMM to gather enough data, while ensuring runs did not produce too much data. A voltage divider was used to step down the voltage from 0-9.48V to 4.74V.
+  As shown in @circuit-diagram-capacitor, an arduino was used to sample the voltage in an RC circuit roughly every 10 milliseconds. $1 "uF"$ was chosen as it provided a long enough decay when measuring the DMM to gather enough data, while ensuring runs did not produce too much data. A voltage divider was used to step down the voltage from 0-9.48V to 4.74V to not overload the arduino's pins.
 
 
-  Uncertainty was propagated from the listed values for the Analogue to Digital Converter of the Arduino's ATmega328P (±2 LSB absolute accuracy) #footnote[https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf]. Voltage measurements were calibrated from the arduino's 3.3V reference pin.
+  Uncertainty was propagated from the listed values for the Analogue to Digital Converter of the Arduino's ATmega328P chip (±2 LSB absolute accuracy) #footnote[https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf]. Voltage measurements were calibrated from the arduino's 3.3V reference pin.
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -281,7 +306,7 @@
 
     resistor("r4", (width / 2, height), (width, height), label: $1 "M"Omega$)
 
-    voltmeter("b2", (0, 0), (width / 2, 0), label: [Arduino])
+    voltmeter("b2", (0, 0), (width / 2, 0), label: [Arduino], u : (content: $V_"ard"$, anchor: "south-west", label-distance: -10pt, distance: 0pt))
 
     // resistor("r1", "b2.out", (width, 0), label: $R_b$)
     // resistor("r1", (width/2, 0), (width, 0), variant: "ieee")
@@ -300,81 +325,88 @@
 
     draw.content("rect.north", text(fill: blue)[Voltage Divider], anchor: "south", padding: 0.2)
 
-    capacitor("i1", (0, height * 3), (width, height * 3), label: (content: $C$, anchor: "south", distance: 4pt), u: $V(t)$)
+    capacitor(
+      "i1",
+      (0, height * 3),
+      (width, height * 3),
+      label: (content: $C$, anchor: "south", distance: 4pt),
+      u: $V(t)$,
+    )
 
     earth("s5", (0, 0), variant: "ieee")
   }),
   caption: [
-    A circuit diagram of the setup. \ The resistance $R_r$ was varied during calibration to obtain a more precise value for the capacitance $C$, then swapped with the DMM to determine its internal resistance.
+    A circuit diagram of the setup. \ 
+
+    The capacitor was charged with the switch, then when released, the decay trace recorded. The resistance $R_r$ was varied during calibration to obtain a more precise value for the capacitance $C$, then swapped with the DMM to determine its internal resistance. 
+    
+    // $1 mo $ resistors were used for the divider to extend decay time (compared to the standard 10 k$Omega$)
 
     #todo["Define the variables here"]
   ],
 ) <circuit-diagram-capacitor>
 
-We need to take care to also account for the resistance caused by the votlage divider. 
+We need to also account for the resistance caused by the voltage divider.
 
-Let $R_T$ represent the total resistance over the capacitor. 
-From the circuit diagram, we can see: 
-#let mo = $"M"Omega$;
+Let $R_T$ represent the total resistance over the capacitor.
+From the circuit diagram, we can see:
 
 $
-  R_T = 1 / ((1/R_r) + (1/ (1 mo + 1 mo)))\ 
-
-  R_r = 1 / ((1/R_T) - (1/ (1 mo + 1 mo)))\ 
+  R_T = 1 / ((1/R_r) + (1/ (1 mo + 1 mo)))\
+  therefore R_r = 1 / ((1/R_T) - (1/ (1 mo + 1 mo)))\
 $ <Rr-from-RT>
 
-The time decay of voltage in an RC circuit is: 
+The time decay of voltage in an RC circuit is:
 
 $
-  V(t) = V_0 e^(-t/(R C)) \ 
+  V(t) = V_0 e^(-t/(R C)) \
   log(V(t)) = log(V_0) + (-1/(R C)) t
 $
 
-Where $V(T)$ is the voltage at time $t$
+Where $V(T)$ is the voltage over the capacitor at time $t$. 
 
-Let $V_"ard"$ equal the voltage detected by the arduino. 
+Let $V_"ard"$ equal the voltage detected by the arduino.\
+Let $I$ represent the current flowing through the divider. 
 
-For the voltage divider circuit: 
+For the voltage divider circuit:
 $
   V = I R \
-  V(t) = I(1mo + 1mo) \ 
-  V_"ard" = I(1mo)\ 
-
+  V(t) = I(1mo + 1mo) \
+  V_"ard" = I(1mo)\
   V_"ard" = V(t) / (1mo + 1mo) (1mo) = (1/2) V(t)
 $
-
-
+This ratio is implicitly present in the 3.3V calibration. 
 
 #figure(
   box(
-      image("images/arduino_capacitance.jpeg", width: 100%),
-      clip: true,
-      inset: (bottom: -0.3in, right: -0.0in, top: -0.7in, left: -0.2in),
-    ),
+    image("images/arduino_capacitance.jpeg", width: 100%),
+    clip: true,
+    inset: (bottom: -0.3in, right: -0.0in, top: -0.7in, left: -0.2in),
+  ),
   caption: [
-  The experimental setup. 
-  ]
+    The experimental setup.
+  ],
 )
 
 == Discharge Voltage vs Time Curve
 #p[Include a figure that shows the discharge voltage vs time of a capacitor connected to your voltmeter. Fit the curve and give the time constant and value of the internal resistance of your voltmeter in the caption. You can include fit parameters in the plot or in the caption.]
 
 #figure(
-  image("/figures/voltage_decay.svg"), 
-  caption:[
-  ]
+  image("/figures/voltage_decay.svg"),
+  caption: [
+  ],
 )
 
 #figure(
-  image("/figures/log_voltage_decay.svg"), 
-  caption:[
-  ]
+  image("/figures/log_voltage_decay.svg"),
+  caption: [
+  ],
 )
 
 #figure(
-  image("/figures/RC_to_R.svg"), 
-  caption:[
-  ]
+  image("/figures/RC_to_R.svg"),
+  caption: [
+  ],
 ) <RC-to-C>
 
 == Voltmeter Internal Resistance
@@ -382,15 +414,15 @@ $
 
 #word-count(total => [
 
-  As shown in @RC-to-C, by plotting the measured RC value to the expected resistance of the circuit and fitting a linear curve, $C$ can be determined with greater precision. I found $C = 0.8784 "uf" plus.minus 0.0020 "uf"$ a difference of $0.1216 "uf"$ from the marked value. 
+  As shown in @RC-to-C, by plotting the measured RC value to the expected resistance of the circuit and fitting a linear curve, $C$ can be determined with greater precision. I found $C = 0.8784 "uf" plus.minus 0.0020 "uf"$ a difference of $0.1216 "uf"$ from the marked value.
 
-  We can divide the voltmeter's $R C$ with $C$ to determine $R_T$, then use the parallel resistance equation with uncertainty propagation, to get a voltmeter resistance of $ 11.264160 mo plus.minus 0.001996 mo$
+  We can divide the voltmeter's $R C$ with $C$ to determine $R_T$, then use the parallel resistance equation with uncertainty propagation, to get a voltmeter resistance of $11.264160 mo plus.minus 0.001996 mo$
 
 
   The obtained value of the internal resistance of the voltmeter is reasonable, as it matches the measurement made by another multimeter $11.10 mo plus.minus #(11.10 * 0.01 + 0.02) mo$.
 
 
-  This implies that whenever you make a measurement with the voltmeter, you are really measuring a system in parallel with an $11 mo$ resistor. 
+  This implies that whenever you make a measurement with the voltmeter, you are really measuring a system in parallel with an $11 mo$ resistor.
 
 
   Words: #(total.words - 2)
@@ -441,11 +473,11 @@ $
 = Fit Parameters <interactiveFitter>
 I found that all the fit parameters really cluttered up the graphs, so I have included them in a table here.
 
-Chi-squared were quite bad across the board. This implies that either the uncertainties were underestimated, or that the model did not reflect the actual discharge characteristics. I believe it is the ladder case, as by looking at the residuals, they are clearly patterned. 
+Chi-squared were quite bad across the board. This implies that either the uncertainties were underestimated, or that the model did not reflect the actual discharge characteristics. I believe it is the ladder case, as by looking at the residuals, they are clearly patterned.
 
-This could also be due to the integral non-linearly of the arduino's Analogue to Digital Converter which is not taken into account in the uncertainties.  
+This could also be due to the integral non-linearly of the arduino's Analogue to Digital Converter which is not taken into account in the uncertainties.
 
-Nevertheless, fit uncertainties were quite low. 
+Nevertheless, fit uncertainties were quite low.
 
 
 
