@@ -86,56 +86,17 @@
 #nonumber[= Introduction and Description]
 #p[For this assignment, you essentially only need to finish what you started in tutorial, where you investigated the internal resistance of a battery and of your voltmeter. Your submission should include two figures along with a brief description of your method and discussion of your results.]
 
-
-#grid(
-  columns: 2,
-  gutter: 20pt,
-
-  [#figure(
-    box(
-      image("images/IMG_3952.jpeg", width: 100%),
-      clip: true,
-      inset: (bottom: -0.85in, right: -0.0in, top: -0.0in, left: -0.8in),
-    ),
-    caption: [
-      Image of the experimental setup.
-    ],
-  ) <ExperimentalSetup>],
-
-  [#figure(
-    box(
-      image("images/IMG_3997.jpeg", width: 100%),
-      clip: true,
-      inset: (bottom: -0.15in, right: -0.4in, top: -0.5in, left: -0.25in),
-    ),
-    caption: [
-      An image of the tissue box that was dropped onto the sensor
-    ],
-  ) <ExperimentalSetup>],
-)
-
-// = *Assignment Description* <nonumber>
-
-
 = Battery internal resistance
 == Methodology
 #p[[100 words max] Briefly explain your methodology (e.g. how you chose to vary the resistance: potentiometer? resistors?, over what resistance range? how did you measure the resistance value?, how did you determine your uncertainties?)]
 
 #word-count(total => [
 
-  Resistance over a 9 volt battery was varied by combining various small resistors on a breadboard. Voltage across the resistance was then measured with a digital multimeter (DMM). To gain further accuracy and account for the resistance of the breadboard, resistances were also measured with a DMM. 
+  Resistance over a 9 volt battery was varied from 1 Ohm to 2 M Ohms by combining various small resistors on a breadboard. Voltage across the resistance was then measured with a digital multimeter (DMM). To gain further accuracy and account for the resistance of the breadboard, resistances were also measured with a DMM. 
 
   Uncertainties were propagated from the uncertainty reported in the DMM's manual. 
 
   #todo[Include a reference from the manual]
-
-  $
-    V = I R \ 
-    I = V / R \ 
-    u[I] = sqrt((u[V] (partial / (partial V) V / R) ) ^ 2 + (u[R] (partial / (partial R) V / R ) ) ^ 2 ) \ 
-
-    u[I] = sqrt( (u[V] / R) ^ 2 + (u[R] (-V) / R^2 )  ^ 2 )
-  $
 
   #figure(
     zap.circuit({
@@ -173,13 +134,21 @@
   ]
   )
 
+  $
+    V = I R \ 
+    I = V_"obs" / R_r  \ 
+    u[I] = sqrt((u[V_"obs"] (partial / (partial V_"obs") V_"obs" / R_r) ) ^ 2 + (u[R_r] (partial / (partial R_r) V_"obs" / R_r ) ) ^ 2 ) \ 
+
+    u[I] = sqrt( (u[V_"obs"] / R_r) ^ 2 + (u[R_r] (-V_"obs") / R_r^2 )  ^ 2 )
+  $
+
   From this: 
   $
      V = I R\ 
   $
   $
-    &eps = I(R_r + R_b) wide &V_"obs" = I R_r  \ 
-    &eps - I R_r = I R_b  wide &I = V_"obs" / R_r \ 
+    eps = I(R_r + R_b)  wide V_"obs" = I R_r \ 
+    eps - I R_r = I R_b  \ 
   $
   $
     eps - V_"obs" = I R_b \  \
@@ -202,6 +171,34 @@
   // subtract 2 to account for the word counter itself
   // does not account for equations by default!
 ])
+
+#grid(
+  columns: 2,
+  gutter: 20pt,
+
+  [#figure(
+    box(
+      image("images/IMG_4982.jpeg", width: 100%),
+      clip: true,
+      inset: (bottom: -0.2in, right: -0.0in, top: -0.65in, left: -0.8in),
+    ),
+    caption: [
+      Image of the experimental setup.
+    ],
+  ) <ExperimentalSetup>],
+
+  [#figure(
+    box(
+      image("images/IMG_4983.jpeg", width: 100%),
+      clip: true,
+      inset: (bottom: -0.15in, right: -0.4in, top: -0.5in, left: -0.25in),
+    ),
+    caption: [
+      An image of the tissue box that was dropped onto the sensor
+    ],
+  ) <ExperimentalSetup>],
+)
+#todo[Fix captions]
 
 
 == I-V Curve
