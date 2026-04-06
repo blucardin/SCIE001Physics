@@ -204,10 +204,27 @@
 == I-V Curve
 #p[Include a figure that shows the I-V curve for a resistance of varying value connected to a 9V battery. Fit the curve and give the internal resistance of the battery in the caption. You can include fit parameters in the plot or in the caption.]
 
+#figure(
+ image("figures/current_to_voltage.svg"), 
+ caption: [Current to voltage of #todo[Finish this]
+
+ Internal Resistance = 8.6773 ± 0.1686
+ ]
+)
+
+#figure(
+ image("figures/current_to_voltage_cut.svg"), 
+ caption: [Current to voltage of #todo[Finish this]
+ Internal Resistance = 8.0690 ± 0.1369
+
+ ]
+)
+
 == Internal Resistance of Voltmeter
 #p[[100 words max] Briefly comment on any marked deviation from the expected linear fit and if the obtained value of the internal resistance is reasonable.]
-
 #word-count(total => [
+
+  
 
 
   Words: #(total.words - 2)
