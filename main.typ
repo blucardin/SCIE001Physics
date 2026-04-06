@@ -7,6 +7,8 @@
 
 #import "@preview/wordometer:0.1.5": total-words, word-count
 
+#import "@preview/zap:0.5.0"
+
 #show: word-count
 
 
@@ -73,6 +75,8 @@
   body
 }
 
+#let eps = $epsilon$; 
+
 #pagebreak()
 
 // // uncomment this for infinite page height except the first page.
@@ -119,6 +123,80 @@
 
 #word-count(total => [
 
+  Resistance over a 9 volt battery was varied by combining various small resistors on a breadboard. Voltage across the resistance was then measured with a digital multimeter (DMM). To gain further accuracy and account for the resistance of the breadboard, resistances were also measured with a DMM. 
+
+  Uncertainties were propagated from the uncertainty reported in the DMM's manual. 
+
+  #todo[Include a reference from the manual]
+
+  $
+    V = I R \ 
+    I = V / R \ 
+    u[I] = sqrt((u[V] (partial / (partial V) V / R) ) ^ 2 + (u[R] (partial / (partial R) V / R ) ) ^ 2 ) \ 
+
+    u[I] = sqrt( (u[V] / R) ^ 2 + (u[R] (-V) / R^2 )  ^ 2 )
+  $
+
+  #figure(
+    zap.circuit({
+    import zap: *
+
+    // remember you can use global styling
+    set-style(variant: "ieee")
+    
+    let width = 6; 
+    let height = 3; 
+
+    rheostat("r2", (0, height), (width, height), label: $R_r$)
+
+    wire((0, 0), (0, height * 2 ))
+
+    vsource("b2", (0, 0), (width/2, 0), label: $eps$)
+
+    resistor("r1", "b2.out", (width, 0), label: $R_b$)
+    // resistor("r1", (width/2, 0), (width, 0), variant: "ieee")
+
+    wire((width, 0), (width, height * 2))
+
+    let thick = 1.2; 
+    draw.rect((0.7, -thick + 0.2), (width - 0.5, thick), stroke: (dash: "dashed", thickness: .8pt, paint: blue), name: "rect")
+
+    draw.content("rect.north", text(fill: blue)[9V battery], anchor: "south")
+
+    voltmeter("i1", (0, height * 2), (width, height * 2), label: (content: $V_"obs"$, anchor: "south", distance: 4pt))
+
+  }), 
+  caption: [
+    A circuit diagram of the setup. #todo["Define the variables here"] 
+
+    #todo[subtract these words from the count]
+  ]
+  )
+
+  From this: 
+  $
+     V = I R\ 
+  $
+  $
+    &eps = I(R_r + R_b) wide &V_"obs" = I R_r  \ 
+    &eps - I R_r = I R_b  wide &I = V_"obs" / R_r \ 
+  $
+  $
+    eps - V_"obs" = I R_b \  \
+  // $
+  // $
+    therefore I = - (1/ R_b) V_"obs" + eps / R_b 
+  $
+
+  Or in other words, in the linear relationship between $I$ and $V$: 
+  $
+    "Slope" = m = -1/R_b \ 
+    
+    therefore R_b = -1/m \ 
+
+    u[R_b] = sqrt((u[m](partial / (partial m) (-1/m) ))^2) \ 
+    therefore u[R_b] = u[m] (1/(m^2) )
+  $
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
