@@ -224,8 +224,15 @@
 #p[[100 words max] Briefly comment on any marked deviation from the expected linear fit and if the obtained value of the internal resistance is reasonable.]
 #word-count(total => [
 
-  
+  The data was fit using Orthogonal distance regression using the scipy.odr library as it accounted for errors in both the dependant in independent variable. 
 
+  There was a marked deviation when using a resistance over the battery was greater than 150.8 Ohms. At this point, current seemed to level out instead of following the linear trend. 
+
+  This is demonstrated by cutting the data before this point, reducing the chi-squared from 3170457191.1117 to 1.2024. 
+
+  The obtained value of internal resistance is reasonable, as is in the range of other batteries (0.006 - 35 Ohms). However, compared to the listed value for zinc carbon (which the battery is), it is out of range. 
+
+  https://www.learningaboutelectronics.com/Articles/Battery-internal-resistance#google_vignette 
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
