@@ -424,6 +424,9 @@ This ratio is implicitly present in the 3.3V calibration.
   Logarithm of scaled voltage decay trace obtained from the arduino. Data was fit in log space for ease of programming. Model is $log(V(t)) = b + m t$, where $b = log(V_0), m = -1/(R C)$. Parameters can be found in @fit-parameters. 
   
   Uncertainties were calculated using $u[ln(V(t))] = u[V(t)]/V(t)$ and are shown as ribbons. 
+
+  Time constant for the voltmeter is $1.4888 pm 0.0018 s$, translating to an internal resistance of $11.264160 mo plus.minus 0.001996 mo$ (with capacitance calibration).  
+
   ],
 ) <log-voltage-decay>
 
@@ -435,6 +438,8 @@ This ratio is implicitly present in the 3.3V calibration.
   Model is $V(t) = e^(b)e^(m t)$, where $e^(b) = V_0$ and $m = -1/(R C)$
 
   Parameters can be found in @fit-parameters. Uncertainties are shown as ribbons, however they are too small to be seen in this plot. See @log-voltage-decay for more visible uncertainties. 
+
+  Time constant for the voltmeter is $1.4888 pm 0.0018 s$, translating to an internal resistance of $11.264160 mo plus.minus 0.001996 mo$ (with capacitance calibration).   
   ],
 )
 
@@ -443,7 +448,7 @@ This ratio is implicitly present in the 3.3V calibration.
   caption: [
   A plot of the obtained RC value to the actual resistance over the capacitor $R_T$. Uncertainties are shown as error bars however they are too small to be seen in this plot.
 
-  Model is: $R C = m R + b$ where $m = C$. The $b$ parameter is not necessary, since there is no intercept, however I wanted to confirm $b approx 0$. 
+  Model is: $R C = m R + b$ where $m = C$. The $b$ parameter is not necessary, since the intercept should be 0, however I wanted to confirm $b approx 0$. 
 
   $m = C = 0.8784 pm 0.0020 mu"f"$
   ],
