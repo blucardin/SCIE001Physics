@@ -446,7 +446,24 @@ This ratio is implicitly present in the 3.3V calibration.
 
   As shown in @RC-to-C, by plotting the measured RC value to the expected resistance of the circuit and fitting a linear curve, $C$ can be determined with greater precision. I found $C = 0.8784 "uf" plus.minus 0.0020 "uf"$ a difference of $0.1216 "uf"$ from the marked value.
 
-  We can divide the voltmeter's $R C$ with $C$ to determine $R_T$, then use the parallel resistance equation with uncertainty propagation, to get a voltmeter resistance of $11.264160 mo plus.minus 0.001996 mo$. (Without calibrating for the capacitance [using C = 1 $mu$ f], this value would have been $5.8677 mo pm 0.001753mo$)
+  We can divide the voltmeter's $R C$ with $C$ to determine $R_T$, then use the parallel resistance equation with uncertainty propagation, to get a voltmeter resistance of $11.264160 mo plus.minus 0.001996 mo$. (Without calibrating for the capacitance [using C = 1 $mu$ f], this value would have been $5.8677 mo pm 0.001753mo$). The equation and propagation is shown below: 
+
+  $
+    R_T = (R C) /C \ 
+    R_r = 1 / ((1/R_T) - (1/ (1 mo + 1 mo)))\
+
+    R_r = 1 / ((C / (R C)) - (1/ (2 mo)))\
+
+  $
+  Since I treat $1/ (2 mo)$ as having infinite precision, and subtraction does not affect uncertainty. We can approximate the uncertainty: 
+  $
+    u[R_r] = u[1 / ((C / (R C)))] = u[(R C) / C] \ 
+
+    u[R_r] = sqrt((u[(R C)] (partial / (partial (R C)) (R C) / C) )^2 + (u[C] (partial / (partial C) (R C) / C ) )^2) \
+
+    u[R_r] = sqrt((u[(R C)] / C)^2 + (u[C] (-(R C)) / C^2 )^2)
+
+  $
 
 
   The obtained value of the internal resistance of the voltmeter is reasonable, as it matches the measurement made by another multimeter $11.10 mo plus.minus #(11.10 * 0.01 + 0.02) mo$. It also makes sense for that internal resistance to be so high, to prevent loading effects when measuring the voltage over small resistors. 
