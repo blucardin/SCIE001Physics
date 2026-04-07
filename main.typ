@@ -70,9 +70,12 @@
 // \
 \
 \
-#align(center)[
-#image("/figures/log_voltage_decay.svg", width: 90%),
+#figure(
+image("/figures/log_voltage_decay.svg", width: 90%),
+caption:[
+  See @log-voltage-decay
 ]
+)
 // #align(center)[
 // #box(
       // #image("/figures/log_voltage_decay.svg", width: 70%),
