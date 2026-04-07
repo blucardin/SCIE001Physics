@@ -71,7 +71,7 @@
 \
 \
 #align(center)[
-#image("/figures/log_voltage_decay.svg", width: 95%),
+#image("/figures/log_voltage_decay.svg", width: 90%),
 ]
 // #align(center)[
 // #box(
@@ -110,7 +110,7 @@
 
 #word-count(total => [
 
-  Resistance over a 9 volt battery was varied from 1 Ohm to 2 M Ohms by combining various small resistors on a breadboard. Voltage across the resistance was then measured with a digital multimeter (DMM). To gain further accuracy and account for the resistance of the breadboard, resistances were also measured with the DMM.
+  Resistance over a 9 volt battery was varied from 1 Ohm to 2 M Ohms by combining various small resistors on a breadboard to determine the internal resistance of the battery. Voltage across the resistance was then measured with a digital multimeter (DMM). To gain further accuracy and account for the resistance of the breadboard, resistances were also measured with the DMM.
 
   Uncertainties were propagated from the voltage and resistance uncertainties reported in the DMM's manual @voltage-resistance-unceranties.
 
@@ -251,6 +251,8 @@
   image("figures/current_to_voltage.svg"),
   caption: [Current to voltage detected by DMM with varying $R_r$. 
 
+    Model is $I(V) = m V + b$ where $m = - (1/ R_b), b = eps / R_b$.
+
     From this data, Battery Internal Resistance $R_b = -1/m = 8.6773 ± 0.1686$ Ohms. 
   ],
 )
@@ -258,6 +260,9 @@
 #figure(
   image("figures/current_to_voltage_cut.svg"),
   caption: [Current to voltage detected by DMM with varying $R_r$ with data cut before the 150.8 Ohm (8.78 V) datapoint to demonstrate decline in Chi-squared. 
+
+    Model is $I(V) = m V + b$ where $m = - (1/ R_b), b = eps / R_b$.
+
 
   From this data, Battery Internal Resistance $R_b = -1/m = 8.0690 ± 0.1369$ Ohms
 
@@ -272,7 +277,7 @@
 
   There was a marked deviation when using a resistance over the battery was greater than 150.8 Ohms. At this point, current seemed to level out instead of following the linear trend. This is demonstrated by cutting the data before this point, reducing the chi-squared from 3170457191.1117 to 1.2024. Our model does not fit the data over 150.8 Ohms. 
 
-  This could be due to DMM loading effects, where, as the resistance of the resistor approaches the internal resistance of the multimeter, they form a parallel resistor circuit. This would form a voltage division circuit with $R_b$, distorting the measured voltage and current values. 
+  This could be due to DMM loading effects, where, as the resistance of the resistor approaches the internal resistance of the multimeter, they form a parallel resistor circuit. This would form a voltage division circuit with the internal resistance of the battery, distorting the measured voltage and current values. 
 
   The obtained value of internal resistance of the battery is reasonable, as is in the range of reported values (0.006 - 35 Ohms)#footnote[https://www.learningaboutelectronics.com/Articles/Battery-internal-resistance#google_vignette]. However, compared to the value for its type (zinc carbon) (35 Ohms), it is out of range.
 
@@ -291,12 +296,12 @@
 
 #word-count(total => [
 
-  As shown in @circuit-diagram-capacitor, an arduino was used to sample the voltage in an RC circuit roughly every 10 milliseconds. $1 "uF"$ was chosen as it provided a long enough decay when measuring the DMM to gather enough data, while ensuring runs did not produce too much data. A voltage divider was used to step down the voltage from 0-9.48V to 4.74V to not overload the arduino's pins.
+  As shown in @circuit-diagram-capacitor, an arduino was used to sample the voltage in an RC circuit roughly every 10 milliseconds to determine the internal resistance of a voltmeter. $1 "uF"$ was chosen as it provided a long enough decay when measuring the DMM to gather enough data for small resistances, while ensuring large resistance runs did not produce too much data. A voltage divider was used to step down the voltage from 0-9.48V to 4.74V to not overvolt the arduino's pins.
 
 
   Uncertainty was propagated from the listed values for the Analogue to Digital Converter of the Arduino's ATmega328P chip (±2 LSB absolute accuracy) #footnote[https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf]. Voltage measurements were calibrated from the arduino's 3.3V reference pin.
 
-  Words: #(total.words - 2)
+  // Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
   // does not account for equations by default!
 ])
@@ -310,9 +315,9 @@
     let width = 6
     let height = 2.1
 
-    rheostat("r2", (0, height * 2), (width, height * 2), label: $R_m$)
+    rheostat("r2", (0, height * 2), (width, height * 2), label: $R_r$)
 
-    vsource("b1", (0, height * 4), (width, height * 4), label: $eps$)
+    vsource("b1", (0, height * 4), (width, height * 4), label: $eps = V_0$)
 
     switch("s1", (0, height * 3), (0, height * 4))
 
@@ -354,7 +359,7 @@
   caption: [
     A circuit diagram of the setup. \ 
 
-    The capacitor was charged with the switch, then when released, the decay trace recorded. The resistance $R_r$ was varied during calibration to obtain a more precise value for the capacitance $C$, then swapped with the DMM to determine its internal resistance. 
+    The capacitor was charged with the switch engaged, then when released, the decay trace recorded. The resistance $R_r$ was varied to obtain a more precise value for the capacitance $C$, then swapped with the DMM to determine its internal resistance. 
     
     // $1 mo $ resistors were used for the divider to extend decay time (compared to the standard 10 k$Omega$)
 
@@ -372,14 +377,14 @@ $
   therefore R_r = 1 / ((1/R_T) - (1/ (1 mo + 1 mo)))\
 $ <Rr-from-RT>
 
-The time decay of voltage in an RC circuit is:
+The time decay curve of voltage in an RC circuit is:
 
 $
   V(t) = V_0 e^(-t/(R C)) \
   log(V(t)) = log(V_0) + (-1/(R C)) t
 $
 
-Where $V(T)$ is the voltage over the capacitor at time $t$. 
+Where $V(t)$ is the voltage over the capacitor at time $t$. 
 
 Let $V_"ard"$ equal the voltage detected by the arduino.\
 Let $I$ represent the current flowing through the divider. 
@@ -426,7 +431,7 @@ This ratio is implicitly present in the 3.3V calibration.
   
   Model is $V(t) = e^(b)e^(m t)$, where $e^(b) = V_0$ and $m = -1/(R C)$
 
-  Parameters can be found in @fit-parameters. Uncertainties are shown as ribbons, however they are too small to be seen in this plot. See @log-voltage-decay. 
+  Parameters can be found in @fit-parameters. Uncertainties are shown as ribbons, however they are too small to be seen in this plot. See @log-voltage-decay for more visible uncertainties. 
   ],
 )
 
@@ -435,7 +440,9 @@ This ratio is implicitly present in the 3.3V calibration.
   caption: [
   A plot of the obtained RC value to the actual resistance over the capacitor $R_T$. Uncertainties are shown as error bars however they are too small to be seen in this plot.
 
-  $m = (Delta R_T C) / (Delta R_T)$ since $C$ is constant, $m = C = 0.8784 pm 0.0020 mu"f"$
+  Model is: $R C = m R + b$ where $m = C$. The $b$ parameter is not necessary, since there is no intercept, however I wanted to confirm $b approx 0$. 
+
+  $m = C = 0.8784 pm 0.0020 mu"f"$
   ],
 ) <RC-to-C>
 
@@ -444,7 +451,7 @@ This ratio is implicitly present in the 3.3V calibration.
 
 #word-count(total => [
 
-  As shown in @RC-to-C, by plotting the measured RC value to the expected resistance of the circuit and fitting a linear curve, $C$ can be determined with greater precision. I found $C = 0.8784 "uf" plus.minus 0.0020 "uf"$ a difference of $0.1216 "uf"$ from the marked value.
+  As shown in @RC-to-C, by plotting the measured RC value to the expected resistance of the circuit and fitting a linear curve, $C$ can be determined with greater precision. I found $C = 0.8784 "uf" plus.minus 0.0020 "uf"$ a difference of $0.1216 mu"f"$ from the marked value.
 
   We can divide the voltmeter's $R C$ with $C$ to determine $R_T$, then use the parallel resistance equation with uncertainty propagation, to get a voltmeter resistance of $11.264160 mo plus.minus 0.001996 mo$. (Without calibrating for the capacitance [using C = 1 $mu$ f], this value would have been $5.8677 mo pm 0.001753mo$). The equation and propagation is shown below: 
 
@@ -455,7 +462,7 @@ This ratio is implicitly present in the 3.3V calibration.
     R_r = 1 / ((C / (R C)) - (1/ (2 mo)))\
 
   $
-  Since I treat $1/ (2 mo)$ as having infinite precision, and subtraction does not affect uncertainty. We can approximate the uncertainty: 
+  Since I treat $1/ (2 mo)$ as having infinite precision, and subtraction does not affect uncertainty. We can approximate the uncertainty as: 
   $
     u[R_r] = u[1 / ((C / (R C)))] = u[(R C) / C] \ 
 
@@ -466,10 +473,10 @@ This ratio is implicitly present in the 3.3V calibration.
   $
 
 
-  The obtained value of the internal resistance of the voltmeter is reasonable, as it matches the measurement made by another multimeter $11.10 mo plus.minus #(11.10 * 0.01 + 0.02) mo$. It also makes sense for that internal resistance to be so high, to prevent loading effects when measuring the voltage over small resistors. 
+  The obtained value of the internal resistance of the voltmeter is reasonable, as it matches the measurement made by another multimeter $11.10 mo plus.minus #(11.10 * 0.01 + 0.02) mo$. It also makes sense for the internal resistance to be so high, so as to prevent loading effects when measuring the voltage over small resistors. 
 
 
-  This implies that whenever you make a measurement with the voltmeter, you are really measuring a system in parallel with an $11 mo$ resistor. For resistors under constant voltage, this is fine, as the power supply will increase the current so that the measurement would be the same if using an ideal voltmeter. However, if the circuit is non-voltage controlled (like the voltage divider-type circuit in part 1), when measuring voltage over large resistances, the voltmeter would significantly change the resistance in the circuit, causing voltage measurements to be lower than with an ideal meter. 
+  This implies that whenever you make a measurement with the voltmeter, you are really measuring a system in parallel with an $11 mo$ resistor. For resistors under constant voltage, this is fine, as the power supply will increase the current so that the measurement would be the same if using an ideal voltmeter. However, if the circuit is non-voltage controlled (like the voltage divider-type circuit in part 1), when measuring voltage over large resistances, the voltmeter would significantly lower the resistance in the circuit, causing voltage measurements to be lower than with an ideal meter. 
 
 
   // Words: #(total.words - 2)
@@ -517,10 +524,10 @@ This ratio is implicitly present in the 3.3V calibration.
 
 #show: appendix
 
-= Fit Parameters <fit-parameters>
+= Fit Parameters for Part 2 <fit-parameters>
 I found that all the fit parameters really cluttered up the graphs, so I have included them in a table here.
 
-Chi-squared were quite bad across the board. This implies that either the uncertainties were underestimated, or that the model did not reflect the actual discharge characteristics. I believe it is the ladder case, as by looking at the residuals, they are clearly patterned.
+Chi-squared were quite bad across the board. This implies that either the uncertainties were underestimated, or that the model did not reflect the actual discharge characteristics. I believe it is the ladder case, as by looking at the residuals, they are clearly patterned. See @fit-residuals.
 
 This could also be due to the integral non-linearly of the arduino's Analogue to Digital Converter which is not taken into account in the uncertainties.
 
@@ -532,44 +539,70 @@ $
 $
 
 #table(
-  columns: (auto, 1fr, 1fr, 1fr),
+  columns: (auto, 1fr, 1fr, 1fr, 1fr, 1fr),
   align: center + horizon,
   stroke: 0.4pt,
-
 [*Trial*],
 [*m*],
+[*dm*],
 [*b*],
+[*db*],
 [*Chi-Squared*],
 [voltmeter],
 [-0.6717],
+[0.0008],
 [2.1834],
+[0.0039],
 [22.4315],
 [100 KΩ],
 [-12.0566],
+[0.1031],
 [2.2636],
+[0.0352],
 [2.2014],
 [200 KΩ],
 [-6.2680],
+[0.0322],
 [2.2486],
+[0.0209],
 [4.4509],
 [1 MΩ],
 [-1.7143],
+[0.0047],
 [2.2155],
+[0.0103],
 [2.2617],
 [2 MΩ],
 [-1.1336],
+[0.0022],
 [2.2079],
+[0.0069],
 [5.2966],
 [5.5 MΩ],
 [-0.7753],
+[0.0011],
 [2.2137],
+[0.0048],
 [3.9752],
 [6.6 MΩ],
 [-0.7479],
+[0.0010],
 [2.2211],
+[0.0048],
 [3.8836],
-[Just divider (2Ω)],
+[Just divider],
 [-0.5693],
+[0.0006],
 [2.1977],
+[0.0036],
 [11.0145],
+)
+
+#pagebreak()
+
+= Fit Residuals for Part 2 <fit-residuals>
+
+#figure(
+image("figures/voltage_residuals.svg"),
+caption: [Fit residuals for part 2, clearly patterned. ]
 )
