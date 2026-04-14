@@ -10,7 +10,7 @@
 #align(center + horizon)[
 
   _#text(30pt)[
-    #title(titlecase("Quiz 7 Reflection"))
+    #title(titlecase("Quiz 10 Reflection"))
   ] \ \
   _
 
@@ -44,20 +44,19 @@
 // uncomment this for infinite page height except the first page.
 #set page(height: auto)
 
+#pagebreak()
 
-= Neutron Beam Double-Slit
+= Magnetic induction
 
 == Specify Question
-#image("images/Question 8: Neutron Beam Double-Slit.png")
+#image("images/Question 5: Magnetic induction.png")
 
 
 == Diagnosis Phase
 #word-count(total => [
-  During the test I forgot the conversion factor from $mu$m to m and I didn't have enough time to find it in the textbook.
 
-  This caused me to panic, as, with both ways of analyzing the question, you had to convert to, or from, micrometers.
+  I didn't know what Electromotive Force was or how to calculate it so I just took the magnitude of the slope of the line and added Newtons because it said "Force" 
 
-  Initially, I guessed $340 "eV"$, as was the result of the calculation of the wavelength of the particle if you replaced micrometers with electron volts. However, I changed my answer to $40 "eV"$, as $340 "eV"$ looked like too much energy.
 
   Words: #(total.words - 2)
   // subtract 2 to account for the word counter itself
@@ -67,90 +66,32 @@
 == Correction Phase
 #word-count(total => [
 
-  Using our small-angle approximation, we can reach an expression for fringe spacing in the double slit experiment (given to us on the slides):
+  Electromotive force is defined as the negative change in the magnetic flux per unit time. 
   $
-    Delta y = y_(n+1) - y_n = (lambda L)/ d
-  $
-  Where $d$ is the distance between the slits, $L$ is the length from the slits to the screen, and $Delta y$ is the distance between the fringes.
-
-  Solving for $lambda$:
-  $
-    (d Delta y) / L = lambda
+    epsilon = - (dif Phi _ m ) / (dif t)
   $
 
-  We can combine this with our equation for momentum:
+  In this case, our flux is
   $
-    p = h / lambda
+    Phi_m = integral_s arrow(B) dot hat(n) dif A
   $
-  \
+  Since the field is uniform and perpendicular to the loop of wire, and our area is just the area of the loop: 
   $
-    p = h / ((d Delta y) / L) \
-    p = (h L) / (d Delta y) \
-    //
-    // f = E / h \
-    // E = h f \
-    // E = h/ lambda\
-    // E = h/ ((d Delta y) / L)\
-    // E = (h L)/ (d Delta y)\
-    
-  $
-  Using momentum-energy equivalence we get:
-
-  $
-    E = p^2 / (2 m)
-  $
-  Where $E$ is kinetic energy, $p$ is momentum, and $m$ is mass.
-
-  Combining: 
-  $
-    E = ( (h L) / (d Delta y))^2 / (2 m) \
-    E = (h^2 L^2) / (2 m d^2 Delta y^2)
+    Phi_m = pi r ^ 2 B
   $
 
-  To make the math easier, we can multiply both sides of the fraction by $c^2$.
+  Looking at our emf: 
   $
-    E = (h^2 c^2) / (2 m d^2 Delta y^2 c^2)
+    abs(epsilon) = abs(- (dif) / (dif t) (pi r ^ 2 B)) = pi r ^ 2 abs((dif B) / (dif t))
   $
-  $
-    E = ((h c)^2 L^2 ) / (2 m (c^2) d^2 Delta y^2 )
-  $
-
-  Now we can substitute, being careful about our units:
-
-  // As given in the question:
-  $
-        h c & = 1240 "eV" dot "nm" \
-    1 "MeV" & = 1 times 10^6 "eV" \
-          m & = 939.6 "MeV" / "c"^2 = 939.6 times 10^6 "eV" / "c"^2 \
-          L & = 5 "m" \
-    Delta y & = 70 mu"m" \
-          d & = 112 mu"m"
-  $
-  Therefore:
-  $
-    E = ((1240 "eV" dot "nm" )^2 ( 5 "m")^2 ) / (2 (( 939.6 times 10^6 "eV") / cancel("c"^2)) cancel(c^2) (112 mu"m")^2 (70 mu"m")^2 ) \
-    E = ((1,537,600 " eV"^2 dot "nm"^2 ) ( 25 " m"^2) ) / (2 (939.6 times 10^6 "eV") (61,465,600 mu"m"^4))
-  $
-
-  With conversions:
-  $
-    1 "nm" = 1 times 10^(-9) "m"\
-    1 "nm"^2 = 1 times 10^(-18) " m"^2\
-    \
-    1 mu"m" = 1 times 10^(-6) "m" \
-    1 mu"m"^4 = 1 times 10^(-24) " m"^4 \
-    \
-  $
+  We know that at 2 $mu$s, $(dif B) / (dif t)  = -2 (mu"T")/(mu"s") = -2 ("T")/("s")$ :
 
   $
-    E = ((1,537,600 " eV"^2) (1 times 10^(-18) "m"^2) ( 25 " m"^2) ) / (2 (939.6 times 10^6 "eV") (61,465,600 times 10^(-24) " m"^4 )) \
-    E = 0.0003327961166 "eV" \
-    1 "eV" = 1 times 10^6 mu"eV" \
-    E = 332.7961166 mu"eV" \
-    therefore E = 333 mu"eV"
+    abs(epsilon) =  pi (0.16 m ) ^ 2 abs(-2 ("T")/("s")) = 0.16  ("m"^2"T") / "s" \ 
+    abs("emf") = 0.16 V
   $
 
-
+  
 
 
 
@@ -160,3 +101,136 @@
   // does not account for equations by default!
 ])
 
+#pagebreak()
+
+= Energy transfer in LC circut
+
+== Specify Question
+#image("images/Question 7: Energy transfer in LC circut.png")
+
+
+== Diagnosis Phase
+#word-count(total => [
+
+  For part a, I mistook that voltage refers to energy itself, and not potential energy. Under this assumption, when we know that the inductor has peak energy when there is the least energy in the wires. 
+
+  I forgot the equation to relating $L$, $C$, and the period of current in the LC circuit just put down something random. 
+
+  $
+    (150 "mH") / (20 "pF") ( 1 / 2) = 3.75
+  $
+
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
+== Correction Phase
+#word-count(total => [
+
+  The equation I forgot was: 
+  $
+    
+  $
+
+  But the relationship I needed was, in an oscillating LC circuit: 
+  $
+    omega = sqrt(1 / ( L C))
+  $
+
+  Then using the relationship between $omega$ and the period:
+
+  $
+    omega = (2 pi) / T \ 
+    1 / sqrt(L C) =  (2 pi) / T  \ 
+    T  = 2 pi sqrt(L C) 
+  $
+
+  Therefore: 
+  $
+    T  = 2 pi sqrt(L C) 
+  $
+
+  But this is the period of the oscillations in charge, and we want the oscillations in energy. Comparing this to a ball on spring system with the energy being transferred from spring potential to kinetic, the period of energy oscillation is half the period of position oscillation. Making this analogy: 
+
+  $
+    T_"energy"  = T_"charge"/2 = pi sqrt(L C)  = pi sqrt((150 times 10 ^ (-3) "H")(20 times 10 ^ (-12) "F")) = 0.000005441398093 "s"  \ 
+    
+    therefore T_"energy" = 5.44 times 10 ^ (-6) "s"
+  $
+
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
+#pagebreak()
+
+= Measuring current with a voltmeter
+
+== Specify Question
+#image("images/Qustion 8: Measuing current with a voltmeter.png")
+
+
+== Diagnosis Phase
+#word-count(total => [
+  Clerical Error, I forgot to round the result to the nearest 0.1 mA
+
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
+== Correction Phase
+#word-count(total => [
+
+  The voltmeter has such a high internal resistance compared to the load resistance that we can treat it as negligible to simplify the calculations. So we can just treat the voltmeter as being a perfect voltmeter with infinite internal resistance. 
+
+  $
+    V = I R \ 
+    V = I R_"load" \ 
+    I = V  / R_"load" = (0.34 V) / (160 Omega) = 0.002125 A = 2.125 "mA" approx 2.1 "mA"
+  $
+
+
+
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
+// #pagebreak()
+
+= Find the current through the resistor
+
+== Specify Question
+#image("images/Quesition 1: Find the current through the resistor.png")
+
+
+== Diagnosis Phase
+#word-count(total => [
+
+  I was going too fast and made a mistake in my calculations and solving of the linear system which somehow made the current come out to 1 Amp.
+
+  I also remember forgetting the direction that the batteries were facing, thinking that both batteries were facing in the opposite direction.  
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
+
+== Correction Phase
+#word-count(total => [
+
+  Using both Kirchhoff's Circuit Laws the junction and loop rules:
+
+  #image("images/IMG_5082.jpeg") 
+
+  Words: #(total.words - 2)
+  // subtract 2 to account for the word counter itself
+  // does not account for equations by default!
+])
