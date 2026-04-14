@@ -39,7 +39,7 @@
   calc.round(x, digits: 2)
 }
 
-#pagebreak()
+// #pagebreak()
 
 // uncomment this for infinite page height except the first page.
 #set page(height: auto)
@@ -112,7 +112,7 @@
 == Diagnosis Phase
 #word-count(total => [
 
-  For part a, I mistook that voltage refers to energy itself, and not potential energy. Under this assumption, when we know that the inductor has peak energy when there is the least energy in the wires. 
+  For part a, I mistook that the graph was of voltage and not current, and I also mistook that voltage refers to energy itself, and not its true definition of electric potential difference. Under this false assumption, we know that the inductor has peak energy when there is the least "energy" flowing in the wires, so I selected B and D. This was a guess. 
 
   I forgot the equation to relating $L$, $C$, and the period of current in the LC circuit just put down something random. 
 
@@ -129,12 +129,9 @@
 == Correction Phase
 #word-count(total => [
 
-  The equation I forgot was: 
-  $
-    
-  $
+  In reality, the graph was of current, not voltage. Energy in an inductor is directly proportional to the current running through it. Therefore A and C were the correct choices. 
 
-  But the relationship I needed was, in an oscillating LC circuit: 
+  The relationship I needed was, in an oscillating LC circuit: 
   $
     omega = sqrt(1 / ( L C))
   $
@@ -152,7 +149,7 @@
     T  = 2 pi sqrt(L C) 
   $
 
-  But this is the period of the oscillations in charge, and we want the oscillations in energy. Comparing this to a ball on spring system with the energy being transferred from spring potential to kinetic, the period of energy oscillation is half the period of position oscillation. Making this analogy: 
+  But this is the period of the oscillations in charge, and we want the oscillations in energy. Comparing this to a spring system with the energy being transferred from spring potential to kinetic, the period of energy oscillation is half the period of position/charge oscillation. Making this analogy: 
 
   $
     T_"energy"  = T_"charge"/2 = pi sqrt(L C)  = pi sqrt((150 times 10 ^ (-3) "H")(20 times 10 ^ (-12) "F")) = 0.000005441398093 "s"  \ 
@@ -203,7 +200,7 @@
   // does not account for equations by default!
 ])
 
-// #pagebreak()
+#pagebreak()
 
 = Find the current through the resistor
 
