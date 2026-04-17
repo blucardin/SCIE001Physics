@@ -206,7 +206,7 @@
     E_P = (sigma - sigma_A - sigma_B ) / (2 eps)
   $
 
-  The electric field in a conductor in electrostatic equilibrium is zero:
+  The electric field in a conductor in equilibrium is zero:
 
   $
     E_P = (sigma - sigma_A - sigma_B ) / (2 eps) & = 0 \
