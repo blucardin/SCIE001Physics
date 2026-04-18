@@ -184,7 +184,7 @@
 
   In electrostatic equilibrium, charge sits on the conductor's surface.
 
-  Negative charges will be attracted to the positive charges on the bottom plate, making the bottom of the conductor negatively charged and the top positively charged. The conductor is neutral: 
+  Negative charges are attracted to the positive charges on the bottom plate, making the bottom of the conductor negatively charged and the top positively charged. The conductor is neutral therefore: 
 
   $
     sigma_A - sigma_B  = 0\
